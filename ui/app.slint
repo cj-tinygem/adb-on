@@ -1,0 +1,548 @@
+import { VerticalBox, HorizontalBox, LineEdit, ScrollView, CheckBox } from "std-widgets.slint";
+
+// 색은 층으로 구분한다: 바탕(회색) → 표면(흰색: 앱바·카드·바탕 위 버튼) → 표면 위 컨트롤(연한 회색).
+// 강조는 파랑 하나, 위험은 빨강 하나뿐이다. 테두리선과 그림자는 쓰지 않는다.
+export global Theme {
+    out property <color> background: #eef1f5;
+    out property <color> surface: #ffffff;
+    out property <color> surface-2: #e3e8ef;
+    out property <color> ink: #16233a;
+    out property <color> muted: #5a6a80;
+    out property <color> accent: #1a66c9;
+    out property <color> danger: #b3261e;
+    // 앱바의 연결 상태 점에만 쓰는 상태색. 회색 = 도구 없음, 빨강 = 폰 없음, 노랑 = 조치 필요, 초록 = 연결됨.
+    out property <color> state-off: #9aa7b8;
+    out property <color> state-none: #b3261e;
+    out property <color> state-wait: #e0a800;
+    out property <color> state-ok: #2e8b57;
+    out property <length> gap: 12px;
+    out property <length> radius: 16px;
+    out property <length> radius-control: 12px;
+}
+export struct DeviceRow { serial: string, name: string, state: string, wireless: bool, connected: bool }
+export struct ServiceRow { address: string, label: string, connected: bool }
+// 줄바꿈 텍스트의 높이는 폭에 달려 있다. `if`로 나중에 만들어지는 화면에서는 레이아웃이 폭을 정하기 전에
+// 한 줄 폭으로 높이를 재고 다시 재지 않으므로, 각 인스턴스의 폭을 창 폭에서 바깥 여백을 뺀 값으로 직접 준다
+// (부모 폭에 묶으면 스크롤 영역의 폭 계산과 순환 참조가 생긴다).
+component Heading inherits Text { color: Theme.ink; font-size: 22px; font-weight: 700; wrap: word-wrap; }
+component Paragraph inherits Text { color: Theme.muted; wrap: word-wrap; }
+component Card inherits Rectangle {
+    background: Theme.surface;
+    border-radius: Theme.radius;
+}
+// 버튼은 층에 따라 색만 다르다. 바탕 위는 흰색, 카드 안(tinted)은 연한 회색, 주 동작은 파랑, 위험은 빨강.
+component AppButton inherits Rectangle {
+    in property <string> text;
+    in property <bool> primary: false;
+    in property <bool> tinted: false;
+    in property <bool> danger: false;
+    in property <bool> plain: false;   // 바탕 없이 글자만. 마우스를 올리거나 누를 때만 연한 회색이 깔린다.
+    in property <bool> enabled: true;
+    callback clicked;
+    property <color> base: root.danger ? Theme.danger : root.primary ? Theme.accent : root.tinted ? Theme.surface-2 : Theme.surface;
+    height: 48px;
+    min-width: label.preferred-width + 32px;
+    border-radius: Theme.radius-control;
+    background: root.plain
+        ? (touch.pressed ? Theme.surface-2.darker(0.08) : touch.has-hover && root.enabled ? Theme.surface-2 : transparent)
+        : (touch.has-hover && root.enabled ? root.base.darker(0.08) : root.base);
+    opacity: root.enabled ? 1 : 0.45;
+    accessible-role: button;
+    accessible-label: root.text;
+    accessible-enabled: root.enabled;
+    accessible-action-default => { if root.enabled { root.clicked(); } }
+    label := Text {
+        text: root.text;
+        color: (root.primary || root.danger) ? #ffffff : Theme.ink;
+        font-weight: 600;
+        horizontal-alignment: center;
+        vertical-alignment: center;
+        width: parent.width - 24px;
+    }
+    touch := TouchArea { enabled: root.enabled; clicked => { root.clicked(); } }
+}
+
+// 언어 드롭다운. 표준 ComboBox의 팝업은 창의 기본 글꼴을 따르지 않아 한자가 깨지므로,
+// 팝업 안 글자마다 그 언어의 글꼴을 직접 지정하는 자체 드롭다운을 쓴다. 팝업은 잉크색 바탕이라
+// 흰 카드와 회색 바탕 어디에 걸쳐도 경계가 분명하다.
+component LanguagePicker inherits Rectangle {
+    in property <[string]> options;
+    in property <[string]> fonts;   // 항목마다 그 언어의 글꼴. 현재 UI 글꼴에는 다른 언어의 글자가 없을 수 있다.
+    in property <int> current;
+    in property <bool> enabled: true;
+    callback chosen(int);
+    height: 48px;
+    border-radius: Theme.radius-control;
+    background: trigger.has-hover && root.enabled ? Theme.surface-2.darker(0.08) : Theme.surface-2;
+    opacity: root.enabled ? 1 : 0.45;
+    // 접근성에서는 버튼으로 노출한다(표준 콤보박스 패턴은 자체 팝업과 맞지 않는다).
+    accessible-role: button;
+    accessible-label: root.options[root.current];
+    accessible-action-default => { if root.enabled { popup.show(); } }
+    HorizontalBox {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 0;
+        padding-bottom: 0;
+        Text { text: root.options[root.current]; color: Theme.ink; font-weight: 600; vertical-alignment: center; horizontal-stretch: 1; }
+        Rectangle { width: 12px; Path { y: (parent.height - self.height) / 2; width: 12px; height: 7px; viewbox-width: 12; viewbox-height: 7; commands: "M 1 1 L 6 6 L 11 1"; stroke: Theme.ink; stroke-width: 2px; } }
+    }
+    trigger := TouchArea { enabled: root.enabled; clicked => { popup.show(); } }
+    popup := PopupWindow {
+        x: 0;
+        y: root.height + 6px;
+        width: root.width;
+        height: root.options.length * 44px + 12px;
+        Rectangle {
+            background: Theme.ink;
+            border-radius: Theme.radius-control;
+            VerticalLayout {
+                padding: 6px;
+                for name[i] in root.options: option := Rectangle {
+                    property <bool> selected: i == root.current;
+                    height: 44px;
+                    border-radius: 10px;
+                    background: option-touch.has-hover ? Theme.surface.with-alpha(0.12) : transparent;
+                    accessible-role: button;
+                    accessible-label: name;
+                    // 팝업을 먼저 닫으면 항목이 사라져 뒤의 콜백이 버려지므로 선택을 먼저 알린다.
+                    accessible-action-default => { root.chosen(i); popup.close(); }
+                    HorizontalBox {
+                        padding-left: 12px;
+                        padding-right: 12px;
+                        padding-top: 0;
+                        padding-bottom: 0;
+                        Text { text: name; font-family: root.fonts[i]; color: Theme.surface; font-weight: option.selected ? 700 : 400; vertical-alignment: center; horizontal-stretch: 1; }
+                        if option.selected: Rectangle { width: 10px; Rectangle { y: (parent.height - self.height) / 2; width: 10px; height: 10px; border-radius: 5px; background: Theme.surface; } }
+                    }
+                    option-touch := TouchArea { clicked => { root.chosen(i); popup.close(); } }
+                }
+            }
+        }
+    }
+}
+
+export component AppWindow inherits Window {
+    title: "adb-on";
+    icon: @image-url("../docs/assets/icon.svg");
+    preferred-width: 500px;
+    preferred-height: 640px;
+    min-width: 460px;
+    min-height: 420px;
+    background: Theme.background;
+    default-font-size: 15px;
+    default-font-family: root.font-family;
+    in property <string> font-family;
+    // 내용 열은 창이 넓어져도 이 폭까지만 늘어나고 가운데에 놓인다. 줄바꿈 텍스트의 폭도 이 값에서 뺀다.
+    property <length> column-width: min(root.width, 720px);
+    in property <string> status: @tr("연결을 준비하고 있어요");
+    in property <string> lead;
+    in property <int> connection;   // 0 도구 없음, 1 폰 없음, 2 조치 필요, 3 연결됨
+    in property <int> guide-hint: -1;   // 홈 카드에서 바로 열 USB 안내 단계(0~3), 없으면 -1
+    in property <int> link-step: -1;    // 설명 안 글자 링크가 여는 USB 안내 단계, 없으면 -1
+    in property <bool> adb-help: false; // 연결된 뒤 ADB 설명 페이지로 가는 버튼
+    in property <bool> searched: false; // 무선 탐색을 마쳤는지(비어 있으면 안내 한 줄)
+    in property <string> detail-pre;    // 링크 앞 글 (링크가 있을 때만)
+    in property <string> detail-link;   // 링크 글자
+    in property <string> detail-post;   // 링크 뒤 글
+    in-out property <bool> detail-open: false;   // 긴 설명은 기본으로 접혀 있다
+    in property <string> detail: @tr("휴대폰을 USB로 연결해 주세요.");
+    in property <string> detail-summary;   // 접힌 상태에 보일 첫 문단
+    in property <string> notice;
+    in property <string> adb-path;
+    in property <string> adb-source;
+    in property <int> adb-kind;   // 1이면 adb-on이 준비한 도구가 현재 도구다
+    in-out property <bool> consented;
+    in property <string> version;
+    in property <string> data-path;
+    in property <[string]> languages;
+    in property <[string]> language-fonts;
+    in property <int> language-index;
+    in property <bool> busy: false;
+    in property <bool> ready: false;
+    in property <[DeviceRow]> devices;
+    in property <[ServiceRow]> found-phones;    // mDNS 연결 서비스(이미 페어링된 PC면 바로 붙는 대상)
+    in property <[ServiceRow]> pairing-phones;  // mDNS 페어링 서비스(휴대폰이 페어링 화면을 열어 둔 상태)
+    in-out property <string> pairing-address;
+    in-out property <int> page: 0;
+    in-out property <int> guide-step: 0;
+    in-out property <int> wireless-step: 0;
+    property <[string]> wireless-titles: [@tr("같은 Wi-Fi에 연결하기"), @tr("무선 디버깅 켜기"), @tr("페어링 코드 입력하기"), @tr("연결 주소로 연결하기")];
+    property <[string]> wireless-bodies: [
+        @tr("Android 11 이상에서 됩니다. PC와 휴대폰을 같은 Wi-Fi에 연결해 주세요.\n\n회사·학교·게스트 Wi-Fi는 기기끼리 통신을 막을 수 있어요. 그때는 휴대폰의 핫스팟에 PC를 연결하거나 USB로 연결해 주세요."),
+        @tr("휴대폰의 설정 → 개발자 옵션 → ‘무선 디버깅’을 켜 주세요.\n\n개발자 옵션이 없으면 USB 연결 안내의 첫 단계대로 먼저 만들어 주세요. 처음 켜면 이 네트워크에서 허용할지 묻는 창이 떠요.\n\n휴대폰의 보안 패치를 최신으로 유지하고, 다 쓰면 무선 디버깅을 꺼 두세요."),
+        @tr("휴대폰의 무선 디버깅 화면에서 ‘페어링 코드로 기기 페어링’을 누르면 6자리 코드와 ‘IP 주소 및 포트’가 보여요.\n\nadb-on의 무선 연결 화면에서 1. 페어링 칸에 그 주소와 코드를 넣고 ‘페어링하기’를 누르세요. 코드 창은 닫지 말고 두세요. 페어링은 처음 한 번만 필요해요."),
+        @tr("페어링이 끝나면 휴대폰에서 한 화면 뒤로 가세요. 무선 디버깅 화면 위쪽의 ‘IP 주소 및 포트’가 연결 주소예요. 페어링 주소와 포트 번호가 달라요.\n\nadb-on의 2. 연결 칸에 그 주소를 넣고 ‘연결하기’를 누르세요. 다음부터는 같은 Wi-Fi에서 무선 디버깅만 켜면 주소가 자동으로 찾히기도 해요."),
+    ];
+    in-out property <bool> confirm-delete: false;
+    // 알림은 닫거나 화면을 옮기면 사라진다. 같은 문구가 다시 오면 다시 보이지 않는다.
+    property <string> dismissed;
+    property <bool> show-notice: root.notice != "" && root.notice != root.dismissed;
+    property <string> bar-title: root.page == 1 ? @tr("무선 연결") : root.page == 2 ? @tr("USB 연결 안내") : root.page == 3 ? @tr("도구 설정") : root.page == 4 ? @tr("adb-on에 대하여") : root.page == 5 ? @tr("무선 연결 안내") : root.page == 6 ? @tr("ADB란 무엇인가요?") : "adb-on";
+    property <[string]> guide-titles: [@tr("개발자 옵션 열기"), @tr("USB 디버깅 켜기"), @tr("케이블 연결하고 허용하기"), @tr("그래도 보이지 않나요?")];
+    property <[string]> guide-bodies: [
+        @tr("갤럭시: 설정 → 휴대전화 정보 → 소프트웨어 정보 → ‘빌드번호’를 7번 누르세요.\n\nPixel 등: 설정 → 휴대전화 정보 → ‘빌드 번호’를 7번 누르세요.\n\n잠금 비밀번호를 요청하면 폰에 입력하세요. 설정 첫 화면으로 돌아오면 ‘개발자 옵션’이 생겨요. 기종마다 메뉴 이름이 조금 다를 수 있어요."),
+        @tr("설정에서 ‘개발자 옵션’을 찾아 ‘USB 디버깅’을 켜 주세요.\n\n이 설정은 휴대폰에서 직접 켜야 해요. 회사에서 관리하는 폰은 설정이 제한될 수 있어요.\n\n무선 연결을 원하면 ‘무선 디버깅’을 켜고 ‘페어링 코드로 기기 페어링’을 선택하세요."),
+        @tr("데이터 전송이 되는 USB 케이블로 연결한 뒤 휴대폰 잠금을 풀어 주세요.\n\n‘USB 디버깅을 허용하시겠습니까?’에서 ‘허용’을 누르세요. 본인 PC라면 ‘이 컴퓨터에서 항상 허용’을 선택할 수 있어요. 상단의 ‘USB로 파일 전송’ 알림은 이 창이 아니에요.\n\n승인 창이 없으면 잠금을 푼 채 케이블을 다시 꽂아 보세요. 알림을 내렸을 때 ‘USB 디버깅 연결됨’이 보이면 디버깅은 켜진 거예요. 그래도 없으면 설정 앱 맨 아래의 개발자 옵션에서 ‘USB 디버깅 권한 취소’를 누르고, ‘USB 디버깅’을 껐다가 다시 켠 뒤 케이블을 다시 꽂으세요. 개발자 옵션이 보이지 않으면 1단계대로 만드세요. adb-on이 연결 상태를 자동으로 확인해요."),
+        @tr("① 다른 데이터 케이블·USB 포트로 연결해 보세요. 충전만 되는 케이블은 연결되지 않아요.\n\n② 폰의 USB 알림에서 ‘파일 전송’을 선택해 보세요. 일부 기종에서 도움이 돼요.\n\n③ Windows에서는 제조사 USB 드라이버가 필요할 수 있어요. macOS는 보통 별도 드라이버가 필요 없어요.\n\n빈 목록만으로 원인을 확정할 수는 없어요. 아래 공식 안내에서 제조사별 방법을 확인하세요."),
+    ];
+    callback refresh();
+    callback discover();
+    callback pair(string, string);
+    callback connect(string);
+    callback disconnect(string);
+    callback install(bool);
+    callback choose-adb();
+    callback remove-data();
+    callback set-language(int);
+    callback open-link(int);
+    // 준비가 끝나 앱이 준비한 도구가 선택되면 약관 체크를 풀어 두 번 누를 일이 없게 한다.
+    changed adb-kind => { if root.adb-kind == 1 { root.consented = false; } }
+    function go(target: int) {
+        root.dismissed = root.notice;
+        root.confirm-delete = false;
+        root.page = target;
+        // 화면을 바꾸면 스크롤은 맨 위부터 시작한다. 이전 화면의 스크롤 위치가 남지 않게 한다.
+        scroller.viewport-y = 0;
+    }
+    VerticalLayout {
+        // 앱바: 왼쪽 뒤로가기, 화면 제목, 오른쪽 진행 표시. 이동은 여기서만 한다.
+        Rectangle {
+            height: 56px;
+            background: Theme.surface;
+            HorizontalBox {
+                padding-left: 8px;
+                padding-right: 16px;
+                spacing: 4px;
+                if root.page != 0: AppButton { text: "←"; width: 44px; height: 40px; plain: true; enabled: !root.busy; clicked => { root.go(0); } }
+                if root.page == 0: Rectangle { width: 8px; }
+                Text { text: root.bar-title; color: Theme.ink; font-size: 20px; font-weight: 700; vertical-alignment: center; horizontal-stretch: 1; }
+                if root.busy: Text { text: @tr("확인 중…"); color: Theme.accent; vertical-alignment: center; }
+                // 연결 상태 점: 어느 화면에서든 한눈에 보인다.
+                Rectangle {
+                    width: 12px;
+                    accessible-role: text;
+                    accessible-label: root.connection == 3 ? @tr("연결됨") : root.connection == 2 ? @tr("조치 필요") : root.connection == 1 ? @tr("연결 안 됨") : @tr("연결 도구 없음");
+                    Rectangle {
+                        y: (parent.height - self.height) / 2;
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 6px;
+                        background: root.connection == 3 ? Theme.state-ok : root.connection == 2 ? Theme.state-wait : root.connection == 1 ? Theme.state-none : Theme.state-off;
+                    }
+                }
+            }
+        }
+        scroller := ScrollView {
+            vertical-stretch: 1;
+            // 세로 스크롤만: 내용 폭을 보이는 폭에 맞추고, 줄바꿈된 텍스트 높이를 반영한
+            // 내용의 최소 높이로 스크롤 범위를 정한다(기본값은 줄바꿈 전 높이라 아래가 잘린다).
+            viewport-width: self.visible-width;
+            viewport-height: max(self.visible-height, content.min-height);
+            HorizontalLayout {
+                alignment: center;
+                content := VerticalBox {
+                width: root.column-width;
+                alignment: start;
+                spacing: Theme.gap;
+                padding: 20px;
+                if root.page == 0: VerticalBox {
+                    alignment: start;
+                    spacing: Theme.gap;
+                    padding: 0;
+                    Card {
+                        VerticalBox {
+                            padding: 20px;
+                            spacing: 14px;
+                            Heading { width: root.column-width - 80px; text: root.status; }
+                            if root.lead != "": Paragraph { width: root.column-width - 80px; text: root.lead; color: Theme.ink; font-weight: 600; }
+                            // 긴 설명은 한 줄로 접어 두고 화살표로 펼친다. 짧은 설명은 그대로 보인다.
+                            if root.detail.character-count <= 70: Paragraph { width: root.column-width - 80px; text: root.detail; }
+                            if root.detail.character-count > 70: VerticalBox {
+                                padding: 0;
+                                spacing: 10px;
+                                Rectangle {
+                                    height: 28px;
+                                    accessible-role: button;
+                                    accessible-label: root.detail-open ? @tr("설명 접기") : @tr("설명 펼치기");
+                                    accessible-action-default => { root.detail-open = !root.detail-open; }
+                                    HorizontalBox {
+                                        padding: 0;
+                                        spacing: 10px;
+                                        Text { text: root.detail-open ? @tr("설명 접기") : root.detail-summary; color: root.detail-open ? Theme.muted.with-alpha(0.5) : Theme.muted; wrap: no-wrap; overflow: elide; vertical-alignment: center; horizontal-stretch: 1; width: root.column-width - 80px - 26px; }
+                                        Rectangle { width: 16px; Path { y: (parent.height - self.height) / 2; width: 14px; height: 8px; viewbox-width: 14; viewbox-height: 8; commands: root.detail-open ? "M 1 7 L 7 1 L 13 7" : "M 1 1 L 7 7 L 13 1"; stroke: Theme.muted; stroke-width: 2px; } }
+                                    }
+                                    TouchArea { clicked => { root.detail-open = !root.detail-open; } }
+                                }
+                                if root.detail-open && root.detail-link == "": Paragraph { width: root.column-width - 80px; text: root.detail; }
+                                // 문장 안의 ‘개발자 옵션’ 글자가 링크다. 번역은 링크 앞·링크·뒤 세 조각으로 나뉘어 온다.
+                                if root.detail-open && root.detail-link != "": StyledText {
+                                    width: root.column-width - 80px;
+                                    default-color: Theme.muted;
+                                    default-font-family: root.font-family;
+                                    link-color: Theme.accent;
+                                    text: @markdown("\{root.detail-pre}[\{root.detail-link}](guide)\{root.detail-post}");
+                                    link-clicked(target) => { if root.link-step >= 0 { root.guide-step = root.link-step; root.go(2); } }
+                                }
+                            }
+                            for device in root.devices: Rectangle {
+                                background: Theme.surface-2;
+                                border-radius: Theme.radius-control;
+                                VerticalBox {
+                                    padding: 12px;
+                                    spacing: 6px;
+                                    Text { text: device.name; color: Theme.ink; font-weight: 700; wrap: word-wrap; }
+                                    Paragraph { width: root.column-width - 104px; text: device.state; font-size: 13px; }
+                                    if device.wireless: AppButton { text: @tr("이 무선 연결 해제"); enabled: !root.busy; clicked => { root.disconnect(device.serial); } }
+                                }
+                            }
+                            HorizontalBox {
+                                padding: 0;
+                                padding-top: 4px;
+                                if root.guide-hint >= 0: AppButton { text: @tr("자세한 안내 보기"); tinted: true; height: 44px; clicked => { root.guide-step = root.guide-hint; root.go(2); } }
+                                if root.adb-help: AppButton { text: @tr("ADB로 무엇을 할 수 있나요?"); tinted: true; height: 44px; clicked => { root.go(6); } }
+                                Rectangle { horizontal-stretch: 1; }
+                                AppButton { text: @tr("다시 확인"); tinted: true; height: 44px; enabled: !root.busy; clicked => { root.refresh(); } }
+                            }
+                        }
+                    }
+                    if !root.ready: AppButton { text: @tr("처음 연결 준비하기"); primary: true; enabled: !root.busy; clicked => { root.go(3); } }
+                    if root.ready: AppButton { text: @tr("무선 연결"); primary: true; enabled: !root.busy; clicked => { root.go(1); root.discover(); } }
+                    AppButton { text: @tr("USB 연결 안내"); clicked => { root.guide-step = 0; root.go(2); } }
+                    AppButton { text: @tr("무선 연결 안내"); clicked => { root.wireless-step = 0; root.go(5); } }
+                    AppButton { text: @tr("도구 설정"); enabled: !root.busy; clicked => { root.go(3); } }
+                }
+                if root.page == 1: VerticalBox {
+                    alignment: start;
+                    spacing: Theme.gap;
+                    padding: 0;
+                    for device in root.devices: VerticalBox {
+                        padding: 0;
+                        if device.wireless && device.connected: Paragraph { text: @tr("현재 무선 연결 · {}", device.name); color: Theme.accent; }
+                    }
+                    Paragraph { width: root.column-width - 40px; text: @tr("Android 11 이상에서 됩니다. PC와 폰을 같은 Wi-Fi에 연결하고, 휴대폰의 설정 → 개발자 옵션 → 무선 디버깅을 켜 주세요."); }
+                    Paragraph { width: root.column-width - 40px; text: @tr("페어링은 이 PC를 휴대폰에 처음 한 번 등록하는 절차이고, 연결은 등록된 PC가 실제로 붙는 절차예요. 전에 이 PC와 페어링했다면 연결만 하면 돼요."); }
+                    if root.searched && root.found-phones.length == 0 && root.pairing-phones.length == 0 && !root.busy: Paragraph { width: root.column-width - 40px; text: @tr("같은 Wi-Fi에서 무선 디버깅이 켜진 휴대폰을 찾지 못했어요. 휴대폰에 표시된 주소를 직접 입력해도 돼요."); font-size: 13px; }
+                    // 같은 Wi-Fi에서 무선 디버깅이 켜진 휴대폰을 찾았을 때: 이미 페어링된 PC라면 여기서 한 번에 붙는다.
+                    // 카드는 하나, 휴대폰마다 버튼 하나. 이미 연결된 휴대폰은 '연결됨'으로 잠근다.
+                    if root.found-phones.length > 0: Card {
+                        VerticalBox {
+                            padding: 16px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 72px; text: @tr("찾은 휴대폰에 바로 연결"); font-size: 18px; }
+                            Paragraph { width: root.column-width - 72px; text: @tr("무선 디버깅이 켜진 휴대폰이 같은 Wi-Fi에 있어요. 이 PC와 페어링된 적이 있으면 바로 연결돼요. 아니면 아래 1. 페어링부터 하세요. 여러 대면 휴대폰의 무선 디버깅 화면에 보이는 주소로 구분하세요."); font-size: 13px; }
+                            for service in root.found-phones: AppButton {
+                                text: service.connected ? @tr("연결됨 · {}", service.label) : @tr("연결 · {}", service.label);
+                                primary: !service.connected;
+                                tinted: service.connected;
+                                enabled: root.ready && !root.busy && !service.connected;
+                                clicked => { root.connect(service.address); }
+                            }
+                        }
+                    }
+                    Card {
+                        VerticalBox {
+                            padding: 16px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 72px; text: @tr("1. 페어링 · 처음 한 번"); font-size: 18px; }
+                            Paragraph { width: root.column-width - 72px; text: @tr("휴대폰에서 ‘페어링 코드로 기기 페어링’을 누르고, 화면에 보이는 주소와 숫자 6자리를 넣으세요. 처음 한 번만 필요해요."); font-size: 13px; }
+                            for service in root.pairing-phones: AppButton {
+                                text: @tr("페어링 주소 · {}", service.address);
+                                tinted: true;
+                                enabled: !root.busy;
+                                clicked => { pair-address.text = service.address; }
+                            }
+                            pair-address := LineEdit { text <=> root.pairing-address; placeholder-text: @tr("페어링 주소 · 예: 192.168.1.5:37123"); enabled: !root.busy; }
+                            code := LineEdit { placeholder-text: @tr("휴대폰의 숫자 6자리"); input-type: password; enabled: !root.busy; accepted => { if !root.busy { root.pair(pair-address.text, code.text); code.text = ""; } } }
+                            AppButton { text: @tr("페어링하기"); enabled: root.ready && !root.busy; primary: true; clicked => { root.pair(pair-address.text, code.text); code.text = ""; } }
+                        }
+                    }
+                    Card {
+                        VerticalBox {
+                            padding: 16px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 72px; text: @tr("2. 연결 · 페어링된 PC에서"); font-size: 18px; }
+                            Paragraph { width: root.column-width - 72px; text: @tr("휴대폰의 무선 디버깅 화면 위쪽에 있는 ‘IP 주소 및 포트’를 넣으세요. 페어링 주소와 포트 번호가 달라요. 위에 찾은 휴대폰이 보이면 그 버튼을 누르는 것과 같아요."); font-size: 13px; }
+                            connect-address := LineEdit { placeholder-text: @tr("연결 주소 · 예: 192.168.1.5:39511"); enabled: !root.busy; accepted => { if !root.busy { root.connect(self.text); } } }
+                            AppButton { text: @tr("연결하기"); tinted: true; enabled: root.ready && !root.busy; clicked => { root.connect(connect-address.text); } }
+                        }
+                    }
+                    AppButton { text: @tr("주변 기기 다시 찾기"); enabled: root.ready && !root.busy; clicked => { root.discover(); } }
+                    Paragraph { width: root.column-width - 40px; text: @tr("찾지 못해도 주소를 직접 입력하면 돼요. 회사·학교·게스트 Wi-Fi는 기기끼리 통신을 막을 수 있어요. 그때는 USB로 연결해 주세요."); font-size: 13px; }
+                }
+                if root.page == 2: VerticalBox {
+                    alignment: start;
+                    spacing: Theme.gap;
+                    padding: 0;
+                    Text { text: @tr("단계 {} / 4", root.guide-step + 1); color: Theme.accent; font-weight: 700; }
+                    Card {
+                        VerticalBox {
+                            padding: 18px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 76px; text: root.guide-titles[root.guide-step]; font-size: 19px; }
+                            Paragraph { width: root.column-width - 76px; text: root.guide-bodies[root.guide-step]; }
+                            if root.guide-step == 3: AppButton { text: @tr("제조사 드라이버 공식 안내"); tinted: true; clicked => { root.open-link(1); } }
+                        }
+                    }
+                    HorizontalBox {
+                        padding: 0;
+                        AppButton { text: @tr("이전"); horizontal-stretch: 1; enabled: root.guide-step > 0; clicked => { root.guide-step -= 1; scroller.viewport-y = 0; } }
+                        AppButton { text: root.guide-step < 3 ? @tr("다음") : @tr("연결 확인하기"); horizontal-stretch: 1; primary: true; clicked => { if root.guide-step < 3 { root.guide-step += 1; scroller.viewport-y = 0; } else { root.go(0); root.refresh(); } } }
+                    }
+                }
+                if root.page == 5: VerticalBox {
+                    alignment: start;
+                    spacing: Theme.gap;
+                    padding: 0;
+                    Text { text: @tr("단계 {} / 4", root.wireless-step + 1); color: Theme.accent; font-weight: 700; }
+                    Card {
+                        VerticalBox {
+                            padding: 18px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 76px; text: root.wireless-titles[root.wireless-step]; font-size: 19px; }
+                            Paragraph { width: root.column-width - 76px; text: root.wireless-bodies[root.wireless-step]; }
+                        }
+                    }
+                    HorizontalBox {
+                        padding: 0;
+                        AppButton { text: @tr("이전"); horizontal-stretch: 1; enabled: root.wireless-step > 0; clicked => { root.wireless-step -= 1; scroller.viewport-y = 0; } }
+                        AppButton { text: root.wireless-step < 3 ? @tr("다음") : @tr("무선 연결 열기"); horizontal-stretch: 1; primary: true; enabled: root.wireless-step < 3 || (root.ready && !root.busy); clicked => { if root.wireless-step < 3 { root.wireless-step += 1; scroller.viewport-y = 0; } else { root.go(1); root.discover(); } } }
+                    }
+                }
+                if root.page == 6: VerticalBox {
+                    alignment: start;
+                    spacing: Theme.gap;
+                    padding: 0;
+                    Card {
+                        VerticalBox {
+                            padding: 20px;
+                            spacing: 12px;
+                            Heading { width: root.column-width - 80px; text: @tr("ADB는 PC와 휴대폰을 잇는 Google의 공식 도구예요"); font-size: 19px; }
+                            Paragraph { width: root.column-width - 80px; text: @tr("Android Debug Bridge의 줄임말이에요. Android 개발에 쓰는 표준 도구이며, PC의 개발 프로그램이 휴대폰과 대화하는 통로예요. adb-on은 이 도구를 찾거나 준비하고, 휴대폰과의 연결을 대신 맺어 줘요."); }
+                        }
+                    }
+                    Card {
+                        VerticalBox {
+                            padding: 20px;
+                            spacing: 12px;
+                            Heading { width: root.column-width - 80px; text: @tr("연결되면 할 수 있는 일"); font-size: 19px; }
+                            Paragraph { width: root.column-width - 80px; text: @tr("• Android Studio, Unity, Flutter, React Native 같은 개발 도구가 이 휴대폰을 실행 대상으로 알아봐요. 만들던 앱을 바로 설치하고 실행하고 디버그할 수 있어요.\n\n• scrcpy 같은 도구로 휴대폰 화면을 PC에서 보고 조작할 수 있어요.\n\n• 앱 설치 파일(APK) 넣기, 파일 주고받기, 화면 캡처와 녹화, 앱 로그 확인을 명령이나 도구로 할 수 있어요.\n\n• 무선 연결을 해 두면 케이블 없이 같은 일을 계속할 수 있어요."); }
+                            Paragraph { width: root.column-width - 80px; text: @tr("adb-on은 연결까지만 맡아요. 위 작업은 각 개발 도구나 명령에서 해요."); font-size: 13px; }
+                        }
+                    }
+                    Card {
+                        VerticalBox {
+                            padding: 20px;
+                            spacing: 12px;
+                            Heading { width: root.column-width - 80px; text: @tr("알아 둘 점"); font-size: 19px; }
+                            Paragraph { width: root.column-width - 80px; text: @tr("연결된 PC는 휴대폰을 제어할 수 있어요. 믿는 PC에서만 허용하고, 다 쓰면 휴대폰의 USB 디버깅을 꺼 두세요."); }
+                            Paragraph { width: root.column-width - 80px; text: @tr("adb-on 창을 닫아도 연결은 유지돼요. ADB 서버가 PC에서 계속 실행되기 때문이에요. 연결을 끊으려면 케이블을 뽑거나 휴대폰의 USB 디버깅을 끄세요."); }
+                        }
+                    }
+                }
+                if root.page == 3: VerticalBox {
+                    alignment: start;
+                    spacing: Theme.gap;
+                    padding: 0;
+                    Card {
+                        VerticalBox {
+                            padding: 16px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 72px; text: @tr("연결 도구(ADB)"); font-size: 18px; }
+                            Paragraph { width: root.column-width - 72px; text: root.adb-path == "" ? @tr("아직 선택된 ADB가 없어요. Android Studio가 있다면 기존 ADB를 먼저 찾고, 없다면 Google 공식 도구를 받아 사용자 폴더에 준비해요.") : @tr("현재 ADB · {}\n{}", root.adb-source, root.adb-path); font-size: 13px; }
+                            AppButton { text: @tr("설치된 ADB 다시 찾기"); tinted: true; enabled: !root.busy; clicked => { root.refresh(); } }
+                            AppButton { text: @tr("이미 있는 ADB 파일 선택"); tinted: true; enabled: !root.busy; clicked => { root.choose-adb(); } }
+                        }
+                    }
+                    Card {
+                        VerticalBox {
+                            padding: 16px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 72px; text: @tr("공식 도구 받기"); font-size: 18px; }
+                            Paragraph { width: root.column-width - 72px; text: @tr("인터넷이 필요해요. 기존 Android SDK와 인증키는 바꾸지 않아요. 준비한 도구는 이 PC의 다른 개발 도구에서 자동으로 발견되지 않을 수 있어요."); font-size: 13px; }
+                            AppButton { text: @tr("Google SDK 약관 보기"); tinted: true; clicked => { root.open-link(0); } }
+                            CheckBox { text: @tr("Google SDK 약관에 동의합니다"); checked <=> root.consented; enabled: !root.busy && root.adb-kind != 1; }
+                            AppButton { text: root.adb-kind == 1 ? @tr("이미 준비되어 있어요") : @tr("동의하고 ADB 준비하기"); primary: true; enabled: root.consented && !root.busy && root.adb-kind != 1; clicked => { root.install(root.consented); } }
+                        }
+                    }
+                    Card {
+                        VerticalBox {
+                            padding: 16px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 72px; text: @tr("내 PC에 남는 파일"); font-size: 18px; }
+                            Paragraph { width: root.column-width - 72px; text: @tr("ADB 위치 설정과 여기서 준비한 ADB는 아래 폴더에 저장돼요. 실행 파일을 지워도 이 폴더는 남아요.\n{}", root.data-path); font-size: 13px; }
+                            // 삭제 확인 상태는 빨간 버튼으로 경고하고, 10초 동안 반응이 없으면 되돌린다.
+                            AppButton {
+                                text: root.confirm-delete ? @tr("정말 지울까요? 한 번 더 누르면 지워요") : @tr("adb-on 데이터 삭제");
+                                tinted: true;
+                                danger: root.confirm-delete;
+                                enabled: !root.busy;
+                                clicked => { if root.confirm-delete { root.confirm-delete = false; root.remove-data(); } else { root.confirm-delete = true; } }
+                            }
+                            Timer { interval: 10s; running: root.confirm-delete; triggered => { root.confirm-delete = false; } }
+                            Paragraph { width: root.column-width - 72px; text: @tr("여기서 준비한 ADB가 서버로 실행 중이면 함께 종료돼요. Android Studio 등 다른 도구의 ADB와 휴대폰 인증키는 건드리지 않아요."); font-size: 13px; }
+                        }
+                    }
+                    Card {
+                        VerticalBox {
+                            padding: 16px;
+                            spacing: 10px;
+                            Heading { width: root.column-width - 72px; text: @tr("언어"); font-size: 18px; }
+                            Paragraph { width: root.column-width - 72px; text: @tr("앱 언어예요. 처음에는 이 PC의 언어를 따라요."); font-size: 13px; }
+                            LanguagePicker { options: root.languages; fonts: root.language-fonts; current: root.language-index; enabled: !root.busy; chosen(i) => { root.set-language(i); } }
+                        }
+                    }
+                    Paragraph { width: root.column-width - 40px; text: @tr("Windows 앱의 연결이 WSL로 자동 전달되지는 않아요. adb-on은 연결을 도와주며 앱을 빌드하는 SDK를 대신 설치하지 않아요."); font-size: 13px; }
+                }
+                if root.page == 4: VerticalBox {
+                    alignment: start;
+                    spacing: Theme.gap;
+                    padding: 0;
+                    Paragraph { width: root.column-width - 40px; text: @tr("adb-on은 MIT 라이선스로 공개된 오픈소스 소프트웨어이며, 어떠한 보증 없이 있는 그대로 제공돼요. 개발자는 이 프로그램의 사용 또는 사용 불능으로 생기는 어떤 손해(데이터 손실, 기기 오작동, 연결 실패, 업무 중단 등)에 대해서도 책임지지 않아요. 사용 여부와 방법은 전적으로 사용자의 판단과 책임이에요."); }
+                    Paragraph { width: root.column-width - 40px; text: @tr("개발자 옵션과 USB·무선 디버깅은 Android가 제공하는 기능이에요. 켜 두면 연결된 PC가 휴대폰을 제어할 수 있으니, 신뢰하지 않는 PC나 네트워크에서는 켜지 말고 사용이 끝나면 꺼 주세요. 이 설정의 관리는 사용자의 몫이에요."); }
+                    Paragraph { width: root.column-width - 40px; text: @tr("ADB는 Google의 Android SDK Platform-Tools이며 Google의 약관을 따라요. adb-on은 Google이나 Android와 제휴·승인 관계가 없고, 사용자를 대신해 약관을 수락하지 않아요. Android는 Google LLC의 상표예요. 그 밖의 구성요소는 각자의 라이선스를 따라요."); }
+                    Paragraph { width: root.column-width - 40px; text: @tr("기능은 예고 없이 바뀌거나 배포가 중단될 수 있고, 지원이나 업데이트를 약속하지 않아요. 이 안내는 이해를 돕는 요약이며, 법적 조건은 함께 배포되는 LICENSE.txt의 MIT 라이선스 원문이 우선해요. 관련 법이 허용하지 않는 범위에서는 위 책임 제한이 적용되지 않아요."); }
+                    Paragraph { width: root.column-width - 40px; text: @tr("버전 {}", root.version); font-size: 13px; }
+                    Paragraph { width: root.column-width - 40px; text: @tr("tinygem의 cj가 만들었어요."); font-size: 13px; }
+                    AppButton { text: @tr("ADB란 무엇인가요?"); clicked => { root.go(6); } }
+                    AppButton { text: "Made with Slint"; clicked => { root.open-link(2); } }
+                }
+                Rectangle { height: 80px; }
+                }
+            }
+        }
+        if root.page == 0: HorizontalLayout {
+            alignment: center;
+            HorizontalBox {
+                width: root.column-width;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-top: 6px;
+                padding-bottom: 14px;
+                Text { text: root.version; color: Theme.muted; font-size: 12px; vertical-alignment: center; }
+                Rectangle { horizontal-stretch: 1; }
+                AppButton { text: @tr("adb-on에 대하여"); height: 40px; clicked => { root.go(4); } }
+            }
+        }
+    }
+    // 알림은 창을 살짝 어둡게 한 위에 작은 창으로 띄운다. 오류와 안내처럼 사용자가 읽어야 하는 것만 온다.
+    if root.show-notice: Rectangle {
+        background: Theme.ink.with-alpha(0.45);
+        TouchArea { clicked => { root.dismissed = root.notice; } }
+        dialog := Rectangle {
+            width: min(root.width - 40px, 440px);
+            height: dialog-body.preferred-height;
+            x: (parent.width - self.width) / 2;
+            y: (parent.height - self.height) / 2;
+            background: Theme.surface;
+            border-radius: Theme.radius;
+            TouchArea { }
+            dialog-body := VerticalBox {
+                padding: 20px;
+                spacing: 16px;
+                Paragraph { width: dialog.width - 40px; text: root.notice; color: Theme.ink; }
+                AppButton { text: @tr("확인"); tinted: true; clicked => { root.dismissed = root.notice; } }
+            }
+        }
+    }
+}

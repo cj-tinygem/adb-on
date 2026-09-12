@@ -1,0 +1,54 @@
+[package]
+name = "adb-on"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.92"
+description = "터미널 없이 Android 폰을 연결하는 작은 도구"
+license = "MIT"
+authors = ["cj (tinygem)"]
+build = "build.rs"
+
+[features]
+default = ["gui"]
+gui = ["dep:slint", "dep:slint-build", "dep:rfd"]
+
+[dependencies]
+sys-locale = "0.3.2"
+slint = { version = "=1.17.1", optional = true, default-features = false, features = ["std", "backend-winit", "renderer-femtovg", "renderer-software", "compat-1-2", "accessibility"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+directories = "6.0.0"
+open = "5.4.3"
+ureq = { version = "3.4.1", default-features = false, features = ["rustls"] }
+zip = { version = "8.6.0", default-features = false, features = ["deflate"] }
+sha2 = "0.11.0"
+rfd = { version = "0.17.2", optional = true, default-features = false, features = ["xdg-portal"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2.189"
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61.2", features = ["Win32_System_Pipes", "Win32_System_Threading", "Win32_Foundation", "Win32_UI_WindowsAndMessaging", "Win32_Security"] }
+
+[build-dependencies]
+slint-build = { version = "=1.17.1", optional = true }
+serde_json = "1"
+
+[target.'cfg(windows)'.build-dependencies]
+winresource = "0.1.31"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+opt-level = "s"
+panic = "abort"
+strip = true
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[patch.crates-io]
+# winit 0.30.13 plus one Windows fix: while a window is dragged between monitors with
+# different DPI, winit re-reads the old monitor and the window grows on every crossing
+# (rust-windowing/winit#3040, slint-ui/slint#11073). Drop this patch once upstream ships it.
+winit = { git = "https://github.com/cj-tinygem/winit", rev = "8603b02dd726a46da6149a2de2fdb7d7bfc87825" }

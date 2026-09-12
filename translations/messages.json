@@ -1,0 +1,1476 @@
+{
+ "languages": [
+  "en",
+  "zh-Hans",
+  "ja",
+  "es",
+  "de",
+  "fr"
+ ],
+ "strings": {
+  "ADB 서버 요청 실패": {
+   "en": "ADB server request failed",
+   "zh-Hans": "ADB 服务器请求失败",
+   "ja": "ADB サーバーへのリクエストに失敗しました",
+   "es": "Error en la solicitud al servidor ADB",
+   "de": "Anfrage an den ADB-Server fehlgeschlagen",
+   "fr": "Échec de la requête au serveur ADB"
+  },
+  "ADB 서버가 응답하지 않습니다.": {
+   "en": "The ADB server is not responding.",
+   "zh-Hans": "ADB 服务器没有响应。",
+   "ja": "ADB サーバーが応答しません。",
+   "es": "El servidor ADB no responde.",
+   "de": "Der ADB-Server antwortet nicht.",
+   "fr": "Le serveur ADB ne répond pas."
+  },
+  "ADB 서버가 이 요청을 지원하지 않습니다.": {
+   "en": "The ADB server does not support this request.",
+   "zh-Hans": "ADB 服务器不支持此请求。",
+   "ja": "ADB サーバーはこのリクエストに対応していません。",
+   "es": "El servidor ADB no admite esta solicitud.",
+   "de": "Der ADB-Server unterstützt diese Anfrage nicht.",
+   "fr": "Le serveur ADB ne prend pas en charge cette requête."
+  },
+  "기존 ADB 서버를 확인하지 못했습니다. 사용 중인 개발 도구의 연결 상태를 확인해 주세요.": {
+   "en": "Could not check the existing ADB server. Please check the connection status of the development tool you are using.",
+   "zh-Hans": "无法确认现有的 ADB 服务器。请检查正在使用的开发工具的连接状态。",
+   "ja": "既存の ADB サーバーを確認できませんでした。使用中の開発ツールの接続状態を確認してください。",
+   "es": "No se pudo comprobar el servidor ADB existente. Revisa el estado de conexión de la herramienta de desarrollo que estás usando.",
+   "de": "Der vorhandene ADB-Server konnte nicht überprüft werden. Bitte prüfen Sie den Verbindungsstatus Ihres Entwicklungswerkzeugs.",
+   "fr": "Impossible de vérifier le serveur ADB existant. Vérifiez l'état de connexion de l'outil de développement que vous utilisez."
+  },
+  "ADB 서버 응답 오류": {
+   "en": "ADB server response error",
+   "zh-Hans": "ADB 服务器响应错误",
+   "ja": "ADB サーバー応答エラー",
+   "es": "Error de respuesta del servidor ADB",
+   "de": "Fehlerhafte Antwort des ADB-Servers",
+   "fr": "Erreur de réponse du serveur ADB"
+  },
+  "ADB 서버 버전 오류": {
+   "en": "ADB server version error",
+   "zh-Hans": "ADB 服务器版本错误",
+   "ja": "ADB サーバーバージョンエラー",
+   "es": "Error de versión del servidor ADB",
+   "de": "Versionsfehler des ADB-Servers",
+   "fr": "Erreur de version du serveur ADB"
+  },
+  "ADB 파일을 찾지 못했습니다.": {
+   "en": "Could not find the ADB file.",
+   "zh-Hans": "未找到 ADB 文件。",
+   "ja": "ADB ファイルが見つかりませんでした。",
+   "es": "No se encontró el archivo de ADB.",
+   "de": "Die ADB-Datei wurde nicht gefunden.",
+   "fr": "Fichier ADB introuvable."
+  },
+  "{} 파일을 선택해 주세요.": {
+   "en": "Please select the {} file.",
+   "zh-Hans": "请选择 {} 文件。",
+   "ja": "{} ファイルを選択してください。",
+   "es": "Selecciona el archivo {}.",
+   "de": "Bitte wählen Sie die Datei {} aus.",
+   "fr": "Veuillez sélectionner le fichier {}."
+  },
+  "정상적인 Android ADB 파일이 아닙니다.": {
+   "en": "This is not a valid Android ADB file.",
+   "zh-Hans": "这不是有效的 Android ADB 文件。",
+   "ja": "正しい Android ADB ファイルではありません。",
+   "es": "No es un archivo ADB de Android válido.",
+   "de": "Dies ist keine gültige Android-ADB-Datei.",
+   "fr": "Ce n'est pas un fichier ADB Android valide."
+  },
+  "다른 버전의 ADB 서버가 사용 중입니다. 개발 도구와 같은 ADB 파일을 선택해 주세요. 기존 연결은 유지했습니다.": {
+   "en": "A different version of the ADB server is in use. Please select the same ADB file as your development tool. The existing connection was kept.",
+   "zh-Hans": "另一个版本的 ADB 服务器正在运行。请选择与开发工具相同的 ADB 文件。现有连接已保留。",
+   "ja": "別のバージョンの ADB サーバーが使用中です。開発ツールと同じ ADB ファイルを選択してください。既存の接続は維持しました。",
+   "es": "Hay otra versión del servidor ADB en uso. Selecciona el mismo archivo ADB que usa tu herramienta de desarrollo. La conexión existente se ha mantenido.",
+   "de": "Ein ADB-Server einer anderen Version wird gerade verwendet. Bitte wählen Sie dieselbe ADB-Datei wie Ihr Entwicklungswerkzeug. Die bestehende Verbindung wurde beibehalten.",
+   "fr": "Une autre version du serveur ADB est en cours d'utilisation. Sélectionnez le même fichier ADB que celui de votre outil de développement. La connexion existante a été conservée."
+  },
+  "페어링되지 않았습니다. 새 6자리 코드와 페어링 주소로 다시 시도해 주세요.": {
+   "en": "Not paired. Please try again with a new 6-digit code and pairing address.",
+   "zh-Hans": "配对失败。请使用新的 6 位配对码和配对地址重试。",
+   "ja": "ペア設定できませんでした。新しい 6 桁のコードとペア設定アドレスでもう一度お試しください。",
+   "es": "No se pudo vincular. Inténtalo de nuevo con un código nuevo de 6 dígitos y la dirección de vinculación.",
+   "de": "Kopplung fehlgeschlagen. Bitte versuchen Sie es mit einem neuen 6-stelligen Code und der Kopplungsadresse erneut.",
+   "fr": "L'association a échoué. Réessayez avec un nouveau code à 6 chiffres et l'adresse d'association."
+  },
+  "연결되지 않았습니다. 무선 디버깅 첫 화면의 IP 주소와 포트를 확인해 주세요. 페어링 포트와 다릅니다.": {
+   "en": "Not connected. Please check the IP address and port on the first Wireless debugging screen. It is different from the pairing port.",
+   "zh-Hans": "连接失败。请检查无线调试首页显示的 IP 地址和端口。它与配对端口不同。",
+   "ja": "接続できませんでした。ワイヤレスデバッグの最初の画面にある IP アドレスとポートを確認してください。ペア設定用のポートとは異なります。",
+   "es": "No se pudo conectar. Comprueba la dirección IP y el puerto de la pantalla principal de Depuración inalámbrica. Son distintos del puerto de vinculación.",
+   "de": "Verbindung fehlgeschlagen. Bitte prüfen Sie IP-Adresse und Port auf der ersten Seite von „Debugging über WLAN“. Der Port unterscheidet sich vom Kopplungsport.",
+   "fr": "La connexion a échoué. Vérifiez l'adresse IP et le port affichés sur le premier écran du débogage sans fil. Ce port est différent du port d'association."
+  },
+  "선택한 무선 기기가 현재 연결되어 있지 않습니다.": {
+   "en": "The selected wireless device is not currently connected.",
+   "zh-Hans": "所选的无线设备当前未连接。",
+   "ja": "選択したワイヤレスデバイスは現在接続されていません。",
+   "es": "El dispositivo inalámbrico seleccionado no está conectado actualmente.",
+   "de": "Das ausgewählte WLAN-Gerät ist derzeit nicht verbunden.",
+   "fr": "L'appareil sans fil sélectionné n'est pas connecté actuellement."
+  },
+  "ADB 상태 알림 연결 실패": {
+   "en": "Failed to connect to ADB status notifications",
+   "zh-Hans": "ADB 状态通知连接失败",
+   "ja": "ADB 状態通知への接続に失敗しました",
+   "es": "Error al conectar con las notificaciones de estado de ADB",
+   "de": "Verbindung zur ADB-Statusbenachrichtigung fehlgeschlagen",
+   "fr": "Échec de la connexion aux notifications d'état ADB"
+  },
+  "ADB 서버 연결이 끊어졌습니다.": {
+   "en": "The connection to the ADB server was lost.",
+   "zh-Hans": "与 ADB 服务器的连接已断开。",
+   "ja": "ADB サーバーとの接続が切れました。",
+   "es": "Se perdió la conexión con el servidor ADB.",
+   "de": "Die Verbindung zum ADB-Server wurde getrennt.",
+   "fr": "La connexion au serveur ADB a été interrompue."
+  },
+  "ADB 상태 응답 크기 초과": {
+   "en": "ADB status response too large",
+   "zh-Hans": "ADB 状态响应超出大小限制",
+   "ja": "ADB 状態応答のサイズ超過",
+   "es": "La respuesta de estado de ADB supera el tamaño permitido",
+   "de": "ADB-Statusantwort zu groß",
+   "fr": "Réponse d'état ADB trop volumineuse"
+  },
+  "ADB 상태 응답 오류": {
+   "en": "ADB status response error",
+   "zh-Hans": "ADB 状态响应错误",
+   "ja": "ADB 状態応答エラー",
+   "es": "Error en la respuesta de estado de ADB",
+   "de": "Fehlerhafte ADB-Statusantwort",
+   "fr": "Erreur de réponse d'état ADB"
+  },
+  "연결됨": {
+   "en": "Connected",
+   "zh-Hans": "已连接",
+   "ja": "接続済み",
+   "es": "Conectado",
+   "de": "Verbunden",
+   "fr": "Connecté"
+  },
+  "휴대폰에서 승인 대기": {
+   "en": "Waiting for approval on the phone",
+   "zh-Hans": "等待手机授权",
+   "ja": "スマートフォンでの許可待ち",
+   "es": "Esperando autorización en el teléfono",
+   "de": "Warten auf Bestätigung am Telefon",
+   "fr": "En attente d'autorisation sur le téléphone"
+  },
+  "응답 없음": {
+   "en": "No response",
+   "zh-Hans": "无响应",
+   "ja": "応答なし",
+   "es": "Sin respuesta",
+   "de": "Keine Antwort",
+   "fr": "Aucune réponse"
+  },
+  "일반 연결 모드 아님": {
+   "en": "Not in normal connection mode",
+   "zh-Hans": "非正常连接模式",
+   "ja": "通常の接続モードではありません",
+   "es": "No está en modo de conexión normal",
+   "de": "Nicht im normalen Verbindungsmodus",
+   "fr": "Pas en mode de connexion normal"
+  },
+  "작업을 시작하지 못했어요. 앱을 다시 열어 주세요.": {
+   "en": "Could not start the task. Please reopen the app.",
+   "zh-Hans": "无法开始操作。请重新打开应用。",
+   "ja": "処理を開始できませんでした。アプリを開き直してください。",
+   "es": "No se pudo iniciar la tarea. Vuelve a abrir la aplicación.",
+   "de": "Der Vorgang konnte nicht gestartet werden. Bitte öffnen Sie die App erneut.",
+   "fr": "Impossible de démarrer l'opération. Veuillez rouvrir l'application."
+  },
+  "ADB 실행 파일 선택": {
+   "en": "Select ADB executable",
+   "zh-Hans": "选择 ADB 可执行文件",
+   "ja": "ADB 実行ファイルを選択",
+   "es": "Seleccionar ejecutable de ADB",
+   "de": "ADB-Programmdatei auswählen",
+   "fr": "Sélectionner l'exécutable ADB"
+  },
+  "휴대폰에 표시된 IP 주소:포트를 입력해 주세요. 예: 192.168.1.5:37123": {
+   "en": "Please enter the IP address:port shown on the phone. Example: 192.168.1.5:37123",
+   "zh-Hans": "请输入手机上显示的 IP 地址:端口。例如：192.168.1.5:37123",
+   "ja": "スマートフォンに表示された IP アドレス:ポートを入力してください。例: 192.168.1.5:37123",
+   "es": "Introduce la dirección IP:puerto que muestra el teléfono. Ejemplo: 192.168.1.5:37123",
+   "de": "Bitte geben Sie IP-Adresse:Port so ein, wie auf dem Telefon angezeigt. Beispiel: 192.168.1.5:37123",
+   "fr": "Saisissez l'adresse IP:port affichée sur le téléphone. Exemple : 192.168.1.5:37123"
+  },
+  "휴대폰의 IP 주소와 1~65535 사이 포트를 확인해 주세요.": {
+   "en": "Please check the phone's IP address and a port between 1 and 65535.",
+   "zh-Hans": "请检查手机的 IP 地址以及 1～65535 之间的端口。",
+   "ja": "スマートフォンの IP アドレスと、1~65535 の範囲のポートを確認してください。",
+   "es": "Comprueba la dirección IP del teléfono y un puerto entre 1 y 65535.",
+   "de": "Bitte prüfen Sie die IP-Adresse des Telefons und einen Port zwischen 1 und 65535.",
+   "fr": "Vérifiez l'adresse IP du téléphone et un port compris entre 1 et 65535."
+  },
+  "휴대폰에 표시된 숫자 6자리를 입력해 주세요.": {
+   "en": "Please enter the 6-digit code shown on the phone.",
+   "zh-Hans": "请输入手机上显示的 6 位数字。",
+   "ja": "スマートフォンに表示された 6 桁の数字を入力してください。",
+   "es": "Introduce el código de 6 dígitos que muestra el teléfono.",
+   "de": "Bitte geben Sie den 6-stelligen Code ein, der auf dem Telefon angezeigt wird.",
+   "fr": "Saisissez le code à 6 chiffres affiché sur le téléphone."
+  },
+  "작업을 취소했습니다.": {
+   "en": "The task was canceled.",
+   "zh-Hans": "已取消操作。",
+   "ja": "処理をキャンセルしました。",
+   "es": "Operación cancelada.",
+   "de": "Der Vorgang wurde abgebrochen.",
+   "fr": "Opération annulée."
+  },
+  "입력 형식 오류": {
+   "en": "Invalid input format",
+   "zh-Hans": "输入格式错误",
+   "ja": "入力形式エラー",
+   "es": "Formato de entrada no válido",
+   "de": "Ungültiges Eingabeformat",
+   "fr": "Format de saisie incorrect"
+  },
+  "ADB를 실행하지 못했습니다. 파일 위치와 실행 권한을 확인해 주세요.": {
+   "en": "Could not run ADB. Please check the file location and execute permission.",
+   "zh-Hans": "无法运行 ADB。请检查文件位置和执行权限。",
+   "ja": "ADB を実行できませんでした。ファイルの場所と実行権限を確認してください。",
+   "es": "No se pudo ejecutar ADB. Comprueba la ubicación del archivo y los permisos de ejecución.",
+   "de": "ADB konnte nicht gestartet werden. Bitte prüfen Sie den Dateipfad und die Ausführungsrechte.",
+   "fr": "Impossible de lancer ADB. Vérifiez l'emplacement du fichier et les droits d'exécution."
+  },
+  "ADB 입력 전달 실패": {
+   "en": "Failed to send input to ADB",
+   "zh-Hans": "向 ADB 传送输入失败",
+   "ja": "ADB への入力送信に失敗しました",
+   "es": "Error al enviar la entrada a ADB",
+   "de": "Eingabe konnte nicht an ADB übergeben werden",
+   "fr": "Échec de l'envoi de l'entrée à ADB"
+  },
+  "ADB 출력 파이프 준비 실패": {
+   "en": "Failed to set up the ADB output pipe",
+   "zh-Hans": "准备 ADB 输出管道失败",
+   "ja": "ADB 出力パイプの準備に失敗しました",
+   "es": "Error al preparar la salida de ADB",
+   "de": "Ausgabekanal von ADB konnte nicht vorbereitet werden",
+   "fr": "Échec de la préparation du canal de sortie ADB"
+  },
+  "ADB 응답 읽기 실패": {
+   "en": "Failed to read the ADB response",
+   "zh-Hans": "读取 ADB 响应失败",
+   "ja": "ADB 応答の読み取りに失敗しました",
+   "es": "Error al leer la respuesta de ADB",
+   "de": "ADB-Antwort konnte nicht gelesen werden",
+   "fr": "Échec de la lecture de la réponse ADB"
+  },
+  "ADB 응답이 예상보다 커서 중단했습니다.": {
+   "en": "Stopped because the ADB response was larger than expected.",
+   "zh-Hans": "ADB 响应超出预期大小，已中止。",
+   "ja": "ADB の応答が想定より大きいため中断しました。",
+   "es": "La respuesta de ADB era más grande de lo esperado y se interrumpió.",
+   "de": "Die ADB-Antwort war größer als erwartet und wurde abgebrochen.",
+   "fr": "La réponse ADB était plus volumineuse que prévu ; l'opération a été interrompue."
+  },
+  "ADB 요청이 완료되지 않았습니다. 휴대폰의 화면·코드·주소를 다시 확인해 주세요.": {
+   "en": "The ADB request did not complete. Please check the screen, code, and address on the phone again.",
+   "zh-Hans": "ADB 请求未完成。请再次检查手机上的画面、配对码和地址。",
+   "ja": "ADB リクエストが完了しませんでした。スマートフォンの画面・コード・アドレスをもう一度確認してください。",
+   "es": "La solicitud a ADB no se completó. Vuelve a comprobar la pantalla, el código y la dirección del teléfono.",
+   "de": "Die ADB-Anfrage wurde nicht abgeschlossen. Bitte prüfen Sie Bildschirm, Code und Adresse auf dem Telefon erneut.",
+   "fr": "La requête ADB n'a pas abouti. Vérifiez à nouveau l'écran, le code et l'adresse sur le téléphone."
+  },
+  "ADB 상태를 확인하지 못했습니다.": {
+   "en": "Could not check the ADB status.",
+   "zh-Hans": "无法确认 ADB 状态。",
+   "ja": "ADB の状態を確認できませんでした。",
+   "es": "No se pudo comprobar el estado de ADB.",
+   "de": "Der ADB-Status konnte nicht überprüft werden.",
+   "fr": "Impossible de vérifier l'état d'ADB."
+  },
+  "응답을 기다리는 시간이 지났습니다. 휴대폰과 연결 상태를 확인해 주세요.": {
+   "en": "Timed out waiting for a response. Please check the phone and the connection status.",
+   "zh-Hans": "等待响应超时。请检查手机及其连接状态。",
+   "ja": "応答の待ち時間を超えました。スマートフォンと接続状態を確認してください。",
+   "es": "Se agotó el tiempo de espera de la respuesta. Comprueba el teléfono y el estado de la conexión.",
+   "de": "Zeitüberschreitung beim Warten auf eine Antwort. Bitte prüfen Sie das Telefon und den Verbindungsstatus.",
+   "fr": "Le délai d'attente de la réponse est dépassé. Vérifiez le téléphone et l'état de la connexion."
+  },
+  "ADB 응답 크기 초과": {
+   "en": "ADB response too large",
+   "zh-Hans": "ADB 响应超出大小限制",
+   "ja": "ADB 応答のサイズ超過",
+   "es": "La respuesta de ADB supera el tamaño permitido",
+   "de": "ADB-Antwort zu groß",
+   "fr": "Réponse ADB trop volumineuse"
+  },
+  "사용자 데이터 폴더를 찾지 못했습니다.": {
+   "en": "Could not find the user data folder.",
+   "zh-Hans": "未找到用户数据文件夹。",
+   "ja": "ユーザーデータフォルダが見つかりませんでした。",
+   "es": "No se encontró la carpeta de datos del usuario.",
+   "de": "Der Benutzerdatenordner wurde nicht gefunden.",
+   "fr": "Dossier de données utilisateur introuvable."
+  },
+  "지우지 못했어요. 다른 프로그램이 이 폴더의 파일을 사용 중일 수 있어요. 창을 닫고 직접 지워 주세요.\n{}": {
+   "en": "Could not delete. Another program may be using files in this folder. Please close the window and delete it manually.\n{}",
+   "zh-Hans": "删除失败。可能有其他程序正在使用此文件夹中的文件。请关闭窗口后手动删除。\n{}",
+   "ja": "削除できませんでした。別のプログラムがこのフォルダ内のファイルを使用している可能性があります。ウィンドウを閉じて手動で削除してください。\n{}",
+   "es": "No se pudieron eliminar. Puede que otro programa esté usando archivos de esta carpeta. Cierra la ventana y elimínala manualmente.\n{}",
+   "de": "Löschen fehlgeschlagen. Möglicherweise verwendet ein anderes Programm Dateien in diesem Ordner. Bitte schließen Sie das Fenster und löschen Sie den Ordner manuell.\n{}",
+   "fr": "Suppression impossible. Un autre programme utilise peut-être des fichiers de ce dossier. Fermez la fenêtre et supprimez-le manuellement.\n{}"
+  },
+  "설정 폴더를 만들지 못했습니다.": {
+   "en": "Could not create the settings folder.",
+   "zh-Hans": "无法创建设置文件夹。",
+   "ja": "設定フォルダを作成できませんでした。",
+   "es": "No se pudo crear la carpeta de ajustes.",
+   "de": "Der Einstellungsordner konnte nicht erstellt werden.",
+   "fr": "Impossible de créer le dossier de configuration."
+  },
+  "설정 변환 실패": {
+   "en": "Failed to convert settings",
+   "zh-Hans": "设置转换失败",
+   "ja": "設定の変換に失敗しました",
+   "es": "Error al convertir los ajustes",
+   "de": "Einstellungen konnten nicht konvertiert werden",
+   "fr": "Échec de la conversion des paramètres"
+  },
+  "ADB 위치를 저장하지 못했습니다.": {
+   "en": "Could not save the ADB location.",
+   "zh-Hans": "无法保存 ADB 位置。",
+   "ja": "ADB の場所を保存できませんでした。",
+   "es": "No se pudo guardar la ubicación de ADB.",
+   "de": "Der ADB-Pfad konnte nicht gespeichert werden.",
+   "fr": "Impossible d'enregistrer l'emplacement d'ADB."
+  },
+  "Google SDK 약관 동의가 필요합니다.": {
+   "en": "You need to accept the Google SDK terms.",
+   "zh-Hans": "需要同意 Google SDK 条款。",
+   "ja": "Google SDK 利用規約への同意が必要です。",
+   "es": "Debes aceptar los términos del Google SDK.",
+   "de": "Die Zustimmung zu den Google SDK-Nutzungsbedingungen ist erforderlich.",
+   "fr": "Vous devez accepter les conditions du Google SDK."
+  },
+  "자동 준비는 Windows와 macOS에서 지원합니다.": {
+   "en": "Automatic setup is supported on Windows and macOS.",
+   "zh-Hans": "自动准备仅支持 Windows 和 macOS。",
+   "ja": "自動準備は Windows と macOS で対応しています。",
+   "es": "La preparación automática está disponible en Windows y macOS.",
+   "de": "Die automatische Einrichtung wird unter Windows und macOS unterstützt.",
+   "fr": "La préparation automatique est prise en charge sous Windows et macOS."
+  },
+  "다운로드 정보 오류": {
+   "en": "Download information error",
+   "zh-Hans": "下载信息错误",
+   "ja": "ダウンロード情報エラー",
+   "es": "Error en la información de descarga",
+   "de": "Fehlerhafte Download-Informationen",
+   "fr": "Erreur dans les informations de téléchargement"
+  },
+  "다운로드 주소 오류": {
+   "en": "Download address error",
+   "zh-Hans": "下载地址错误",
+   "ja": "ダウンロードアドレスエラー",
+   "es": "Error en la dirección de descarga",
+   "de": "Fehlerhafte Download-Adresse",
+   "fr": "Erreur d'adresse de téléchargement"
+  },
+  "다운로드 검증 정보 오류": {
+   "en": "Download verification information error",
+   "zh-Hans": "下载校验信息错误",
+   "ja": "ダウンロード検証情報エラー",
+   "es": "Error en la información de verificación de la descarga",
+   "de": "Fehlerhafte Download-Prüfinformationen",
+   "fr": "Erreur dans les informations de vérification du téléchargement"
+  },
+  "도구 폴더를 만들지 못했습니다.": {
+   "en": "Could not create the tools folder.",
+   "zh-Hans": "无法创建工具文件夹。",
+   "ja": "ツールフォルダを作成できませんでした。",
+   "es": "No se pudo crear la carpeta de herramientas.",
+   "de": "Der Werkzeugordner konnte nicht erstellt werden.",
+   "fr": "Impossible de créer le dossier des outils."
+  },
+  "시스템 시각 오류": {
+   "en": "System clock error",
+   "zh-Hans": "系统时间错误",
+   "ja": "システム時刻エラー",
+   "es": "Error en la hora del sistema",
+   "de": "Fehler der Systemzeit",
+   "fr": "Erreur d'horloge système"
+  },
+  "준비를 취소했습니다.": {
+   "en": "Setup was canceled.",
+   "zh-Hans": "已取消准备。",
+   "ja": "準備をキャンセルしました。",
+   "es": "Preparación cancelada.",
+   "de": "Die Einrichtung wurde abgebrochen.",
+   "fr": "Préparation annulée."
+  },
+  "이전에 준비한 도구 폴더를 옮기지 못했습니다. 다른 프로그램이 사용 중인지 확인해 주세요.": {
+   "en": "Could not move the previously set up tools folder. Please check whether another program is using it.",
+   "zh-Hans": "无法移动之前准备的工具文件夹。请检查是否有其他程序正在使用它。",
+   "ja": "以前に準備したツールフォルダを移動できませんでした。別のプログラムが使用中でないか確認してください。",
+   "es": "No se pudo mover la carpeta de herramientas preparada anteriormente. Comprueba si otro programa la está usando.",
+   "de": "Der zuvor eingerichtete Werkzeugordner konnte nicht verschoben werden. Bitte prüfen Sie, ob ein anderes Programm ihn verwendet.",
+   "fr": "Impossible de déplacer le dossier des outils préparé précédemment. Vérifiez qu'un autre programme ne l'utilise pas."
+  },
+  "Google 다운로드에 연결하지 못했습니다. 인터넷 연결을 확인하거나 기존 ADB를 선택해 주세요.": {
+   "en": "Could not connect to the Google download. Please check your internet connection or select an existing ADB.",
+   "zh-Hans": "无法连接到 Google 下载服务器。请检查网络连接，或选择已有的 ADB。",
+   "ja": "Google のダウンロードに接続できませんでした。インターネット接続を確認するか、既存の ADB を選択してください。",
+   "es": "No se pudo conectar con la descarga de Google. Comprueba tu conexión a Internet o selecciona un ADB existente.",
+   "de": "Verbindung zum Google-Download fehlgeschlagen. Bitte prüfen Sie Ihre Internetverbindung oder wählen Sie ein vorhandenes ADB aus.",
+   "fr": "Impossible de se connecter au téléchargement Google. Vérifiez votre connexion Internet ou sélectionnez un ADB existant."
+  },
+  "공식 다운로드 서버가 파일을 제공하지 않았습니다. 잠시 후 다시 시도해 주세요.": {
+   "en": "The official download server did not provide the file. Please try again later.",
+   "zh-Hans": "官方下载服务器未提供文件。请稍后重试。",
+   "ja": "公式ダウンロードサーバーからファイルを取得できませんでした。しばらくしてからもう一度お試しください。",
+   "es": "El servidor oficial de descargas no entregó el archivo. Inténtalo de nuevo más tarde.",
+   "de": "Der offizielle Download-Server hat die Datei nicht bereitgestellt. Bitte versuchen Sie es später erneut.",
+   "fr": "Le serveur de téléchargement officiel n'a pas fourni le fichier. Réessayez dans un instant."
+  },
+  "다운로드가 중단되었습니다. 다시 준비를 눌러 주세요.": {
+   "en": "The download was interrupted. Please press Set up again.",
+   "zh-Hans": "下载已中断。请再次点击“准备”。",
+   "ja": "ダウンロードが中断されました。もう一度「準備」を押してください。",
+   "es": "La descarga se interrumpió. Pulsa Preparar de nuevo.",
+   "de": "Der Download wurde unterbrochen. Bitte starten Sie die Einrichtung erneut.",
+   "fr": "Le téléchargement a été interrompu. Appuyez à nouveau sur Préparer."
+  },
+  "다운로드 파일의 무결성을 확인하지 못했습니다. 실행하지 않았습니다.": {
+   "en": "Could not verify the integrity of the downloaded file. It was not run.",
+   "zh-Hans": "无法验证下载文件的完整性，未运行该文件。",
+   "ja": "ダウンロードしたファイルの整合性を確認できませんでした。実行していません。",
+   "es": "No se pudo verificar la integridad del archivo descargado. No se ha ejecutado.",
+   "de": "Die Integrität der heruntergeladenen Datei konnte nicht bestätigt werden. Sie wurde nicht ausgeführt.",
+   "fr": "Impossible de vérifier l'intégrité du fichier téléchargé. Il n'a pas été exécuté."
+  },
+  "임시 도구 폴더를 만들지 못했습니다.": {
+   "en": "Could not create the temporary tools folder.",
+   "zh-Hans": "无法创建临时工具文件夹。",
+   "ja": "一時ツールフォルダを作成できませんでした。",
+   "es": "No se pudo crear la carpeta temporal de herramientas.",
+   "de": "Der temporäre Werkzeugordner konnte nicht erstellt werden.",
+   "fr": "Impossible de créer le dossier temporaire des outils."
+  },
+  "압축 파일을 열지 못했습니다.": {
+   "en": "Could not open the archive.",
+   "zh-Hans": "无法打开压缩文件。",
+   "ja": "圧縮ファイルを開けませんでした。",
+   "es": "No se pudo abrir el archivo comprimido.",
+   "de": "Das Archiv konnte nicht geöffnet werden.",
+   "fr": "Impossible d'ouvrir l'archive."
+  },
+  "필수 ADB 파일이 없습니다.": {
+   "en": "A required ADB file is missing.",
+   "zh-Hans": "缺少必需的 ADB 文件。",
+   "ja": "必要な ADB ファイルがありません。",
+   "es": "Faltan archivos de ADB necesarios.",
+   "de": "Erforderliche ADB-Dateien fehlen.",
+   "fr": "Fichiers ADB requis manquants."
+  },
+  "압축 해제 크기 상한을 초과했습니다.": {
+   "en": "The extraction size limit was exceeded.",
+   "zh-Hans": "解压后的大小超出上限。",
+   "ja": "展開サイズの上限を超えました。",
+   "es": "Se superó el límite de tamaño de descompresión.",
+   "de": "Die maximale Entpackgröße wurde überschritten.",
+   "fr": "La taille limite de décompression a été dépassée."
+  },
+  "도구 파일 생성 실패": {
+   "en": "Failed to create tool file",
+   "zh-Hans": "创建工具文件失败",
+   "ja": "ツールファイルの作成に失敗しました",
+   "es": "Error al crear el archivo de herramientas",
+   "de": "Werkzeugdatei konnte nicht erstellt werden",
+   "fr": "Échec de la création du fichier d'outil"
+  },
+  "도구 파일 저장 실패": {
+   "en": "Failed to save tool file",
+   "zh-Hans": "保存工具文件失败",
+   "ja": "ツールファイルの保存に失敗しました",
+   "es": "Error al guardar el archivo de herramientas",
+   "de": "Werkzeugdatei konnte nicht gespeichert werden",
+   "fr": "Échec de l'enregistrement du fichier d'outil"
+  },
+  "실행 권한 설정 실패": {
+   "en": "Failed to set execute permission",
+   "zh-Hans": "设置执行权限失败",
+   "ja": "実行権限の設定に失敗しました",
+   "es": "Error al establecer los permisos de ejecución",
+   "de": "Ausführungsrechte konnten nicht gesetzt werden",
+   "fr": "Échec de la définition des droits d'exécution"
+  },
+  "도구 폴더를 확정하지 못했습니다. 다른 adb-on 준비가 진행 중인지 확인해 주세요.": {
+   "en": "Could not finalize the tools folder. Please check whether another adb-on setup is in progress.",
+   "zh-Hans": "无法确定工具文件夹。请检查是否有另一个 adb-on 正在进行准备。",
+   "ja": "ツールフォルダを確定できませんでした。別の adb-on の準備が進行中でないか確認してください。",
+   "es": "No se pudo confirmar la carpeta de herramientas. Comprueba si hay otra preparación de adb-on en curso.",
+   "de": "Der Werkzeugordner konnte nicht abgeschlossen werden. Bitte prüfen Sie, ob eine andere adb-on-Einrichtung läuft.",
+   "fr": "Impossible de finaliser le dossier des outils. Vérifiez qu'une autre préparation d'adb-on n'est pas en cours."
+  },
+  "언어 설정을 저장하지 못했습니다.": {
+   "en": "Could not save the language setting.",
+   "zh-Hans": "无法保存语言设置。",
+   "ja": "言語設定を保存できませんでした。",
+   "es": "No se pudo guardar el ajuste de idioma.",
+   "de": "Die Spracheinstellung konnte nicht gespeichert werden.",
+   "fr": "Impossible d'enregistrer le paramètre de langue."
+  },
+  "처음 한 번만 준비해 주세요": {
+   "en": "One-time setup",
+   "zh-Hans": "只需在首次使用时准备一次",
+   "ja": "最初に一度だけ準備してください",
+   "es": "Prepáralo solo una vez, la primera vez",
+   "de": "Nur einmal einrichten",
+   "fr": "Une seule préparation, la première fois"
+  },
+  "연결됐어요": {
+   "en": "Connected",
+   "zh-Hans": "已连接",
+   "ja": "接続しました",
+   "es": "Conectado",
+   "de": "Verbunden",
+   "fr": "Connecté"
+  },
+  "휴대폰에서 ‘허용’을 눌러 주세요": {
+   "en": "Please tap ‘Allow’ on the phone",
+   "zh-Hans": "请在手机上点按“允许”",
+   "ja": "スマートフォンで「許可」を押してください",
+   "es": "Pulsa «Permitir» en el teléfono",
+   "de": "Tippen Sie auf dem Telefon auf „Zulassen“",
+   "fr": "Appuyez sur « Autoriser » sur le téléphone"
+  },
+  "휴대폰이 응답을 기다리고 있어요": {
+   "en": "The phone is waiting for a response",
+   "zh-Hans": "手机正在等待响应",
+   "ja": "スマートフォンが応答を待っています",
+   "es": "El teléfono está esperando una respuesta",
+   "de": "Das Telefon wartet auf eine Antwort",
+   "fr": "Le téléphone attend une réponse"
+  },
+  "잠금을 풀고 케이블을 다시 연결해 주세요. 무선이면 휴대폰의 무선 디버깅이 켜져 있는지 확인해 주세요.": {
+   "en": "Unlock the phone and reconnect the cable. If wireless, check that Wireless debugging is turned on on the phone.",
+   "zh-Hans": "请解锁手机并重新插拔数据线。如果使用无线连接，请确认手机的无线调试已开启。",
+   "ja": "ロックを解除してケーブルを接続し直してください。ワイヤレスの場合は、スマートフォンのワイヤレスデバッグがオンになっているか確認してください。",
+   "es": "Desbloquéalo y vuelve a conectar el cable. Si es inalámbrico, comprueba que la depuración inalámbrica esté activada en el teléfono.",
+   "de": "Entsperren Sie das Telefon und schließen Sie das Kabel erneut an. Bei WLAN prüfen Sie bitte, ob „Debugging über WLAN“ auf dem Telefon aktiviert ist.",
+   "fr": "Déverrouillez le téléphone et rebranchez le câble. En sans fil, vérifiez que le débogage sans fil est activé sur le téléphone."
+  },
+  "휴대폰이 일반 실행 상태가 아니에요": {
+   "en": "The phone is not in normal mode",
+   "zh-Hans": "手机未处于正常运行状态",
+   "ja": "スマートフォンが通常の起動状態ではありません",
+   "es": "El teléfono no está en modo normal",
+   "de": "Das Telefon ist nicht im normalen Betriebsmodus",
+   "fr": "Le téléphone n'est pas en mode normal"
+  },
+  "복구·부트로더 모드에서는 앱 개발 연결을 사용할 수 없어요. 휴대폰을 정상 모드로 켜 주세요.": {
+   "en": "App development connections are not available in recovery or bootloader mode. Please boot the phone into normal mode.",
+   "zh-Hans": "在恢复模式或引导加载程序模式下无法进行应用开发连接。请将手机以正常模式开机。",
+   "ja": "リカバリ・ブートローダーモードではアプリ開発用の接続は使えません。スマートフォンを通常モードで起動してください。",
+   "es": "En modo recovery o bootloader no se puede usar la conexión para desarrollo de aplicaciones. Enciende el teléfono en modo normal.",
+   "de": "Im Recovery- oder Bootloader-Modus ist keine Verbindung zur App-Entwicklung möglich. Bitte starten Sie das Telefon im normalen Modus.",
+   "fr": "La connexion de développement d'applications n'est pas disponible en mode recovery ou bootloader. Redémarrez le téléphone en mode normal."
+  },
+  "휴대폰을 연결해 주세요": {
+   "en": "Please connect your phone",
+   "zh-Hans": "请连接手机",
+   "ja": "スマートフォンを接続してください",
+   "es": "Conecta el teléfono",
+   "de": "Bitte Telefon anschließen",
+   "fr": "Connectez le téléphone"
+  },
+  "먼저 ADB를 준비해 주세요.": {
+   "en": "Please set up ADB first.",
+   "zh-Hans": "请先准备 ADB。",
+   "ja": "先に ADB を準備してください。",
+   "es": "Primero prepara ADB.",
+   "de": "Bitte richten Sie zuerst ADB ein.",
+   "fr": "Préparez d'abord ADB."
+  },
+  "페어링됐어요. 연결 상태를 확인 중이에요. 연결이 안 되면 휴대폰에서 한 화면 뒤로 가서 ‘IP 주소 및 포트’를 아래 연결 칸에 입력해 주세요.": {
+   "en": "Paired. Checking the connection status. If it does not connect, go back one screen on the phone and enter the ‘IP address & Port’ in the connection field below.",
+   "zh-Hans": "配对成功，正在检查连接状态。如果无法连接，请在手机上返回上一页，将“IP 地址和端口”填入下方的连接栏。",
+   "ja": "ペア設定しました。接続状態を確認しています。接続できない場合は、スマートフォンで一つ前の画面に戻り、「IP アドレスとポート」を下の接続欄に入力してください。",
+   "es": "Vinculado. Comprobando el estado de la conexión. Si no se conecta, vuelve una pantalla atrás en el teléfono e introduce «Dirección IP y puerto» en el campo de conexión de abajo.",
+   "de": "Gekoppelt. Der Verbindungsstatus wird geprüft. Falls keine Verbindung zustande kommt, gehen Sie auf dem Telefon eine Seite zurück und tragen Sie „IP-Adresse und Port“ unten in das Verbindungsfeld ein.",
+   "fr": "Association réussie. Vérification de la connexion en cours. Si la connexion échoue, revenez à l'écran précédent sur le téléphone et saisissez « Adresse IP et port » dans le champ de connexion ci-dessous."
+  },
+  "페어링됐어요. 연결 상태 확인은 실패했어요: {} 다시 확인을 눌러 주세요.": {
+   "en": "Paired. Checking the connection status failed: {} Please press Check again.",
+   "zh-Hans": "配对成功，但检查连接状态失败：{} 请点击“重新检查”。",
+   "ja": "ペア設定しました。接続状態の確認には失敗しました: {} 「再確認」を押してください。",
+   "es": "Vinculado. No se pudo comprobar el estado de la conexión: {} Pulsa Volver a comprobar.",
+   "de": "Gekoppelt. Die Prüfung des Verbindungsstatus ist fehlgeschlagen: {} Bitte klicken Sie auf „Erneut prüfen“.",
+   "fr": "Association réussie. La vérification de la connexion a échoué : {} Appuyez sur Revérifier."
+  },
+  "{} 다시 확인을 누르면 서버 상태를 확인하고 연결을 준비해요.": {
+   "en": "{} Press Check again to check the server status and prepare the connection.",
+   "zh-Hans": "{} 点击“重新检查”将检查服务器状态并准备连接。",
+   "ja": "{} 「再確認」を押すと、サーバーの状態を確認して接続を準備します。",
+   "es": "{} Pulsa Volver a comprobar para revisar el estado del servidor y preparar la conexión.",
+   "de": "{} Mit „Erneut prüfen“ wird der Serverstatus geprüft und die Verbindung vorbereitet.",
+   "fr": "{} Appuyez sur Revérifier pour contrôler l'état du serveur et préparer la connexion."
+  },
+  "연결을 준비하고 있어요": {
+   "en": "Preparing the connection",
+   "zh-Hans": "正在准备连接",
+   "ja": "接続を準備しています",
+   "es": "Preparando la conexión",
+   "de": "Verbindung wird vorbereitet",
+   "fr": "Préparation de la connexion"
+  },
+  "휴대폰을 USB로 연결해 주세요.": {
+   "en": "Please connect your phone via USB.",
+   "zh-Hans": "请通过 USB 连接手机。",
+   "ja": "スマートフォンを USB で接続してください。",
+   "es": "Conecta el teléfono por USB.",
+   "de": "Bitte schließen Sie das Telefon per USB an.",
+   "fr": "Connectez le téléphone en USB."
+  },
+  "무선 연결": {
+   "en": "Wireless connection",
+   "zh-Hans": "无线连接",
+   "ja": "ワイヤレス接続",
+   "es": "Conexión inalámbrica",
+   "de": "WLAN-Verbindung",
+   "fr": "Connexion sans fil"
+  },
+  "USB 연결 안내": {
+   "en": "USB connection guide",
+   "zh-Hans": "USB 连接指南",
+   "ja": "USB 接続ガイド",
+   "es": "Guía de conexión USB",
+   "de": "USB-Anleitung",
+   "fr": "Guide de connexion USB"
+  },
+  "도구 설정": {
+   "en": "Tool settings",
+   "zh-Hans": "工具设置",
+   "ja": "ツール設定",
+   "es": "Ajustes de herramientas",
+   "de": "Werkzeugeinstellungen",
+   "fr": "Paramètres des outils"
+  },
+  "adb-on에 대하여": {
+   "en": "About adb-on",
+   "zh-Hans": "关于 adb-on",
+   "ja": "adb-on について",
+   "es": "Acerca de adb-on",
+   "de": "Über adb-on",
+   "fr": "À propos d'adb-on"
+  },
+  "확인 중…": {
+   "en": "Checking…",
+   "zh-Hans": "检查中…",
+   "ja": "確認中…",
+   "es": "Comprobando…",
+   "de": "Wird geprüft …",
+   "fr": "Vérification…"
+  },
+  "다시 확인": {
+   "en": "Check again",
+   "zh-Hans": "重新检查",
+   "ja": "再確認",
+   "es": "Volver a comprobar",
+   "de": "Erneut prüfen",
+   "fr": "Revérifier"
+  },
+  "처음 연결 준비하기": {
+   "en": "Set up first connection",
+   "zh-Hans": "首次连接准备",
+   "ja": "初回接続の準備",
+   "es": "Preparar la primera conexión",
+   "de": "Erste Verbindung einrichten",
+   "fr": "Préparer la première connexion"
+  },
+  "현재 무선 연결 · {}": {
+   "en": "Current wireless connection · {}",
+   "zh-Hans": "当前无线连接 · {}",
+   "ja": "現在のワイヤレス接続 · {}",
+   "es": "Conexión inalámbrica actual · {}",
+   "de": "Aktuelle WLAN-Verbindung · {}",
+   "fr": "Connexion sans fil actuelle · {}"
+  },
+  "Android 11 이상에서 됩니다. PC와 폰을 같은 Wi-Fi에 연결하고, 휴대폰의 설정 → 개발자 옵션 → 무선 디버깅을 켜 주세요.": {
+   "en": "Works on Android 11 or later. Connect the PC and the phone to the same Wi-Fi, and turn on Settings → Developer options → Wireless debugging on the phone.",
+   "zh-Hans": "需要 Android 11 或更高版本。请将电脑和手机连接到同一个 Wi-Fi，然后在手机上开启 设置 → 开发者选项 → 无线调试。",
+   "ja": "Android 11 以降で利用できます。PC とスマートフォンを同じ Wi-Fi に接続し、スマートフォンの設定 → 開発者向けオプション → ワイヤレスデバッグをオンにしてください。",
+   "es": "Funciona en Android 11 o superior. Conecta el PC y el teléfono a la misma Wi-Fi y activa Ajustes → Opciones para desarrolladores → Depuración inalámbrica en el teléfono.",
+   "de": "Funktioniert ab Android 11. Verbinden Sie PC und Telefon mit demselben WLAN und aktivieren Sie auf dem Telefon Einstellungen → Entwickleroptionen → Debugging über WLAN.",
+   "fr": "Fonctionne avec Android 11 ou version ultérieure. Connectez le PC et le téléphone au même Wi-Fi, puis activez Paramètres → Options pour les développeurs → Débogage sans fil sur le téléphone."
+  },
+  "휴대폰에서 ‘페어링 코드로 기기 페어링’을 누르고, 화면에 보이는 주소와 숫자 6자리를 넣으세요. 처음 한 번만 필요해요.": {
+   "en": "On the phone, tap ‘Pair device with pairing code’ and enter the address and 6-digit code shown on the screen. This is only needed once.",
+   "zh-Hans": "在手机上点按“使用配对码配对设备”，然后输入屏幕上显示的地址和 6 位数字。只需在首次连接时进行一次。",
+   "ja": "スマートフォンで「ペア設定コードによるデバイスのペア設定」を押し、画面に表示されたアドレスと 6 桁の数字を入力してください。最初の一度だけ必要です。",
+   "es": "En el teléfono, pulsa «Vincular dispositivo con código de vinculación» e introduce la dirección y el código de 6 dígitos que aparecen en pantalla. Solo hace falta la primera vez.",
+   "de": "Tippen Sie auf dem Telefon auf „Gerät über Kopplungscode koppeln“ und geben Sie die angezeigte Adresse und den 6-stelligen Code ein. Das ist nur beim ersten Mal nötig.",
+   "fr": "Sur le téléphone, appuyez sur « Associer l'appareil avec un code d'association », puis saisissez l'adresse et le code à 6 chiffres affichés. Nécessaire une seule fois."
+  },
+  "페어링 주소 · {}": {
+   "en": "Pairing address · {}",
+   "zh-Hans": "配对地址 · {}",
+   "ja": "ペア設定アドレス · {}",
+   "es": "Dirección de vinculación · {}",
+   "de": "Kopplungsadresse · {}",
+   "fr": "Adresse d'association · {}"
+  },
+  "페어링 주소 · 예: 192.168.1.5:37123": {
+   "en": "Pairing address · e.g. 192.168.1.5:37123",
+   "zh-Hans": "配对地址 · 例如：192.168.1.5:37123",
+   "ja": "ペア設定アドレス · 例: 192.168.1.5:37123",
+   "es": "Dirección de vinculación · ej.: 192.168.1.5:37123",
+   "de": "Kopplungsadresse · z. B. 192.168.1.5:37123",
+   "fr": "Adresse d'association · ex. : 192.168.1.5:37123"
+  },
+  "휴대폰의 숫자 6자리": {
+   "en": "6-digit code from the phone",
+   "zh-Hans": "手机上的 6 位数字",
+   "ja": "スマートフォンの 6 桁の数字",
+   "es": "Código de 6 dígitos del teléfono",
+   "de": "6-stelliger Code vom Telefon",
+   "fr": "Code à 6 chiffres du téléphone"
+  },
+  "페어링하기": {
+   "en": "Pair",
+   "zh-Hans": "配对",
+   "ja": "ペア設定する",
+   "es": "Vincular",
+   "de": "Koppeln",
+   "fr": "Associer"
+  },
+  "연결 주소 · 예: 192.168.1.5:39511": {
+   "en": "Connection address · e.g. 192.168.1.5:39511",
+   "zh-Hans": "连接地址 · 例如：192.168.1.5:39511",
+   "ja": "接続アドレス · 例: 192.168.1.5:39511",
+   "es": "Dirección de conexión · ej.: 192.168.1.5:39511",
+   "de": "Verbindungsadresse · z. B. 192.168.1.5:39511",
+   "fr": "Adresse de connexion · ex. : 192.168.1.5:39511"
+  },
+  "연결하기": {
+   "en": "Connect",
+   "zh-Hans": "连接",
+   "ja": "接続する",
+   "es": "Conectar",
+   "de": "Verbinden",
+   "fr": "Connecter"
+  },
+  "주변 기기 다시 찾기": {
+   "en": "Search nearby devices again",
+   "zh-Hans": "重新搜索附近设备",
+   "ja": "近くのデバイスを再検索",
+   "es": "Buscar dispositivos cercanos de nuevo",
+   "de": "Geräte in der Nähe erneut suchen",
+   "fr": "Rechercher à nouveau"
+  },
+  "찾지 못해도 주소를 직접 입력하면 돼요. 회사·학교·게스트 Wi-Fi는 기기끼리 통신을 막을 수 있어요. 그때는 USB로 연결해 주세요.": {
+   "en": "If nothing is found, you can enter the address manually. Office, school, and guest Wi-Fi may block devices from talking to each other. In that case, please connect via USB.",
+   "zh-Hans": "即使没有找到，也可以直接输入地址。公司、学校或访客 Wi-Fi 可能会阻止设备之间的通信，这时请改用 USB 连接。",
+   "ja": "見つからなくても、アドレスを直接入力すれば大丈夫です。会社・学校・ゲスト用の Wi-Fi ではデバイス間の通信が制限されることがあります。その場合は USB で接続してください。",
+   "es": "Si no se encuentra, puedes escribir la dirección manualmente. Las redes Wi-Fi de empresas, escuelas o de invitados pueden bloquear la comunicación entre dispositivos. En ese caso, conecta por USB.",
+   "de": "Wird nichts gefunden, können Sie die Adresse manuell eingeben. Firmen-, Schul- und Gast-WLANs blockieren manchmal die Kommunikation zwischen Geräten. Verbinden Sie in dem Fall per USB.",
+   "fr": "Si rien n'est trouvé, saisissez l'adresse directement. Les Wi-Fi d'entreprise, d'école ou invités peuvent bloquer la communication entre appareils. Dans ce cas, connectez-vous en USB."
+  },
+  "단계 {} / 4": {
+   "en": "Step {} / 4",
+   "zh-Hans": "步骤 {} / 4",
+   "ja": "ステップ {} / 4",
+   "es": "Paso {} / 4",
+   "de": "Schritt {} / 4",
+   "fr": "Étape {} / 4"
+  },
+  "개발자 옵션 열기": {
+   "en": "Open Developer options",
+   "zh-Hans": "打开开发者选项",
+   "ja": "開発者向けオプションを開く",
+   "es": "Abrir Opciones para desarrolladores",
+   "de": "Entwickleroptionen öffnen",
+   "fr": "Ouvrir les options pour les développeurs"
+  },
+  "USB 디버깅 켜기": {
+   "en": "Turn on USB debugging",
+   "zh-Hans": "开启 USB 调试",
+   "ja": "USB デバッグをオンにする",
+   "es": "Activar Depuración por USB",
+   "de": "USB-Debugging aktivieren",
+   "fr": "Activer le débogage USB"
+  },
+  "케이블 연결하고 허용하기": {
+   "en": "Connect the cable and allow",
+   "zh-Hans": "连接数据线并允许",
+   "ja": "ケーブルを接続して許可する",
+   "es": "Conectar el cable y permitir",
+   "de": "Kabel anschließen und zulassen",
+   "fr": "Brancher le câble et autoriser"
+  },
+  "그래도 보이지 않나요?": {
+   "en": "Still not showing up?",
+   "zh-Hans": "还是看不到设备？",
+   "ja": "それでも表示されませんか?",
+   "es": "¿Sigue sin aparecer?",
+   "de": "Wird es immer noch nicht angezeigt?",
+   "fr": "Toujours rien ?"
+  },
+  "갤럭시: 설정 → 휴대전화 정보 → 소프트웨어 정보 → ‘빌드번호’를 7번 누르세요.\n\nPixel 등: 설정 → 휴대전화 정보 → ‘빌드 번호’를 7번 누르세요.\n\n잠금 비밀번호를 요청하면 폰에 입력하세요. 설정 첫 화면으로 돌아오면 ‘개발자 옵션’이 생겨요. 기종마다 메뉴 이름이 조금 다를 수 있어요.": {
+   "en": "Galaxy: Settings → About phone → Software information → tap ‘Build number’ 7 times.\n\nPixel and others: Settings → About phone → tap ‘Build number’ 7 times.\n\nIf asked for your lock screen password, enter it on the phone. Go back to the main Settings screen and ‘Developer options’ will appear. Menu names may differ slightly by device.",
+   "zh-Hans": "Galaxy：设置 → 关于手机 → 软件信息 → 连续点按“版本号”7 次。\n\nPixel 等：设置 → 关于手机 → 连续点按“版本号”7 次。\n\n如果要求输入锁屏密码，请在手机上输入。返回设置首页后会出现“开发者选项”。不同机型的菜单名称可能略有不同。",
+   "ja": "Galaxy: 設定 → 端末情報 → ソフトウェア情報 → 「ビルド番号」を 7 回タップします。\n\nPixel など: 設定 → デバイス情報 → 「ビルド番号」を 7 回タップします。\n\nロック解除のパスワードを求められたらスマートフォンで入力してください。設定の最初の画面に戻ると「開発者向けオプション」が表示されます。機種によってメニュー名が少し異なる場合があります。",
+   "es": "Galaxy: Ajustes → Información del teléfono → Información de software → pulsa «Número de compilación» 7 veces.\n\nPixel y otros: Ajustes → Información del teléfono → pulsa «Número de compilación» 7 veces.\n\nSi te pide la contraseña de bloqueo, introdúcela en el teléfono. Al volver a la pantalla principal de Ajustes aparecerá «Opciones para desarrolladores». El nombre de los menús puede variar un poco según el modelo.",
+   "de": "Galaxy: Einstellungen → Telefoninfo → Softwareinformationen → 7-mal auf „Buildnummer“ tippen.\n\nPixel und andere: Einstellungen → Über das Telefon → 7-mal auf „Build-Nummer“ tippen.\n\nWenn nach dem Entsperrcode gefragt wird, geben Sie ihn auf dem Telefon ein. Zurück auf der Startseite der Einstellungen erscheinen die „Entwickleroptionen“. Die Menünamen können je nach Modell leicht abweichen.",
+   "fr": "Galaxy : Paramètres → À propos du téléphone → Informations sur le logiciel → appuyez 7 fois sur « Numéro de build ».\n\nPixel et autres : Paramètres → À propos du téléphone → appuyez 7 fois sur « Numéro de build ».\n\nSi le téléphone demande votre code de verrouillage, saisissez-le. De retour sur l'écran principal des Paramètres, « Options pour les développeurs » apparaît. Les noms des menus peuvent varier légèrement selon le modèle."
+  },
+  "설정에서 ‘개발자 옵션’을 찾아 ‘USB 디버깅’을 켜 주세요.\n\n이 설정은 휴대폰에서 직접 켜야 해요. 회사에서 관리하는 폰은 설정이 제한될 수 있어요.\n\n무선 연결을 원하면 ‘무선 디버깅’을 켜고 ‘페어링 코드로 기기 페어링’을 선택하세요.": {
+   "en": "In Settings, find ‘Developer options’ and turn on ‘USB debugging’.\n\nThis setting must be turned on on the phone itself. Phones managed by a company may have this setting restricted.\n\nFor a wireless connection, turn on ‘Wireless debugging’ and choose ‘Pair device with pairing code’.",
+   "zh-Hans": "在设置中找到“开发者选项”，开启“USB 调试”。\n\n此设置必须在手机上直接开启。由公司管理的手机可能会限制此设置。\n\n若要无线连接，请开启“无线调试”，然后选择“使用配对码配对设备”。",
+   "ja": "設定で「開発者向けオプション」を開き、「USB デバッグ」をオンにしてください。\n\nこの設定はスマートフォンで直接オンにする必要があります。会社が管理するスマートフォンでは設定が制限されている場合があります。\n\nワイヤレス接続を使う場合は、「ワイヤレスデバッグ」をオンにして「ペア設定コードによるデバイスのペア設定」を選択してください。",
+   "es": "En Ajustes, busca «Opciones para desarrolladores» y activa «Depuración por USB».\n\nEste ajuste debe activarse directamente en el teléfono. En teléfonos gestionados por una empresa puede estar restringido.\n\nSi quieres una conexión inalámbrica, activa «Depuración inalámbrica» y selecciona «Vincular dispositivo con código de vinculación».",
+   "de": "Öffnen Sie in den Einstellungen die „Entwickleroptionen“ und aktivieren Sie „USB-Debugging“.\n\nDiese Einstellung muss direkt auf dem Telefon aktiviert werden. Bei firmenverwalteten Telefonen kann sie eingeschränkt sein.\n\nFür eine WLAN-Verbindung aktivieren Sie „Debugging über WLAN“ und wählen „Gerät über Kopplungscode koppeln“.",
+   "fr": "Dans les Paramètres, ouvrez « Options pour les développeurs » et activez « Débogage USB ».\n\nCe réglage doit être activé directement sur le téléphone. Sur un téléphone géré par une entreprise, il peut être restreint.\n\nPour une connexion sans fil, activez « Débogage sans fil » et choisissez « Associer l'appareil avec un code d'association »."
+  },
+  "① 다른 데이터 케이블·USB 포트로 연결해 보세요. 충전만 되는 케이블은 연결되지 않아요.\n\n② 폰의 USB 알림에서 ‘파일 전송’을 선택해 보세요. 일부 기종에서 도움이 돼요.\n\n③ Windows에서는 제조사 USB 드라이버가 필요할 수 있어요. macOS는 보통 별도 드라이버가 필요 없어요.\n\n빈 목록만으로 원인을 확정할 수는 없어요. 아래 공식 안내에서 제조사별 방법을 확인하세요.": {
+   "en": "① Try a different data cable or USB port. Charge-only cables will not connect.\n\n② In the phone's USB notification, try selecting ‘File transfer’. This helps on some devices.\n\n③ On Windows, a manufacturer USB driver may be required. macOS usually does not need a separate driver.\n\nAn empty list alone cannot confirm the cause. See the official guide below for manufacturer-specific steps.",
+   "zh-Hans": "① 试试换一根数据线或另一个 USB 接口。仅支持充电的数据线无法连接。\n\n② 在手机的 USB 通知中选择“文件传输”。对部分机型有帮助。\n\n③ 在 Windows 上可能需要安装厂商的 USB 驱动程序。macOS 通常不需要额外驱动。\n\n仅凭空列表无法确定原因。请在下方官方指南中查看各厂商的具体方法。",
+   "ja": "① 別のデータケーブル・USB ポートで接続してみてください。充電専用のケーブルでは接続できません。\n\n② スマートフォンの USB 通知で「ファイル転送」を選択してみてください。一部の機種で有効です。\n\n③ Windows ではメーカーの USB ドライバが必要な場合があります。macOS では通常、追加のドライバは不要です。\n\n一覧が空というだけでは原因を特定できません。下の公式ガイドでメーカーごとの方法を確認してください。",
+   "es": "① Prueba con otro cable de datos u otro puerto USB. Los cables de solo carga no sirven para conectar.\n\n② En la notificación USB del teléfono, selecciona «Transferencia de archivos». En algunos modelos ayuda.\n\n③ En Windows puede hacer falta el controlador USB del fabricante. En macOS normalmente no se necesita ningún controlador adicional.\n\nUna lista vacía por sí sola no permite determinar la causa. Consulta el método de cada fabricante en la guía oficial de abajo.",
+   "de": "① Probieren Sie ein anderes Datenkabel oder einen anderen USB-Anschluss. Reine Ladekabel stellen keine Verbindung her.\n\n② Wählen Sie in der USB-Benachrichtigung des Telefons „Dateiübertragung“. Bei manchen Modellen hilft das.\n\n③ Unter Windows kann ein USB-Treiber des Herstellers erforderlich sein. Unter macOS ist meist kein zusätzlicher Treiber nötig.\n\nEine leere Liste allein lässt keine sichere Ursache erkennen. Die offizielle Anleitung unten beschreibt das Vorgehen je Hersteller.",
+   "fr": "① Essayez un autre câble de données ou un autre port USB. Un câble de charge seule ne permet pas la connexion.\n\n② Dans la notification USB du téléphone, choisissez « Transfert de fichiers ». Cela aide sur certains modèles.\n\n③ Sous Windows, un pilote USB du fabricant peut être nécessaire. Sous macOS, aucun pilote supplémentaire n'est généralement requis.\n\nUne liste vide ne suffit pas à déterminer la cause. Consultez le guide officiel ci-dessous pour la procédure propre à votre fabricant."
+  },
+  "제조사 드라이버 공식 안내": {
+   "en": "Official manufacturer driver guide",
+   "zh-Hans": "厂商驱动官方指南",
+   "ja": "メーカードライバの公式ガイド",
+   "es": "Guía oficial de controladores del fabricante",
+   "de": "Offizielle Anleitung zu Herstellertreibern",
+   "fr": "Guide officiel des pilotes par fabricant"
+  },
+  "이전": {
+   "en": "Back",
+   "zh-Hans": "上一步",
+   "ja": "戻る",
+   "es": "Anterior",
+   "de": "Zurück",
+   "fr": "Précédent"
+  },
+  "다음": {
+   "en": "Next",
+   "zh-Hans": "下一步",
+   "ja": "次へ",
+   "es": "Siguiente",
+   "de": "Weiter",
+   "fr": "Suivant"
+  },
+  "연결 확인하기": {
+   "en": "Check connection",
+   "zh-Hans": "检查连接",
+   "ja": "接続を確認",
+   "es": "Comprobar conexión",
+   "de": "Verbindung prüfen",
+   "fr": "Vérifier la connexion"
+  },
+  "이 무선 연결 해제": {
+   "en": "Disconnect this wireless connection",
+   "zh-Hans": "断开此无线连接",
+   "ja": "このワイヤレス接続を切断",
+   "es": "Desconectar esta conexión inalámbrica",
+   "de": "Diese WLAN-Verbindung trennen",
+   "fr": "Déconnecter cette connexion sans fil"
+  },
+  "연결 도구(ADB)": {
+   "en": "Connection tool (ADB)",
+   "zh-Hans": "连接工具（ADB）",
+   "ja": "接続ツール(ADB)",
+   "es": "Herramienta de conexión (ADB)",
+   "de": "Verbindungswerkzeug (ADB)",
+   "fr": "Outil de connexion (ADB)"
+  },
+  "아직 선택된 ADB가 없어요. Android Studio가 있다면 기존 ADB를 먼저 찾고, 없다면 Google 공식 도구를 받아 사용자 폴더에 준비해요.": {
+   "en": "No ADB is selected yet. If you have Android Studio, the existing ADB is found first; otherwise, Google's official tool is downloaded and set up in your user folder.",
+   "zh-Hans": "尚未选择 ADB。如果已安装 Android Studio，会先查找已有的 ADB；如果没有，则下载 Google 官方工具并准备到用户文件夹中。",
+   "ja": "まだ ADB が選択されていません。Android Studio がある場合は既存の ADB を先に探し、ない場合は Google の公式ツールをダウンロードしてユーザーフォルダに準備します。",
+   "es": "Todavía no hay ningún ADB seleccionado. Si tienes Android Studio, primero se busca el ADB existente; si no, se descarga la herramienta oficial de Google y se prepara en la carpeta del usuario.",
+   "de": "Es ist noch kein ADB ausgewählt. Falls Android Studio installiert ist, wird zuerst das vorhandene ADB gesucht; andernfalls wird das offizielle Google-Werkzeug heruntergeladen und im Benutzerordner eingerichtet.",
+   "fr": "Aucun ADB n'est encore sélectionné. Si Android Studio est installé, l'ADB existant est recherché d'abord ; sinon, l'outil officiel de Google est téléchargé et préparé dans votre dossier utilisateur."
+  },
+  "설치된 ADB 다시 찾기": {
+   "en": "Search installed ADB again",
+   "zh-Hans": "重新查找已安装的 ADB",
+   "ja": "インストール済みの ADB を再検索",
+   "es": "Buscar ADB instalado de nuevo",
+   "de": "Installiertes ADB erneut suchen",
+   "fr": "Rechercher l'ADB installé"
+  },
+  "이미 있는 ADB 파일 선택": {
+   "en": "Select existing ADB file",
+   "zh-Hans": "选择已有的 ADB 文件",
+   "ja": "既存の ADB ファイルを選択",
+   "es": "Seleccionar un archivo ADB existente",
+   "de": "Vorhandene ADB-Datei auswählen",
+   "fr": "Choisir un fichier ADB existant"
+  },
+  "공식 도구 받기": {
+   "en": "Get official tool",
+   "zh-Hans": "下载官方工具",
+   "ja": "公式ツールを入手",
+   "es": "Descargar herramienta oficial",
+   "de": "Offizielles Werkzeug herunterladen",
+   "fr": "Télécharger l'outil officiel"
+  },
+  "인터넷이 필요해요. 기존 Android SDK와 인증키는 바꾸지 않아요. 준비한 도구는 이 PC의 다른 개발 도구에서 자동으로 발견되지 않을 수 있어요.": {
+   "en": "Internet is required. Your existing Android SDK and authentication key are not changed. The tool set up here may not be found automatically by other development tools on this PC.",
+   "zh-Hans": "需要联网。不会更改已有的 Android SDK 和密钥。这里准备的工具可能不会被这台电脑上的其他开发工具自动发现。",
+   "ja": "インターネット接続が必要です。既存の Android SDK と認証キーは変更しません。ここで準備したツールは、この PC の他の開発ツールからは自動で検出されない場合があります。",
+   "es": "Requiere conexión a Internet. No se modifican el Android SDK existente ni las claves de autenticación. Es posible que otras herramientas de desarrollo de este PC no detecten automáticamente la herramienta preparada.",
+   "de": "Dafür ist eine Internetverbindung nötig. Vorhandenes Android SDK und Schlüssel werden nicht verändert. Das eingerichtete Werkzeug wird von anderen Entwicklungswerkzeugen auf diesem PC möglicherweise nicht automatisch erkannt.",
+   "fr": "Une connexion Internet est nécessaire. Le Android SDK existant et les clés d'authentification ne sont pas modifiés. L'outil préparé ici peut ne pas être détecté automatiquement par les autres outils de développement de ce PC."
+  },
+  "Google SDK 약관 보기": {
+   "en": "View Google SDK terms",
+   "zh-Hans": "查看 Google SDK 条款",
+   "ja": "Google SDK 利用規約を見る",
+   "es": "Ver términos del Google SDK",
+   "de": "Google SDK-Nutzungsbedingungen anzeigen",
+   "fr": "Voir les conditions du Google SDK"
+  },
+  "Google SDK 약관에 동의합니다": {
+   "en": "I accept the Google SDK terms",
+   "zh-Hans": "我同意 Google SDK 条款",
+   "ja": "Google SDK 利用規約に同意します",
+   "es": "Acepto los términos del Google SDK",
+   "de": "Ich stimme den Google SDK-Nutzungsbedingungen zu",
+   "fr": "J'accepte les conditions du Google SDK"
+  },
+  "동의하고 ADB 준비하기": {
+   "en": "Accept and set up ADB",
+   "zh-Hans": "同意并准备 ADB",
+   "ja": "同意して ADB を準備",
+   "es": "Aceptar y preparar ADB",
+   "de": "Zustimmen und ADB einrichten",
+   "fr": "Accepter et préparer ADB"
+  },
+  "언어": {
+   "en": "Language",
+   "zh-Hans": "语言",
+   "ja": "言語",
+   "es": "Idioma",
+   "de": "Sprache",
+   "fr": "Langue"
+  },
+  "앱 언어예요. 처음에는 이 PC의 언어를 따라요.": {
+   "en": "The app language. It follows this PC's language at first.",
+   "zh-Hans": "应用的显示语言。首次启动时会跟随这台电脑的语言。",
+   "ja": "アプリの言語です。初回はこの PC の言語に従います。",
+   "es": "Es el idioma de la aplicación. Al principio sigue el idioma de este PC.",
+   "de": "Die Sprache der App. Anfangs wird die Sprache dieses PCs verwendet.",
+   "fr": "Langue de l'application. Par défaut, elle suit la langue de ce PC."
+  },
+  "내 PC에 남는 파일": {
+   "en": "Files left on my PC",
+   "zh-Hans": "保留在电脑上的文件",
+   "ja": "この PC に残るファイル",
+   "es": "Archivos que quedan en mi PC",
+   "de": "Dateien, die auf dem PC verbleiben",
+   "fr": "Fichiers conservés sur ce PC"
+  },
+  "ADB 위치 설정과 여기서 준비한 ADB는 아래 폴더에 저장돼요. 실행 파일을 지워도 이 폴더는 남아요.\n{}": {
+   "en": "The ADB location setting and the ADB set up here are stored in the folder below. This folder remains even if you delete the executable.\n{}",
+   "zh-Hans": "ADB 位置设置和在这里准备的 ADB 保存在以下文件夹中。即使删除可执行文件，此文件夹也会保留。\n{}",
+   "ja": "ADB の場所の設定と、ここで準備した ADB は以下のフォルダに保存されます。実行ファイルを削除してもこのフォルダは残ります。\n{}",
+   "es": "El ajuste de ubicación de ADB y el ADB preparado aquí se guardan en la carpeta de abajo. Esta carpeta se conserva aunque elimines el ejecutable.\n{}",
+   "de": "Die ADB-Pfadeinstellung und das hier eingerichtete ADB werden im folgenden Ordner gespeichert. Dieser Ordner bleibt auch nach dem Löschen der Programmdatei erhalten.\n{}",
+   "fr": "Le réglage de l'emplacement d'ADB et l'ADB préparé ici sont enregistrés dans le dossier ci-dessous. Ce dossier reste même si vous supprimez l'exécutable.\n{}"
+  },
+  "adb-on 데이터 삭제": {
+   "en": "Delete adb-on data",
+   "zh-Hans": "删除 adb-on 数据",
+   "ja": "adb-on のデータを削除",
+   "es": "Eliminar datos de adb-on",
+   "de": "adb-on-Daten löschen",
+   "fr": "Supprimer les données d'adb-on"
+  },
+  "정말 지울까요? 한 번 더 누르면 지워요": {
+   "en": "Really delete? Press once more to delete",
+   "zh-Hans": "确定要删除吗？再点击一次即可删除",
+   "ja": "本当に削除しますか? もう一度押すと削除します",
+   "es": "¿Seguro que quieres eliminarlos? Pulsa otra vez para confirmar",
+   "de": "Wirklich löschen? Noch einmal klicken, um zu löschen",
+   "fr": "Vraiment supprimer ? Appuyez encore une fois pour confirmer"
+  },
+  "여기서 준비한 ADB가 서버로 실행 중이면 함께 종료돼요. Android Studio 등 다른 도구의 ADB와 휴대폰 인증키는 건드리지 않아요.": {
+   "en": "If the ADB set up here is running as a server, it is stopped as well. ADB from other tools such as Android Studio and the phone authentication key are not touched.",
+   "zh-Hans": "如果在这里准备的 ADB 正在作为服务器运行，也会一并停止。不会影响 Android Studio 等其他工具的 ADB 和手机密钥。",
+   "ja": "ここで準備した ADB がサーバーとして実行中の場合は、あわせて終了します。Android Studio など他のツールの ADB とスマートフォンの認証キーには触れません。",
+   "es": "Si el ADB preparado aquí se está ejecutando como servidor, también se cerrará. No se tocan el ADB de otras herramientas como Android Studio ni las claves de autenticación del teléfono.",
+   "de": "Läuft das hier eingerichtete ADB gerade als Server, wird es dabei beendet. Das ADB anderer Werkzeuge wie Android Studio und die Telefon-Schlüssel bleiben unberührt.",
+   "fr": "Si l'ADB préparé ici tourne comme serveur, il sera aussi arrêté. L'ADB des autres outils comme Android Studio et les clés d'authentification du téléphone ne sont pas touchés."
+  },
+  "Windows 앱의 연결이 WSL로 자동 전달되지는 않아요. adb-on은 연결을 도와주며 앱을 빌드하는 SDK를 대신 설치하지 않아요.": {
+   "en": "A connection from a Windows app is not passed to WSL automatically. adb-on helps with the connection and does not install the SDK for building apps on your behalf.",
+   "zh-Hans": "Windows 应用的连接不会自动转发到 WSL。adb-on 只帮助建立连接，不会代为安装用于构建应用的 SDK。",
+   "ja": "Windows アプリの接続は WSL に自動では引き継がれません。adb-on は接続を手助けするもので、アプリをビルドするための SDK を代わりにインストールすることはありません。",
+   "es": "La conexión de la aplicación de Windows no se transfiere automáticamente a WSL. adb-on ayuda con la conexión, pero no instala el SDK necesario para compilar aplicaciones.",
+   "de": "Die Verbindung der Windows-App wird nicht automatisch an WSL weitergegeben. adb-on hilft beim Verbinden und installiert kein SDK zum Erstellen von Apps.",
+   "fr": "La connexion de l'application Windows n'est pas transmise automatiquement à WSL. adb-on facilite la connexion mais n'installe pas à votre place le SDK nécessaire pour compiler des applications."
+  },
+  "adb-on은 MIT 라이선스로 공개된 오픈소스 소프트웨어이며, 어떠한 보증 없이 있는 그대로 제공돼요. 개발자는 이 프로그램의 사용 또는 사용 불능으로 생기는 어떤 손해(데이터 손실, 기기 오작동, 연결 실패, 업무 중단 등)에 대해서도 책임지지 않아요. 사용 여부와 방법은 전적으로 사용자의 판단과 책임이에요.": {
+   "en": "adb-on is open-source software released under the MIT license and is provided as is, without any warranty. The developer is not liable for any damages arising from the use or inability to use this program (data loss, device malfunction, connection failure, work interruption, etc.). Whether and how to use it is entirely the user's own judgment and responsibility.",
+   "zh-Hans": "adb-on 是以 MIT 许可证发布的开源软件，按“原样”提供，不附带任何保证。对于因使用或无法使用本程序而造成的任何损失（数据丢失、设备故障、连接失败、业务中断等），开发者概不负责。是否使用以及如何使用，完全由用户自行判断并承担责任。",
+   "ja": "adb-on は MIT ライセンスで公開されているオープンソースソフトウェアで、いかなる保証もなく現状のまま提供されます。開発者は、このプログラムの使用または使用不能によって生じるいかなる損害(データの損失、デバイスの誤動作、接続の失敗、業務の中断など)についても責任を負いません。使用するかどうか、およびその方法は、すべてユーザーの判断と責任によります。",
+   "es": "adb-on es software de código abierto publicado bajo la licencia MIT y se proporciona tal cual, sin ninguna garantía. El desarrollador no se hace responsable de ningún daño derivado del uso o de la imposibilidad de uso de este programa (pérdida de datos, mal funcionamiento del dispositivo, fallos de conexión, interrupción del trabajo, etc.). Usarlo o no, y cómo hacerlo, es decisión y responsabilidad exclusiva del usuario.",
+   "de": "adb-on ist Open-Source-Software unter der MIT-Lizenz und wird ohne jede Gewährleistung so bereitgestellt, wie sie ist. Der Entwickler haftet nicht für Schäden, die durch die Nutzung oder Nichtnutzbarkeit dieses Programms entstehen (z. B. Datenverlust, Fehlfunktionen des Geräts, Verbindungsfehler, Arbeitsunterbrechungen). Ob und wie Sie es verwenden, liegt allein in Ihrer Entscheidung und Verantwortung.",
+   "fr": "adb-on est un logiciel open source publié sous licence MIT, fourni « tel quel » sans aucune garantie. Le développeur décline toute responsabilité pour les dommages résultant de l'utilisation ou de l'impossibilité d'utiliser ce programme (perte de données, dysfonctionnement de l'appareil, échec de connexion, interruption d'activité, etc.). L'utilisation et la manière de l'utiliser relèvent entièrement de votre jugement et de votre responsabilité."
+  },
+  "개발자 옵션과 USB·무선 디버깅은 Android가 제공하는 기능이에요. 켜 두면 연결된 PC가 휴대폰을 제어할 수 있으니, 신뢰하지 않는 PC나 네트워크에서는 켜지 말고 사용이 끝나면 꺼 주세요. 이 설정의 관리는 사용자의 몫이에요.": {
+   "en": "Developer options and USB/Wireless debugging are features provided by Android. While they are on, a connected PC can control the phone, so do not turn them on with untrusted PCs or networks, and turn them off when you are done. Managing these settings is the user's responsibility.",
+   "zh-Hans": "开发者选项、USB 调试和无线调试是 Android 提供的功能。开启后，已连接的电脑可以控制手机，因此请不要在不信任的电脑或网络上开启，使用完毕后请关闭。这些设置由用户自行管理。",
+   "ja": "開発者向けオプションと USB・ワイヤレスデバッグは Android が提供する機能です。オンにしたままだと接続した PC からスマートフォンを制御できるため、信頼できない PC やネットワークではオンにせず、使い終わったらオフにしてください。この設定の管理はユーザーの責任です。",
+   "es": "Las Opciones para desarrolladores y la depuración por USB e inalámbrica son funciones que ofrece Android. Mientras estén activadas, el PC conectado puede controlar el teléfono, así que no las actives en PCs o redes que no sean de confianza y desactívalas cuando termines. La gestión de estos ajustes es responsabilidad del usuario.",
+   "de": "Entwickleroptionen sowie USB-Debugging und Debugging über WLAN sind Funktionen von Android. Solange sie aktiviert sind, kann ein verbundener PC das Telefon steuern. Aktivieren Sie sie daher nicht an nicht vertrauenswürdigen PCs oder Netzwerken und schalten Sie sie nach der Nutzung wieder aus. Die Verwaltung dieser Einstellungen liegt bei Ihnen.",
+   "fr": "Les options pour les développeurs et le débogage USB ou sans fil sont des fonctions fournies par Android. Lorsqu'ils sont activés, un PC connecté peut contrôler le téléphone : ne les activez pas sur un PC ou un réseau non fiable, et désactivez-les après usage. La gestion de ces réglages vous incombe."
+  },
+  "ADB는 Google의 Android SDK Platform-Tools이며 Google의 약관을 따라요. adb-on은 Google이나 Android와 제휴·승인 관계가 없고, 사용자를 대신해 약관을 수락하지 않아요. Android는 Google LLC의 상표예요. 그 밖의 구성요소는 각자의 라이선스를 따라요.": {
+   "en": "ADB is part of Google's Android SDK Platform-Tools and is subject to Google's terms. adb-on is not affiliated with or endorsed by Google or Android, and does not accept the terms on the user's behalf. Android is a trademark of Google LLC. Other components are subject to their own licenses.",
+   "zh-Hans": "ADB 属于 Google 的 Android SDK Platform-Tools，受 Google 条款约束。adb-on 与 Google 或 Android 没有任何合作或授权关系，也不会代替用户接受条款。Android 是 Google LLC 的商标。其他组件遵循各自的许可证。",
+   "ja": "ADB は Google の Android SDK Platform-Tools であり、Google の利用規約に従います。adb-on は Google や Android と提携・承認の関係になく、ユーザーに代わって利用規約に同意することはありません。Android は Google LLC の商標です。その他のコンポーネントはそれぞれのライセンスに従います。",
+   "es": "ADB forma parte de Android SDK Platform-Tools de Google y está sujeto a los términos de Google. adb-on no tiene ninguna relación de afiliación ni aprobación con Google o Android, y no acepta los términos en nombre del usuario. Android es una marca de Google LLC. Los demás componentes se rigen por sus propias licencias.",
+   "de": "ADB ist Teil der Android SDK Platform-Tools von Google und unterliegt den Nutzungsbedingungen von Google. adb-on steht in keiner Partnerschaft mit Google oder Android und ist nicht von ihnen genehmigt; es akzeptiert keine Nutzungsbedingungen in Ihrem Namen. Android ist eine Marke von Google LLC. Weitere Komponenten unterliegen ihren jeweiligen Lizenzen.",
+   "fr": "ADB fait partie des Android SDK Platform-Tools de Google et est soumis aux conditions de Google. adb-on n'est ni affilié à Google ou Android, ni approuvé par eux, et n'accepte pas les conditions à votre place. Android est une marque de Google LLC. Les autres composants sont soumis à leurs licences respectives."
+  },
+  "기능은 예고 없이 바뀌거나 배포가 중단될 수 있고, 지원이나 업데이트를 약속하지 않아요. 이 안내는 이해를 돕는 요약이며, 법적 조건은 함께 배포되는 LICENSE.txt의 MIT 라이선스 원문이 우선해요. 관련 법이 허용하지 않는 범위에서는 위 책임 제한이 적용되지 않아요.": {
+   "en": "Features may change or distribution may stop without notice, and no support or updates are promised. This notice is a summary to aid understanding; the legal terms are governed by the original MIT license text in the accompanying LICENSE.txt. The limitation of liability above does not apply where not permitted by applicable law.",
+   "zh-Hans": "功能可能随时更改或停止发布，恕不另行通知，也不承诺提供支持或更新。本说明仅为便于理解的摘要，法律条款以随附的 LICENSE.txt 中的 MIT 许可证原文为准。在相关法律不允许的范围内，上述责任限制不适用。",
+   "ja": "機能は予告なく変更または配布終了されることがあり、サポートやアップデートを約束するものではありません。この案内は理解を助けるための要約であり、法的条件は同梱の LICENSE.txt にある MIT ライセンスの原文が優先されます。関連する法律が認めない範囲では、上記の責任制限は適用されません。",
+   "es": "Las funciones pueden cambiar sin previo aviso o dejar de distribuirse, y no se garantiza soporte ni actualizaciones. Este texto es un resumen para facilitar la comprensión; en lo legal prevalece el texto original de la licencia MIT en el archivo LICENSE.txt que se distribuye junto con el programa. La limitación de responsabilidad anterior no se aplica en la medida en que la ley no lo permita.",
+   "de": "Funktionen können ohne Ankündigung geändert oder die Bereitstellung eingestellt werden; Support oder Updates werden nicht zugesagt. Dieser Hinweis ist eine Zusammenfassung zum besseren Verständnis; rechtlich maßgeblich ist der Originaltext der MIT-Lizenz in der mitgelieferten LICENSE.txt. Soweit geltendes Recht dies nicht zulässt, gilt der obige Haftungsausschluss nicht.",
+   "fr": "Les fonctionnalités peuvent changer ou leur distribution cesser sans préavis, et aucun support ni aucune mise à jour ne sont garantis. Ce texte est un résumé destiné à faciliter la compréhension ; les conditions légales sont celles du texte original de la licence MIT dans le fichier LICENSE.txt fourni avec le logiciel, qui prévaut. La limitation de responsabilité ci-dessus ne s'applique pas dans la mesure où la loi applicable ne le permet pas."
+  },
+  "버전 {}": {
+   "en": "Version {}",
+   "zh-Hans": "版本 {}",
+   "ja": "バージョン {}",
+   "es": "Versión {}",
+   "de": "Version {}",
+   "fr": "Version {}"
+  },
+  "tinygem의 cj가 만들었어요.": {
+   "en": "Made by cj at tinygem.",
+   "zh-Hans": "由 tinygem 的 cj 制作。",
+   "ja": "tinygem の cj が作りました。",
+   "es": "Hecho por cj en tinygem.",
+   "de": "Erstellt von cj bei tinygem.",
+   "fr": "Créé par cj chez tinygem."
+  },
+  "확인": {
+   "en": "OK",
+   "zh-Hans": "确定",
+   "ja": "OK",
+   "es": "Aceptar",
+   "de": "OK",
+   "fr": "OK"
+  },
+  "현재 ADB · {}\n{}": {
+   "en": "Current ADB · {}\n{}",
+   "zh-Hans": "当前 ADB · {}\n{}",
+   "ja": "現在の ADB · {}\n{}",
+   "es": "ADB actual · {}\n{}",
+   "de": "Aktuelles ADB · {}\n{}",
+   "fr": "ADB actuel · {}\n{}"
+  },
+  "adb-on이 준비한 Google 공식 도구": {
+   "en": "official Google tool prepared by adb-on",
+   "zh-Hans": "由 adb-on 准备的 Google 官方工具",
+   "ja": "adb-on が用意した Google 公式ツール",
+   "es": "herramienta oficial de Google preparada por adb-on",
+   "de": "von adb-on vorbereitetes offizielles Google-Tool",
+   "fr": "outil officiel Google préparé par adb-on"
+  },
+  "직접 선택한 파일": {
+   "en": "file you selected",
+   "zh-Hans": "您选择的文件",
+   "ja": "自分で選んだファイル",
+   "es": "archivo que seleccionó",
+   "de": "selbst gewählte Datei",
+   "fr": "fichier que vous avez choisi"
+  },
+  "이 PC의 Android SDK": {
+   "en": "Android SDK on this PC",
+   "zh-Hans": "这台电脑上的 Android SDK",
+   "ja": "この PC の Android SDK",
+   "es": "Android SDK de este PC",
+   "de": "Android SDK auf diesem PC",
+   "fr": "SDK Android de ce PC"
+  },
+  "PATH에서 찾은 도구": {
+   "en": "tool found on PATH",
+   "zh-Hans": "在 PATH 中找到的工具",
+   "ja": "PATH で見つかったツール",
+   "es": "herramienta encontrada en PATH",
+   "de": "im PATH gefundenes Tool",
+   "fr": "outil trouvé dans le PATH"
+  },
+  "이미 준비되어 있어요": {
+   "en": "Already prepared",
+   "zh-Hans": "已准备好",
+   "ja": "準備済みです",
+   "es": "Ya está preparado",
+   "de": "Bereits vorbereitet",
+   "fr": "Déjà prêt"
+  },
+  "휴대폰과 연결하려면 Google 도구(ADB)가 필요해요. 기존 도구를 찾거나 여기서 준비할 수 있어요.": {
+   "en": "Connecting to a phone needs Google's ADB tool. Find an existing one or prepare it here.",
+   "zh-Hans": "连接手机需要 Google 的 ADB 工具。可以查找已有的工具，或在这里准备。",
+   "ja": "スマートフォンと接続するには Google の ADB ツールが必要です。既存のツールを探すか、ここで用意できます。",
+   "es": "Para conectar con el teléfono se necesita la herramienta ADB de Google. Busque una existente o prepárela aquí.",
+   "de": "Für die Verbindung zum Telefon wird Googles ADB-Tool benötigt. Suchen Sie ein vorhandenes oder bereiten Sie es hier vor.",
+   "fr": "La connexion au téléphone nécessite l'outil ADB de Google. Recherchez-en un existant ou préparez-le ici."
+  },
+  "USB 케이블을 꽂으면 자동으로 확인해요.": {
+   "en": "Plug in a USB cable and it is checked automatically.",
+   "zh-Hans": "插入 USB 数据线后会自动检测。",
+   "ja": "USB ケーブルをつなぐと自動で確認します。",
+   "es": "Al conectar el cable USB se comprueba automáticamente.",
+   "de": "Sobald Sie das USB-Kabel anschließen, wird die Verbindung automatisch geprüft.",
+   "fr": "Branchez le câble USB : la vérification se fait automatiquement."
+  },
+  "케이블 없이 연결하려면 아래 ‘무선 연결’을 눌러 주세요.": {
+   "en": "To connect without a cable, press ‘Wireless connection’ below.",
+   "zh-Hans": "若要不用数据线连接，请点击下方的“无线连接”。",
+   "ja": "ケーブルなしで接続するには、下の「ワイヤレス接続」を押してください。",
+   "es": "Para conectar sin cable, pulsa «Conexión inalámbrica» abajo.",
+   "de": "Für eine Verbindung ohne Kabel klicken Sie unten auf „WLAN-Verbindung“.",
+   "fr": "Pour vous connecter sans câble, appuyez sur « Connexion sans fil » ci-dessous."
+  },
+  "무선 연결 안내": {
+   "en": "Wireless connection guide",
+   "zh-Hans": "无线连接指南",
+   "ja": "ワイヤレス接続ガイド",
+   "es": "Guía de conexión inalámbrica",
+   "de": "Anleitung zur WLAN-Verbindung",
+   "fr": "Guide de connexion sans fil"
+  },
+  "무선 연결 열기": {
+   "en": "Open wireless connection",
+   "zh-Hans": "打开无线连接",
+   "ja": "ワイヤレス接続を開く",
+   "es": "Abrir conexión inalámbrica",
+   "de": "WLAN-Verbindung öffnen",
+   "fr": "Ouvrir la connexion sans fil"
+  },
+  "같은 Wi-Fi에 연결하기": {
+   "en": "Join the same Wi-Fi",
+   "zh-Hans": "连接到同一个 Wi-Fi",
+   "ja": "同じ Wi-Fi に接続する",
+   "es": "Conectarse al mismo Wi-Fi",
+   "de": "Mit demselben WLAN verbinden",
+   "fr": "Se connecter au même Wi-Fi"
+  },
+  "무선 디버깅 켜기": {
+   "en": "Turn on Wireless debugging",
+   "zh-Hans": "开启无线调试",
+   "ja": "ワイヤレスデバッグをオンにする",
+   "es": "Activar la depuración inalámbrica",
+   "de": "Drahtloses Debugging einschalten",
+   "fr": "Activer le débogage sans fil"
+  },
+  "페어링 코드 입력하기": {
+   "en": "Enter the pairing code",
+   "zh-Hans": "输入配对码",
+   "ja": "ペアリングコードを入力する",
+   "es": "Introducir el código de emparejamiento",
+   "de": "Kopplungscode eingeben",
+   "fr": "Saisir le code d'association"
+  },
+  "연결 주소로 연결하기": {
+   "en": "Connect with the connection address",
+   "zh-Hans": "使用连接地址进行连接",
+   "ja": "接続アドレスで接続する",
+   "es": "Conectar con la dirección de conexión",
+   "de": "Mit der Verbindungsadresse verbinden",
+   "fr": "Se connecter avec l'adresse de connexion"
+  },
+  "Android 11 이상에서 됩니다. PC와 휴대폰을 같은 Wi-Fi에 연결해 주세요.\n\n회사·학교·게스트 Wi-Fi는 기기끼리 통신을 막을 수 있어요. 그때는 휴대폰의 핫스팟에 PC를 연결하거나 USB로 연결해 주세요.": {
+   "en": "This works on Android 11 or later. Connect the PC and the phone to the same Wi-Fi.\n\nCompany, school, or guest Wi-Fi may block devices from talking to each other. In that case connect the PC to the phone's hotspot, or use USB.",
+   "zh-Hans": "需要 Android 11 或更高版本。请将电脑和手机连接到同一个 Wi-Fi。\n\n公司、学校或访客 Wi-Fi 可能会阻止设备之间的通信。这时请让电脑连接手机的热点，或改用 USB。",
+   "ja": "Android 11 以降で使えます。PC とスマートフォンを同じ Wi-Fi に接続してください。\n\n会社・学校・ゲスト用の Wi-Fi は機器同士の通信を遮断することがあります。その場合はスマートフォンのテザリングに PC を接続するか、USB で接続してください。",
+   "es": "Funciona en Android 11 o posterior. Conecta el PC y el teléfono al mismo Wi-Fi.\n\nLas redes Wi-Fi de empresa, escuela o invitados pueden bloquear la comunicación entre dispositivos. En ese caso conecta el PC al punto de acceso del teléfono o usa USB.",
+   "de": "Funktioniert ab Android 11. Verbinden Sie PC und Telefon mit demselben WLAN.\n\nFirmen-, Schul- oder Gast-WLANs können die Kommunikation zwischen Geräten blockieren. Verbinden Sie den PC dann mit dem Hotspot des Telefons oder nutzen Sie USB.",
+   "fr": "Fonctionne à partir d'Android 11. Connectez le PC et le téléphone au même Wi-Fi.\n\nLes Wi-Fi d'entreprise, d'école ou invités peuvent bloquer la communication entre appareils. Dans ce cas, connectez le PC au point d'accès du téléphone ou utilisez l'USB."
+  },
+  "휴대폰의 무선 디버깅 화면에서 ‘페어링 코드로 기기 페어링’을 누르면 6자리 코드와 ‘IP 주소 및 포트’가 보여요.\n\nadb-on의 무선 연결 화면에서 1. 페어링 칸에 그 주소와 코드를 넣고 ‘페어링하기’를 누르세요. 코드 창은 닫지 말고 두세요. 페어링은 처음 한 번만 필요해요.": {
+   "en": "On the phone's Wireless debugging screen, tap ‘Pair device with pairing code’. A 6-digit code and an ‘IP address & Port’ appear.\n\nIn adb-on's Wireless connection screen, enter that address and code under 1. Pairing and press ‘Pair’. Keep the code dialog open on the phone. Pairing is needed only once.",
+   "zh-Hans": "在手机的无线调试界面点按“使用配对码配对设备”，会显示 6 位配对码和“IP 地址和端口”。\n\n在 adb-on 的无线连接界面，把该地址和配对码填入“1. 配对”，然后点按“配对”。手机上的配对码窗口请保持打开。配对只需进行一次。",
+   "ja": "スマートフォンのワイヤレスデバッグ画面で「ペア設定コードによるデバイスのペア設定」をタップすると、6 桁のコードと「IP アドレスとポート」が表示されます。\n\nadb-on のワイヤレス接続画面の「1. ペアリング」にそのアドレスとコードを入力し、「ペアリング」を押してください。スマートフォンのコード画面は閉じないでください。ペアリングは最初の一度だけです。",
+   "es": "En la pantalla Depuración inalámbrica del teléfono, toca «Vincular dispositivo con código de vinculación». Aparecen un código de 6 dígitos y una «Dirección IP y puerto».\n\nEn la pantalla Conexión inalámbrica de adb-on, escribe esa dirección y el código en «1. Emparejar» y pulsa «Emparejar». Deja abierta la ventana del código en el teléfono. El emparejamiento solo se hace una vez.",
+   "de": "Tippen Sie auf dem Telefon im Bildschirm Drahtloses Debugging auf „Gerät mit Kopplungscode koppeln“. Es erscheinen ein 6-stelliger Code und „IP-Adresse & Port“.\n\nGeben Sie in adb-on im Bildschirm WLAN-Verbindung diese Adresse und den Code unter „1. Koppeln“ ein und drücken Sie „Koppeln“. Lassen Sie das Code-Fenster auf dem Telefon offen. Das Koppeln ist nur einmal nötig.",
+   "fr": "Sur l'écran Débogage sans fil du téléphone, touchez « Associer l'appareil avec un code ». Un code à 6 chiffres et une « Adresse IP et port » s'affichent.\n\nDans l'écran Connexion sans fil d'adb-on, saisissez cette adresse et ce code sous « 1. Association » puis appuyez sur « Associer ». Laissez la fenêtre du code ouverte sur le téléphone. L'association n'est nécessaire qu'une seule fois."
+  },
+  "페어링이 끝나면 휴대폰에서 한 화면 뒤로 가세요. 무선 디버깅 화면 위쪽의 ‘IP 주소 및 포트’가 연결 주소예요. 페어링 주소와 포트 번호가 달라요.\n\nadb-on의 2. 연결 칸에 그 주소를 넣고 ‘연결하기’를 누르세요. 다음부터는 같은 Wi-Fi에서 무선 디버깅만 켜면 주소가 자동으로 찾히기도 해요.": {
+   "en": "After pairing, go back one screen on the phone. The ‘IP address & Port’ at the top of the Wireless debugging screen is the connection address. Its port differs from the pairing one.\n\nEnter that address under 2. Connect in adb-on and press ‘Connect’. Next time, turning on Wireless debugging on the same Wi-Fi is often enough for the address to be found automatically.",
+   "zh-Hans": "配对完成后，在手机上返回上一页。无线调试界面顶部的“IP 地址和端口”就是连接地址，它的端口与配对地址不同。\n\n把该地址填入 adb-on 的“2. 连接”，然后点按“连接”。下次在同一个 Wi-Fi 上只要开启无线调试，通常就能自动找到地址。",
+   "ja": "ペアリングが終わったら、スマートフォンで 1 つ前の画面に戻ります。ワイヤレスデバッグ画面の上部にある「IP アドレスとポート」が接続アドレスです。ペアリング用とはポート番号が異なります。\n\nadb-on の「2. 接続」にそのアドレスを入力し、「接続」を押してください。次回からは同じ Wi-Fi でワイヤレスデバッグをオンにするだけで、アドレスが自動で見つかることもあります。",
+   "es": "Tras emparejar, vuelve una pantalla atrás en el teléfono. La «Dirección IP y puerto» en la parte superior de Depuración inalámbrica es la dirección de conexión; su puerto es distinto del de emparejamiento.\n\nEscribe esa dirección en «2. Conectar» de adb-on y pulsa «Conectar». La próxima vez, con activar la depuración inalámbrica en el mismo Wi-Fi suele bastar para que la dirección se encuentre sola.",
+   "de": "Gehen Sie nach dem Koppeln auf dem Telefon einen Bildschirm zurück. „IP-Adresse & Port“ oben im Bildschirm Drahtloses Debugging ist die Verbindungsadresse; ihr Port unterscheidet sich vom Kopplungsport.\n\nGeben Sie diese Adresse in adb-on unter „2. Verbinden“ ein und drücken Sie „Verbinden“. Beim nächsten Mal reicht es im selben WLAN oft, Drahtloses Debugging einzuschalten, damit die Adresse automatisch gefunden wird.",
+   "fr": "Une fois l'association terminée, revenez d'un écran en arrière sur le téléphone. « Adresse IP et port » en haut de l'écran Débogage sans fil est l'adresse de connexion ; son port diffère de celui d'association.\n\nSaisissez cette adresse sous « 2. Connexion » dans adb-on et appuyez sur « Se connecter ». La fois suivante, activer le débogage sans fil sur le même Wi-Fi suffit souvent pour que l'adresse soit trouvée automatiquement."
+  },
+  "조치 필요": {
+   "en": "Action needed",
+   "zh-Hans": "需要操作",
+   "ja": "操作が必要",
+   "es": "Requiere acción",
+   "de": "Aktion erforderlich",
+   "fr": "Action requise"
+  },
+  "연결 안 됨": {
+   "en": "Not connected",
+   "zh-Hans": "未连接",
+   "ja": "未接続",
+   "es": "No conectado",
+   "de": "Nicht verbunden",
+   "fr": "Non connecté"
+  },
+  "연결 도구 없음": {
+   "en": "No connection tool",
+   "zh-Hans": "没有连接工具",
+   "ja": "接続ツールなし",
+   "es": "Sin herramienta de conexión",
+   "de": "Kein Verbindungstool",
+   "fr": "Aucun outil de connexion"
+  },
+  "휴대폰의 USB 디버깅은 켜져 있어요. 이 PC를 허용하는 일만 남았어요.": {
+   "en": "USB debugging is on. All that is left is to allow this PC.",
+   "zh-Hans": "手机的 USB 调试已开启，只需在手机上允许这台电脑。",
+   "ja": "スマートフォンの USB デバッグはオンです。あとはこの PC を許可するだけです。",
+   "es": "La depuración USB está activada. Solo falta permitir este PC.",
+   "de": "USB-Debugging ist eingeschaltet. Es fehlt nur noch die Freigabe für diesen PC.",
+   "fr": "Le débogage USB est activé. Il ne reste qu'à autoriser ce PC."
+  },
+  "자세한 안내 보기": {
+   "en": "See detailed guide",
+   "zh-Hans": "查看详细指南",
+   "ja": "詳しい案内を見る",
+   "es": "Ver guía detallada",
+   "de": "Ausführliche Anleitung",
+   "fr": "Voir le guide détaillé"
+  },
+  "데이터 전송이 되는 USB 케이블로 연결한 뒤 휴대폰 잠금을 풀어 주세요.\n\n‘USB 디버깅을 허용하시겠습니까?’에서 ‘허용’을 누르세요. 본인 PC라면 ‘이 컴퓨터에서 항상 허용’을 선택할 수 있어요. 상단의 ‘USB로 파일 전송’ 알림은 이 창이 아니에요.\n\n승인 창이 없으면 잠금을 푼 채 케이블을 다시 꽂아 보세요. 알림을 내렸을 때 ‘USB 디버깅 연결됨’이 보이면 디버깅은 켜진 거예요. 그래도 없으면 설정 앱 맨 아래의 개발자 옵션에서 ‘USB 디버깅 권한 취소’를 누르고, ‘USB 디버깅’을 껐다가 다시 켠 뒤 케이블을 다시 꽂으세요. 개발자 옵션이 보이지 않으면 1단계대로 만드세요. adb-on이 연결 상태를 자동으로 확인해요.": {
+   "en": "Connect with a USB cable that carries data, then unlock the phone.\n\nTap ‘Allow’ on ‘Allow USB debugging?’. On your own PC you can choose ‘Always allow from this computer’. The ‘USB for file transfer’ notification at the top is not that dialog.\n\nIf no dialog appears, keep the phone unlocked and replug the cable. If pulling down the notifications shows ‘USB debugging connected’, debugging is on. If it still does not, open Developer options at the very bottom of the Settings app, tap ‘Revoke USB debugging authorizations’, switch ‘USB debugging’ off and on again, and replug the cable. If Developer options is missing, create it as in step 1. adb-on checks the connection automatically.",
+   "zh-Hans": "请使用支持数据传输的 USB 数据线连接，然后解锁手机。\n\n在“允许 USB 调试吗？”中点按“允许”。如果是自己的电脑，可以选择“一律允许使用这台计算机进行调试”。顶部的“通过 USB 传输文件”通知不是这个窗口。\n\n如果没有弹出窗口，请保持手机解锁并重新插拔数据线。下拉通知栏时如果看到“已连接 USB 调试”，说明调试已开启。仍然没有的话，打开“设置”应用最底部的开发者选项，点按“撤销 USB 调试授权”，把“USB 调试”关闭再打开，然后重新插入数据线。如果没有开发者选项，请按第 1 步创建。adb-on 会自动检测连接状态。",
+   "ja": "データ転送に対応した USB ケーブルでつないでから、スマートフォンのロックを解除してください。\n\n「USB デバッグを許可しますか？」で「許可」を押します。自分の PC なら「このパソコンからのデバッグを常に許可」を選べます。上部の「USB でファイルを転送」通知はこの画面ではありません。\n\n確認画面が出ない場合は、ロックを解除したままケーブルを抜き差ししてください。 通知を下ろして「USB デバッグが接続されました」が見えれば、デバッグはオンです。それでも出ない場合は、設定アプリの一番下にある開発者向けオプションで「USB デバッグの許可の取り消し」を押し、「USB デバッグ」をオフにしてからオンにし、ケーブルをつなぎ直してください。開発者向けオプションがない場合は手順 1 で作成してください。adb-on が接続状態を自動で確認します。",
+   "es": "Conecta con un cable USB que transmita datos y desbloquea el teléfono.\n\nToca «Permitir» en «¿Permitir depuración USB?». En tu propio PC puedes elegir «Permitir siempre desde este ordenador». La notificación «USB para transferir archivos» de arriba no es esa ventana.\n\nSi no aparece la ventana, mantén el teléfono desbloqueado y reconecta el cable. Si al bajar las notificaciones aparece «Depuración USB conectada», la depuración está activada. Si sigue sin aparecer, abre Opciones de desarrollador al final de la app Ajustes, toca «Revocar autorizaciones de depuración USB», apaga y vuelve a encender «Depuración USB» y reconecta el cable. Si no hay Opciones de desarrollador, créalas como en el paso 1. adb-on comprueba la conexión automáticamente.",
+   "de": "Verbinden Sie mit einem USB-Kabel, das Daten überträgt, und entsperren Sie das Telefon.\n\nTippen Sie bei „USB-Debugging zulassen?“ auf „Zulassen“. Auf dem eigenen PC können Sie „Von diesem Computer immer zulassen“ wählen. Die Benachrichtigung „USB für Dateiübertragung“ oben ist nicht dieser Dialog.\n\nErscheint kein Dialog, lassen Sie das Telefon entsperrt und stecken Sie das Kabel erneut an. Zeigt die Benachrichtigungsleiste „USB-Debugging verbunden“, ist das Debugging eingeschaltet. Hilft das nicht, öffnen Sie die Entwickleroptionen ganz unten in der Einstellungen-App, tippen Sie auf „USB-Debugging-Autorisierungen widerrufen“, schalten Sie „USB-Debugging“ aus und wieder ein und stecken Sie erneut an. Fehlen die Entwickleroptionen, legen Sie sie wie in Schritt 1 an. adb-on prüft die Verbindung automatisch.",
+   "fr": "Connectez avec un câble USB qui transmet les données, puis déverrouillez le téléphone.\n\nTouchez « Autoriser » sur « Autoriser le débogage USB ? ». Sur votre propre PC, vous pouvez choisir « Toujours autoriser sur cet ordinateur ». La notification « USB pour le transfert de fichiers » en haut n'est pas cette fenêtre.\n\nSi aucune fenêtre n'apparaît, gardez le téléphone déverrouillé et rebranchez le câble. Si le volet des notifications affiche « Débogage USB connecté », le débogage est activé. Si elle n'apparaît toujours pas, ouvrez les options pour les développeurs tout en bas de l'application Paramètres, touchez « Révoquer les autorisations de débogage USB », désactivez puis réactivez « Débogage USB » et rebranchez le câble. Si les options pour les développeurs n'existent pas, créez-les comme à l'étape 1. adb-on vérifie la connexion automatiquement."
+  },
+  "설명 접기": {
+   "en": "Hide details",
+   "zh-Hans": "收起说明",
+   "ja": "説明をたたむ",
+   "es": "Ocultar detalles",
+   "de": "Details ausblenden",
+   "fr": "Masquer les détails"
+  },
+  "설명 펼치기": {
+   "en": "Show details",
+   "zh-Hans": "展开说明",
+   "ja": "説明を開く",
+   "es": "Mostrar detalles",
+   "de": "Details anzeigen",
+   "fr": "Afficher les détails"
+  },
+  "휴대폰 잠금을 풀면 ‘USB 디버깅을 허용하시겠습니까?’ 창이 떠요. ‘이 컴퓨터에서 항상 허용’을 켜고 허용을 누르세요. 상단의 ‘USB로 파일 전송’ 알림은 이 창이 아니에요.\n\n창이 안 보이면 잠금을 푼 채 케이블을 뽑았다 다시 꽂아 보세요. 알림을 내렸을 때 ‘USB 디버깅 연결됨’이 보이면 디버깅은 켜진 거예요.\n\n그래도 없으면 ": {
+   "en": "Unlock the phone and the ‘Allow USB debugging?’ dialog appears. Turn on ‘Always allow from this computer’ and tap Allow. The ‘USB for file transfer’ notification at the top is not that dialog.\n\nIf the dialog does not appear, keep the phone unlocked and unplug and replug the cable. If pulling down the notifications shows ‘USB debugging connected’, debugging is on.\n\nIf it still does not appear, open ",
+   "zh-Hans": "解锁手机后会弹出“允许 USB 调试吗？”窗口。勾选“一律允许使用这台计算机进行调试”，然后点按允许。顶部的“通过 USB 传输文件”通知不是这个窗口。\n\n如果没有弹出窗口，请保持手机解锁，拔下数据线再重新插入。下拉通知栏时如果看到“已连接 USB 调试”，说明调试已开启。\n\n仍然没有的话，请打开",
+   "ja": "スマートフォンのロックを解除すると「USB デバッグを許可しますか？」が表示されます。「このパソコンからのデバッグを常に許可」をオンにして許可を押してください。上部の「USB でファイルを転送」通知はこの画面ではありません。\n\n表示されない場合は、ロックを解除したままケーブルを抜き差ししてください。通知を下ろして「USB デバッグが接続されました」が見えれば、デバッグはオンです。\n\nそれでも出ない場合は、",
+   "es": "Desbloquea el teléfono y aparecerá «¿Permitir depuración USB?». Activa «Permitir siempre desde este ordenador» y toca Permitir. La notificación «USB para transferir archivos» de arriba no es esa ventana.\n\nSi no aparece, mantén el teléfono desbloqueado y desconecta y vuelve a conectar el cable. Si al bajar las notificaciones aparece «Depuración USB conectada», la depuración está activada.\n\nSi sigue sin aparecer, abre ",
+   "de": "Entsperren Sie das Telefon, dann erscheint „USB-Debugging zulassen?“. Aktivieren Sie „Von diesem Computer immer zulassen“ und tippen Sie auf Zulassen. Die Benachrichtigung „USB für Dateiübertragung“ oben ist nicht dieser Dialog.\n\nErscheint der Dialog nicht, lassen Sie das Telefon entsperrt und stecken Sie das Kabel ab und wieder an. Zeigt die Benachrichtigungsleiste „USB-Debugging verbunden“, ist das Debugging eingeschaltet.\n\nHilft das nicht, öffnen Sie die ",
+   "fr": "Déverrouillez le téléphone : la fenêtre « Autoriser le débogage USB ? » s'affiche. Activez « Toujours autoriser sur cet ordinateur » puis touchez Autoriser. La notification « USB pour le transfert de fichiers » en haut n'est pas cette fenêtre.\n\nSi la fenêtre n'apparaît pas, gardez le téléphone déverrouillé, débranchez puis rebranchez le câble. Si le volet des notifications affiche « Débogage USB connecté », le débogage est activé.\n\nSi elle n'apparaît toujours pas, ouvrez les "
+  },
+  "개발자 옵션": {
+   "en": "Developer options",
+   "zh-Hans": "开发者选项",
+   "ja": "開発者向けオプション",
+   "es": "Opciones de desarrollador",
+   "de": "Entwickleroptionen",
+   "fr": "options pour les développeurs"
+  },
+  "에서 ‘USB 디버깅 권한 취소’를 누르고, ‘USB 디버깅’을 껐다가 다시 켠 뒤 케이블을 다시 꽂으세요. 개발자 옵션은 휴대폰 설정 앱의 맨 아래에 있어요. 없으면 위 링크의 1단계대로 만드세요.": {
+   "en": ", tap ‘Revoke USB debugging authorizations’, switch ‘USB debugging’ off and on again, and replug the cable. Developer options is at the very bottom of the phone's Settings app. If it is missing, create it as in step 1 of the link above.",
+   "zh-Hans": "，点按“撤销 USB 调试授权”，把“USB 调试”关闭再打开，然后重新插入数据线。开发者选项位于手机“设置”应用的最底部。如果没有，请按上面链接的第 1 步创建。",
+   "ja": "で「USB デバッグの許可の取り消し」を押し、「USB デバッグ」をオフにしてからオンにし、ケーブルをつなぎ直してください。開発者向けオプションはスマートフォンの設定アプリの一番下にあります。ない場合は上のリンクの手順 1 で作成してください。",
+   "es": ", toca «Revocar autorizaciones de depuración USB», apaga y vuelve a encender «Depuración USB» y reconecta el cable. Opciones de desarrollador está al final de la app Ajustes del teléfono. Si no aparece, créala como en el paso 1 del enlace de arriba.",
+   "de": ", tippen Sie auf „USB-Debugging-Autorisierungen widerrufen“, schalten Sie „USB-Debugging“ aus und wieder ein und stecken Sie das Kabel erneut an. Die Entwickleroptionen stehen ganz unten in der Einstellungen-App des Telefons. Fehlen sie, legen Sie sie wie in Schritt 1 des Links oben an.",
+   "fr": ", touchez « Révoquer les autorisations de débogage USB », désactivez puis réactivez « Débogage USB » et rebranchez le câble. Les options pour les développeurs se trouvent tout en bas de l'application Paramètres du téléphone. Si elles n'existent pas, créez-les comme à l'étape 1 du lien ci-dessus."
+  },
+  "이 PC의 개발 도구에서 휴대폰을 선택하세요.": {
+   "en": "Pick the phone in the development tool on this PC.",
+   "zh-Hans": "请在这台电脑的开发工具中选择该手机。",
+   "ja": "この PC の開発ツールでスマートフォンを選んでください。",
+   "es": "Selecciona el teléfono en la herramienta de desarrollo de este PC.",
+   "de": "Wählen Sie das Telefon im Entwicklungstool auf diesem PC aus.",
+   "fr": "Sélectionnez le téléphone dans l'outil de développement de ce PC."
+  },
+  "ADB로 무엇을 할 수 있나요?": {
+   "en": "What can I do with ADB?",
+   "zh-Hans": "ADB 能做什么？",
+   "ja": "ADB で何ができますか？",
+   "es": "¿Qué puedo hacer con ADB?",
+   "de": "Was kann ich mit ADB tun?",
+   "fr": "Que puis-je faire avec ADB ?"
+  },
+  "ADB란 무엇인가요?": {
+   "en": "What is ADB?",
+   "zh-Hans": "什么是 ADB？",
+   "ja": "ADB とは？",
+   "es": "¿Qué es ADB?",
+   "de": "Was ist ADB?",
+   "fr": "Qu'est-ce qu'ADB ?"
+  },
+  "ADB는 PC와 휴대폰을 잇는 Google의 공식 도구예요": {
+   "en": "ADB is Google's official tool that links a PC and a phone",
+   "zh-Hans": "ADB 是 Google 官方的电脑与手机连接工具",
+   "ja": "ADB は PC とスマートフォンをつなぐ Google の公式ツールです",
+   "es": "ADB es la herramienta oficial de Google que une el PC y el teléfono",
+   "de": "ADB ist Googles offizielles Werkzeug, das PC und Telefon verbindet",
+   "fr": "ADB est l'outil officiel de Google qui relie un PC et un téléphone"
+  },
+  "Android Debug Bridge의 줄임말이에요. Android 개발에 쓰는 표준 도구이며, PC의 개발 프로그램이 휴대폰과 대화하는 통로예요. adb-on은 이 도구를 찾거나 준비하고, 휴대폰과의 연결을 대신 맺어 줘요.": {
+   "en": "It stands for Android Debug Bridge. It is the standard tool for Android development and the channel through which development programs on the PC talk to the phone. adb-on finds or prepares this tool and makes the connection to the phone for you.",
+   "zh-Hans": "它是 Android Debug Bridge 的缩写，是 Android 开发的标准工具，也是电脑上的开发程序与手机沟通的通道。adb-on 负责查找或准备这个工具，并替你建立与手机的连接。",
+   "ja": "Android Debug Bridge の略です。Android 開発の標準ツールで、PC の開発プログラムがスマートフォンとやり取りする通り道です。adb-on はこのツールを探すか用意し、スマートフォンとの接続を代わりに行います。",
+   "es": "Son las siglas de Android Debug Bridge. Es la herramienta estándar del desarrollo Android y el canal por el que los programas de desarrollo del PC hablan con el teléfono. adb-on busca o prepara esta herramienta y establece la conexión con el teléfono por ti.",
+   "de": "Die Abkürzung steht für Android Debug Bridge. Es ist das Standardwerkzeug der Android-Entwicklung und der Kanal, über den Entwicklungsprogramme auf dem PC mit dem Telefon sprechen. adb-on findet oder bereitet dieses Werkzeug vor und stellt die Verbindung zum Telefon für Sie her.",
+   "fr": "C'est l'abréviation d'Android Debug Bridge. C'est l'outil standard du développement Android et le canal par lequel les programmes de développement du PC dialoguent avec le téléphone. adb-on trouve ou prépare cet outil et établit la connexion au téléphone pour vous."
+  },
+  "연결되면 할 수 있는 일": {
+   "en": "What you can do once connected",
+   "zh-Hans": "连接后可以做什么",
+   "ja": "接続するとできること",
+   "es": "Qué puedes hacer una vez conectado",
+   "de": "Was Sie nach der Verbindung tun können",
+   "fr": "Ce que vous pouvez faire une fois connecté"
+  },
+  "• Android Studio, Unity, Flutter, React Native 같은 개발 도구가 이 휴대폰을 실행 대상으로 알아봐요. 만들던 앱을 바로 설치하고 실행하고 디버그할 수 있어요.\n\n• scrcpy 같은 도구로 휴대폰 화면을 PC에서 보고 조작할 수 있어요.\n\n• 앱 설치 파일(APK) 넣기, 파일 주고받기, 화면 캡처와 녹화, 앱 로그 확인을 명령이나 도구로 할 수 있어요.\n\n• 무선 연결을 해 두면 케이블 없이 같은 일을 계속할 수 있어요.": {
+   "en": "• Development tools such as Android Studio, Unity, Flutter, and React Native recognise this phone as a run target. You can install, run, and debug the app you are building right away.\n\n• Tools such as scrcpy let you view and control the phone screen from the PC.\n\n• Installing app packages (APK), exchanging files, capturing and recording the screen, and reading app logs can be done with commands or tools.\n\n• With a wireless connection you can keep doing the same without a cable.",
+   "zh-Hans": "• Android Studio、Unity、Flutter、React Native 等开发工具会把这台手机识别为运行目标。可以立即安装、运行和调试正在开发的应用。\n\n• 借助 scrcpy 等工具，可以在电脑上查看并操作手机屏幕。\n\n• 安装应用安装包（APK）、传输文件、截屏与录屏、查看应用日志，都可以通过命令或工具完成。\n\n• 建立无线连接后，不用数据线也能继续做同样的事。",
+   "ja": "• Android Studio、Unity、Flutter、React Native などの開発ツールがこのスマートフォンを実行対象として認識します。作成中のアプリをすぐにインストール・実行・デバッグできます。\n\n• scrcpy などのツールで、スマートフォンの画面を PC で表示して操作できます。\n\n• アプリのインストールファイル(APK)の転送、ファイルのやり取り、画面のキャプチャと録画、アプリのログ確認を、コマンドやツールで行えます。\n\n• ワイヤレス接続にしておけば、ケーブルなしで同じことを続けられます。",
+   "es": "• Herramientas de desarrollo como Android Studio, Unity, Flutter y React Native reconocen este teléfono como destino de ejecución. Puedes instalar, ejecutar y depurar la app que estás creando al momento.\n\n• Herramientas como scrcpy permiten ver y controlar la pantalla del teléfono desde el PC.\n\n• Instalar paquetes de app (APK), intercambiar archivos, capturar y grabar la pantalla y leer registros de la app se hace con comandos o herramientas.\n\n• Con una conexión inalámbrica puedes seguir haciendo lo mismo sin cable.",
+   "de": "• Entwicklungstools wie Android Studio, Unity, Flutter und React Native erkennen dieses Telefon als Ausführungsziel. Sie können die App, die Sie gerade bauen, sofort installieren, starten und debuggen.\n\n• Tools wie scrcpy zeigen den Telefonbildschirm auf dem PC an und lassen ihn steuern.\n\n• App-Pakete (APK) installieren, Dateien austauschen, den Bildschirm aufnehmen und App-Protokolle lesen geht per Befehl oder Tool.\n\n• Mit einer WLAN-Verbindung geht das alles ohne Kabel weiter.",
+   "fr": "• Les outils de développement comme Android Studio, Unity, Flutter et React Native reconnaissent ce téléphone comme cible d'exécution. Vous pouvez installer, lancer et déboguer l'application que vous créez immédiatement.\n\n• Des outils comme scrcpy permettent de voir et de contrôler l'écran du téléphone depuis le PC.\n\n• Installer des paquets d'application (APK), échanger des fichiers, capturer et enregistrer l'écran, lire les journaux de l'application se fait par commandes ou outils.\n\n• Avec une connexion sans fil, vous continuez sans câble."
+  },
+  "adb-on은 연결까지만 맡아요. 위 작업은 각 개발 도구나 명령에서 해요.": {
+   "en": "adb-on only takes care of the connection. The tasks above are done in each development tool or command.",
+   "zh-Hans": "adb-on 只负责建立连接。上述操作在各个开发工具或命令中完成。",
+   "ja": "adb-on が担当するのは接続までです。上記の作業は各開発ツールやコマンドで行います。",
+   "es": "adb-on solo se encarga de la conexión. Las tareas anteriores se hacen en cada herramienta de desarrollo o comando.",
+   "de": "adb-on übernimmt nur die Verbindung. Die genannten Aufgaben erledigen Sie im jeweiligen Entwicklungstool oder per Befehl.",
+   "fr": "adb-on ne s'occupe que de la connexion. Les tâches ci-dessus se font dans chaque outil de développement ou par commande."
+  },
+  "알아 둘 점": {
+   "en": "Good to know",
+   "zh-Hans": "注意事项",
+   "ja": "知っておくこと",
+   "es": "Conviene saber",
+   "de": "Gut zu wissen",
+   "fr": "À savoir"
+  },
+  "연결된 PC는 휴대폰을 제어할 수 있어요. 믿는 PC에서만 허용하고, 다 쓰면 휴대폰의 USB 디버깅을 꺼 두세요.": {
+   "en": "A connected PC can control the phone. Allow only PCs you trust, and turn off USB debugging on the phone when you are done.",
+   "zh-Hans": "已连接的电脑可以控制手机。只在信任的电脑上允许，用完后请关闭手机的 USB 调试。",
+   "ja": "接続された PC はスマートフォンを操作できます。信頼できる PC でだけ許可し、使い終わったらスマートフォンの USB デバッグをオフにしてください。",
+   "es": "Un PC conectado puede controlar el teléfono. Permite solo PC de confianza y desactiva la depuración USB del teléfono cuando termines.",
+   "de": "Ein verbundener PC kann das Telefon steuern. Erlauben Sie nur vertrauenswürdige PCs und schalten Sie das USB-Debugging am Telefon danach aus.",
+   "fr": "Un PC connecté peut contrôler le téléphone. N'autorisez que des PC de confiance et désactivez le débogage USB du téléphone quand vous avez terminé."
+  },
+  "adb-on 창을 닫아도 연결은 유지돼요. ADB 서버가 PC에서 계속 실행되기 때문이에요. 연결을 끊으려면 케이블을 뽑거나 휴대폰의 USB 디버깅을 끄세요.": {
+   "en": "Closing the adb-on window keeps the connection, because the ADB server keeps running on the PC. To disconnect, unplug the cable or turn off USB debugging on the phone.",
+   "zh-Hans": "关闭 adb-on 窗口后连接仍会保持，因为 ADB 服务器会在电脑上继续运行。要断开连接，请拔下数据线或关闭手机的 USB 调试。",
+   "ja": "adb-on のウィンドウを閉じても接続は保たれます。ADB サーバーが PC で動き続けるためです。切断するにはケーブルを抜くか、スマートフォンの USB デバッグをオフにしてください。",
+   "es": "Al cerrar la ventana de adb-on la conexión se mantiene, porque el servidor ADB sigue ejecutándose en el PC. Para desconectar, desenchufa el cable o desactiva la depuración USB en el teléfono.",
+   "de": "Das Schließen des adb-on-Fensters beendet die Verbindung nicht, weil der ADB-Server auf dem PC weiterläuft. Zum Trennen ziehen Sie das Kabel ab oder schalten Sie das USB-Debugging am Telefon aus.",
+   "fr": "Fermer la fenêtre adb-on conserve la connexion, car le serveur ADB continue de fonctionner sur le PC. Pour déconnecter, débranchez le câble ou désactivez le débogage USB sur le téléphone."
+  },
+  "휴대폰의 설정 → 개발자 옵션 → ‘무선 디버깅’을 켜 주세요.\n\n개발자 옵션이 없으면 USB 연결 안내의 첫 단계대로 먼저 만들어 주세요. 처음 켜면 이 네트워크에서 허용할지 묻는 창이 떠요.\n\n휴대폰의 보안 패치를 최신으로 유지하고, 다 쓰면 무선 디버깅을 꺼 두세요.": {
+   "en": "On the phone, open Settings → Developer options and turn on ‘Wireless debugging’.\n\nIf there are no Developer options yet, follow the first step of the USB connection guide to enable them. The first time you turn it on, the phone asks whether to allow it on this network.\n\nKeep the phone's security patches up to date, and turn Wireless debugging off when you are done.",
+   "zh-Hans": "在手机上打开 设置 → 开发者选项，开启“无线调试”。\n\n如果还没有开发者选项，请先按照 USB 连接指南的第一步开启。首次开启时，手机会询问是否允许在此网络上使用。\n\n请保持手机安全补丁为最新，用完后关闭无线调试。",
+   "ja": "スマートフォンの 設定 → 開発者向けオプション で「ワイヤレスデバッグ」をオンにしてください。\n\n開発者向けオプションがない場合は、USB 接続ガイドの最初の手順で先に有効にしてください。初めてオンにすると、このネットワークで許可するかを尋ねる画面が出ます。\n\nスマートフォンのセキュリティパッチを最新に保ち、使い終わったらワイヤレスデバッグをオフにしてください。",
+   "es": "En el teléfono, abre Ajustes → Opciones de desarrollador y activa «Depuración inalámbrica».\n\nSi aún no hay Opciones de desarrollador, actívalas siguiendo el primer paso de la guía de conexión USB. La primera vez que la actives, el teléfono preguntará si permitirla en esta red.\n\nMantén al día los parches de seguridad del teléfono y desactiva la depuración inalámbrica cuando termines.",
+   "de": "Öffnen Sie auf dem Telefon Einstellungen → Entwickleroptionen und schalten Sie „Drahtloses Debugging“ ein.\n\nGibt es noch keine Entwickleroptionen, aktivieren Sie sie zuerst nach dem ersten Schritt der USB-Anleitung. Beim ersten Einschalten fragt das Telefon, ob es in diesem Netzwerk erlaubt werden soll.\n\nHalten Sie die Sicherheitspatches des Telefons aktuell und schalten Sie das drahtlose Debugging danach aus.",
+   "fr": "Sur le téléphone, ouvrez Paramètres → Options pour les développeurs et activez « Débogage sans fil ».\n\nS'il n'y a pas encore d'options pour les développeurs, activez-les d'abord en suivant la première étape du guide de connexion USB. À la première activation, le téléphone demande s'il faut l'autoriser sur ce réseau.\n\nGardez les correctifs de sécurité du téléphone à jour et désactivez le débogage sans fil quand vous avez terminé."
+  },
+  "페어링은 이 PC를 휴대폰에 처음 한 번 등록하는 절차이고, 연결은 등록된 PC가 실제로 붙는 절차예요. 전에 이 PC와 페어링했다면 연결만 하면 돼요.": {
+   "en": "Pairing registers this PC with the phone once; connecting is what a registered PC does each time. If this PC was paired before, only connecting is needed.",
+   "zh-Hans": "配对是把这台电脑在手机上登记一次的步骤；连接是已登记的电脑实际接入的步骤。如果这台电脑以前配对过，只需连接即可。",
+   "ja": "ペアリングはこの PC をスマートフォンに一度登録する手順で、接続は登録済みの PC が実際につながる手順です。この PC を以前ペアリングしたことがあれば、接続だけで済みます。",
+   "es": "Emparejar registra este PC en el teléfono una sola vez; conectar es lo que hace un PC ya registrado cada vez. Si este PC ya se emparejó antes, basta con conectar.",
+   "de": "Koppeln registriert diesen PC einmalig beim Telefon; Verbinden ist, was ein registrierter PC jedes Mal tut. Wurde dieser PC schon gekoppelt, genügt das Verbinden.",
+   "fr": "L'association enregistre ce PC auprès du téléphone une seule fois ; la connexion est ce qu'un PC enregistré fait à chaque fois. Si ce PC a déjà été associé, il suffit de se connecter."
+  },
+  "찾은 휴대폰에 바로 연결": {
+   "en": "Connect to the phone found",
+   "zh-Hans": "直接连接找到的手机",
+   "ja": "見つかったスマートフォンに接続",
+   "es": "Conectar con el teléfono encontrado",
+   "de": "Mit dem gefundenen Telefon verbinden",
+   "fr": "Se connecter au téléphone trouvé"
+  },
+  "연결 · {}": {
+   "en": "Connect · {}",
+   "zh-Hans": "连接 · {}",
+   "ja": "接続 · {}",
+   "es": "Conectar · {}",
+   "de": "Verbinden · {}",
+   "fr": "Connexion · {}"
+  },
+  "1. 페어링 · 처음 한 번": {
+   "en": "1. Pairing · once",
+   "zh-Hans": "1. 配对 · 仅首次",
+   "ja": "1. ペアリング · 最初の一度だけ",
+   "es": "1. Emparejar · una sola vez",
+   "de": "1. Koppeln · einmalig",
+   "fr": "1. Association · une seule fois"
+  },
+  "2. 연결 · 페어링된 PC에서": {
+   "en": "2. Connect · from a paired PC",
+   "zh-Hans": "2. 连接 · 已配对的电脑",
+   "ja": "2. 接続 · ペアリング済みの PC から",
+   "es": "2. Conectar · desde un PC emparejado",
+   "de": "2. Verbinden · von einem gekoppelten PC",
+   "fr": "2. Connexion · depuis un PC associé"
+  },
+  "휴대폰의 무선 디버깅 화면 위쪽에 있는 ‘IP 주소 및 포트’를 넣으세요. 페어링 주소와 포트 번호가 달라요. 위에 찾은 휴대폰이 보이면 그 버튼을 누르는 것과 같아요.": {
+   "en": "Enter the ‘IP address & Port’ shown at the top of the phone's Wireless debugging screen. Its port differs from the pairing one. If a found phone is shown above, pressing that button does the same.",
+   "zh-Hans": "请输入手机无线调试界面顶部显示的“IP 地址和端口”。它的端口与配对地址不同。如果上方显示了找到的手机，点按那个按钮效果相同。",
+   "ja": "スマートフォンのワイヤレスデバッグ画面の上部にある「IP アドレスとポート」を入力してください。ペアリング用とはポート番号が異なります。上に見つかったスマートフォンが表示されていれば、そのボタンを押すのと同じです。",
+   "es": "Escribe la «Dirección IP y puerto» que aparece arriba en la pantalla Depuración inalámbrica del teléfono. Su puerto es distinto del de emparejamiento. Si arriba aparece un teléfono encontrado, pulsar ese botón hace lo mismo.",
+   "de": "Geben Sie „IP-Adresse & Port“ von oben im Bildschirm Drahtloses Debugging des Telefons ein. Der Port unterscheidet sich vom Kopplungsport. Wird oben ein gefundenes Telefon angezeigt, bewirkt dessen Taste dasselbe.",
+   "fr": "Saisissez « Adresse IP et port » affichée en haut de l'écran Débogage sans fil du téléphone. Son port diffère de celui d'association. Si un téléphone trouvé est affiché au-dessus, appuyer sur ce bouton revient au même."
+  },
+  "같은 Wi-Fi에서 무선 디버깅이 켜진 휴대폰을 찾지 못했어요. 휴대폰에 표시된 주소를 직접 입력해도 돼요.": {
+   "en": "No phone with Wireless debugging on was found on this Wi-Fi. You can also type the address shown on the phone.",
+   "zh-Hans": "在这个 Wi-Fi 上没有找到已开启无线调试的手机。也可以直接输入手机上显示的地址。",
+   "ja": "この Wi-Fi でワイヤレスデバッグがオンのスマートフォンは見つかりませんでした。スマートフォンに表示されたアドレスを直接入力しても構いません。",
+   "es": "No se encontró ningún teléfono con depuración inalámbrica activada en este Wi-Fi. También puedes escribir la dirección que muestra el teléfono.",
+   "de": "In diesem WLAN wurde kein Telefon mit eingeschaltetem drahtlosem Debugging gefunden. Sie können auch die auf dem Telefon angezeigte Adresse eingeben.",
+   "fr": "Aucun téléphone avec le débogage sans fil activé n'a été trouvé sur ce Wi-Fi. Vous pouvez aussi saisir l'adresse affichée sur le téléphone."
+  },
+  "무선 디버깅이 켜진 휴대폰이 같은 Wi-Fi에 있어요. 이 PC와 페어링된 적이 있으면 바로 연결돼요. 아니면 아래 1. 페어링부터 하세요. 여러 대면 휴대폰의 무선 디버깅 화면에 보이는 주소로 구분하세요.": {
+   "en": "A phone with Wireless debugging on is on the same Wi-Fi. If it was paired with this PC before, it connects right away. Otherwise start with 1. Pairing below. With several phones, tell them apart by the address shown on each phone's Wireless debugging screen.",
+   "zh-Hans": "同一个 Wi-Fi 上有一台已开启无线调试的手机。如果它以前与这台电脑配对过，就会立即连接；否则请先从下方的“1. 配对”开始。有多台手机时，请用各手机“无线调试”界面上显示的地址来区分。",
+   "ja": "ワイヤレスデバッグがオンのスマートフォンが同じ Wi-Fi にあります。この PC とペアリング済みならすぐにつながります。そうでなければ下の「1. ペアリング」から始めてください。複数台ある場合は、各スマートフォンのワイヤレスデバッグ画面に表示されるアドレスで見分けてください。",
+   "es": "Hay un teléfono con depuración inalámbrica activada en el mismo Wi-Fi. Si ya se emparejó con este PC, se conecta al momento. Si no, empieza por «1. Emparejar» abajo. Si hay varios teléfonos, distíngalos por la dirección que muestra la pantalla de depuración inalámbrica de cada uno.",
+   "de": "Ein Telefon mit eingeschaltetem drahtlosem Debugging ist im selben WLAN. Wurde es schon mit diesem PC gekoppelt, verbindet es sich sofort. Sonst beginnen Sie unten mit „1. Koppeln“. Bei mehreren Telefonen unterscheiden Sie sie anhand der Adresse, die auf dem Bildschirm „Debugging über WLAN“ des jeweiligen Telefons steht.",
+   "fr": "Un téléphone avec le débogage sans fil activé est sur le même Wi-Fi. S'il a déjà été associé à ce PC, il se connecte immédiatement. Sinon, commencez par « 1. Association » ci-dessous. S'il y a plusieurs téléphones, distinguez-les par l'adresse affichée sur l'écran Débogage sans fil de chacun."
+  },
+  "연결됨 · {}": {
+   "en": "Connected · {}",
+   "zh-Hans": "已连接 · {}",
+   "ja": "接続済み · {}",
+   "es": "Conectado · {}",
+   "de": "Verbunden · {}",
+   "fr": "Connecté · {}"
+  }
+ }
+}

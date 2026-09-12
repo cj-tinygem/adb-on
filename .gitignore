@@ -1,0 +1,24 @@
+/target/
+/dist/
+/.cache/
+*.log
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+.DS_Store
+__pycache__/
+/docs/evidence/
+/docs/plan/
+/.cortex/
+self-test.json
+*.bundle
+checklists/
+
+# Agent instruction files are local only and must not reach the remote
+/AGENTS.md
+/CLAUDE.md
+/GEMINI.md
+/ARCHITECTURE.md

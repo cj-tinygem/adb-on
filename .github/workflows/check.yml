@@ -1,0 +1,41 @@
+name: 빌드와 계약 검증
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2025, macos-15, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    env:
+      CARGO_BUILD_JOBS: '1'
+      CARGO_INCREMENTAL: '0'
+      SLINT_STYLE: fluent-light
+    steps:
+      - name: 빌드 임시 경로 설정
+        shell: bash
+        run: echo "CARGO_TARGET_DIR=$RUNNER_TEMP/adb-on-target" >> "$GITHUB_ENV"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Rust 확인
+        run: rustup update stable --no-self-update
+      - name: 코어 계약
+        run: cargo test --locked --no-default-features --lib
+      - name: Windows 최외곽 자체 검사
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/build-windows.ps1 -SelfTest
+      - name: Windows 빌드
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/build-windows.ps1 -TargetDirectory "$env:CARGO_TARGET_DIR"
+      - name: macOS 최외곽 자체 검사와 빌드
+        if: runner.os == 'macOS'
+        run: bash scripts/build-macos.sh --self-test && bash scripts/build-macos.sh
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: adb-on-${{ matrix.os }}
+          path: dist/
+          retention-days: 7
