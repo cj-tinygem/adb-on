@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>Phone connection, in one window.</strong></p>
   <p>A small, simple desktop tool for connecting an Android phone without opening a terminal.</p>
-  <p>Runs on Windows. A macOS build is being prepared.</p>
+  <p>Runs on Windows. The macOS build has been verified on an Intel Mac and is being prepared for release.</p>
 </div>
 
-> **Windows version available.** Download `adb-on-windows-x64.zip` from Releases, unzip it, and open `adb-on.exe`. Connection to a real phone has been verified over USB and Wi-Fi. macOS builds are not published yet.
+> **Windows version available.** Download `adb-on-windows-x64.zip` from Releases, unzip it, and open `adb-on.exe`. Connection to a real phone has been verified over USB and Wi-Fi. The macOS build has been verified to run on an Intel Mac and is not published yet.
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="Actual connection waiting screen of adb-on running on Windows"></p>
 
@@ -58,14 +58,14 @@ Official distribution location: [adb-on downloads and releases](https://github.c
 |---|---|---|
 |Windows x64|`adb-on.exe`|Available. Verified with a real phone over USB and Wi-Fi. Pairing with a code is still awaiting real-phone verification.|
 |macOS Apple Silicon|`adb-on.app`|Not published yet. Build path prepared, not verified on an actual Mac.|
-|macOS Intel|`adb-on.app`|Not published yet. Build path prepared, not verified on an actual Mac.|
+|macOS Intel|`adb-on.app`|Not published yet. Build and launch verified on an Intel Mac (macOS 15).|
 
 - There is no installer. Unzip, put the single `adb-on.exe` in any folder, and run it. The license files in the zip are not needed to run the app.
 - The Windows app does not require WebView2, Node.js, or Java.
 - The app language follows the PC language at first. You can switch among English, 简体中文, 日本語, Español, 한국어, Deutsch, and Français in Tool settings.
 - If ADB is already present, it is reused. If not, the app prepares Google's official tools after you accept the terms. An internet connection is required for the initial preparation.
 - The current development build is not a distribution that has completed public code signing or notarization. It does not automatically dismiss OS warnings or change security settings.
-- The target minimum macOS version is 12. The actual compatibility range will be confirmed after native verification.
+- The target minimum macOS version is 12. Launch has been confirmed on an Intel Mac running macOS 15; other versions are not yet confirmed.
 - Native support for Linux and Windows ARM is not currently provided.
 
 Each release includes the **SHA-256 checksum** of the executable and the scope of verification. Check the release notes so you do not confuse development test builds with officially supported versions.
@@ -239,7 +239,7 @@ It is not passed through automatically. Windows and WSL may be separate developm
 
 ### Does macOS support both Intel and Apple Silicon?
 
-Build paths for both architectures are prepared, but no macOS build is published yet and none has been verified on an actual Mac. When one is published it will not carry an Apple Developer ID signature, so the first launch will need right-click → Open, once.
+Build paths for both architectures are prepared, and build and launch have been verified on an Intel Mac (macOS 15). Apple Silicon has not yet been verified on an actual Mac, and no macOS build is published yet. If a published build does not carry an Apple Developer ID signature, the first launch will need right-click → Open, once.
 
 ### Do I need to install a separate app on the phone?
 

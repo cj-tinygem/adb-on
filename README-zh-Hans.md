@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>手机连接，一个窗口完成。</strong></p>
   <p>无需打开终端即可连接 Android 手机的小巧简洁的桌面工具。</p>
-  <p>可在 Windows 上运行。macOS 构建正在准备中。</p>
+  <p>可在 Windows 上运行。macOS 构建已在 Intel Mac 上验证，正在准备发布。</p>
 </div>
 
-> **Windows 版本已可使用。** 从 Releases 下载 `adb-on-windows-x64.zip`，解压后打开 `adb-on.exe` 即可。已用真实手机验证了 USB 与 Wi-Fi 连接。macOS 构建尚未发布。
+> **Windows 版本已可使用。** 从 Releases 下载 `adb-on-windows-x64.zip`，解压后打开 `adb-on.exe` 即可。已用真实手机验证了 USB 与 Wi-Fi 连接。macOS 构建已在 Intel Mac 上验证可运行，尚未发布。
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="在 Windows 上运行的 adb-on 实际等待连接界面"></p>
 
@@ -58,14 +58,14 @@
 |---|---|---|
 |Windows x64|`adb-on.exe`|可用。已用真实手机验证 USB 与 Wi-Fi 连接。配对码配对仍待实机验证。|
 |macOS Apple Silicon|`adb-on.app`|尚未发布。构建路径已准备，未在实际 Mac 上验证。|
-|macOS Intel|`adb-on.app`|尚未发布。构建路径已准备，未在实际 Mac 上验证。|
+|macOS Intel|`adb-on.app`|尚未发布。已在 Intel Mac（macOS 15）上验证构建与启动。|
 
 - 没有安装程序。解压后，将单个 `adb-on.exe` 放到任意文件夹中运行即可。压缩包中的许可证文件不是运行应用所必需的。
 - Windows 应用不需要 WebView2、Node.js 或 Java。
 - 应用语言默认跟随电脑语言，可在工具设置中切换为 English、简体中文、日本語、Español、한국어、Deutsch、Français。
 - 若已存在 ADB，则直接复用。若不存在，在应用内同意条款后准备 Google 官方工具。首次准备需要连接互联网。
 - 当前开发构建不是完成公认代码签名与公证的发行版。不会自动解除操作系统警告，也不会更改安全设置。
-- macOS 的目标最低版本为 12。实际兼容范围将在原生验证后确定。
+- macOS 的目标最低版本为 12。已在 Intel Mac、macOS 15 上确认可启动，其他版本尚未确认。
 - 目前不提供 Linux 与 Windows ARM 的原生支持。
 
 每次发布都会一并提供可执行文件的 **SHA-256 校验和**与验证范围。请查看发布说明，以免混淆开发测试版与正式支持版本。
@@ -239,7 +239,7 @@ adb-on 是连接工具。它不能替代构建应用所需的 SDK 与构建工�
 
 ### macOS 上同时支持 Intel 与 Apple Silicon 吗？
 
-两种架构的构建路径已准备，但 macOS 构建尚未发布，也未在实际 Mac 上验证。即使发布，也不会带有 Apple Developer ID 签名，因此首次打开需要右键点击 → 打开，仅需一次。
+两种架构的构建路径已准备，并已在 Intel Mac（macOS 15）上验证构建与启动。Apple Silicon 尚未在实际机器上验证，macOS 构建也尚未发布。如果发布的构建不带 Apple Developer ID 签名，首次打开需要右键点击 → 打开，仅需一次。
 
 ### 需要在手机上安装额外的应用吗？
 

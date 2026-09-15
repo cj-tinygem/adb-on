@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>Conecta tu teléfono desde una sola ventana.</strong></p>
   <p>Una herramienta de escritorio pequeña y sencilla para conectar un teléfono Android sin abrir la terminal.</p>
-  <p>Funciona en Windows. La compilación para macOS está en preparación.</p>
+  <p>Funciona en Windows. La compilación para macOS se ha verificado en un Mac Intel y se está preparando para su publicación.</p>
 </div>
 
-> **Versión para Windows disponible.** Descarga `adb-on-windows-x64.zip` desde Releases, descomprímelo y abre `adb-on.exe`. La conexión con un teléfono real se ha verificado por USB y Wi-Fi. Las compilaciones para macOS aún no se publican.
+> **Versión para Windows disponible.** Descarga `adb-on-windows-x64.zip` desde Releases, descomprímelo y abre `adb-on.exe`. La conexión con un teléfono real se ha verificado por USB y Wi-Fi. La compilación para macOS se ha verificado en un Mac Intel y aún no se publica.
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="Pantalla real de espera de conexión de adb-on ejecutándose en Windows"></p>
 
@@ -58,14 +58,14 @@ Ubicación oficial de distribución: [Descargas y versiones de adb-on](https://g
 |---|---|---|
 |Windows x64|`adb-on.exe`|Disponible. Verificado con un teléfono real por USB y Wi-Fi. El emparejamiento con código aún espera verificación con teléfono real.|
 |macOS Apple Silicon|`adb-on.app`|Aún no publicado. Ruta de compilación preparada, sin verificar en un Mac real.|
-|macOS Intel|`adb-on.app`|Aún no publicado. Ruta de compilación preparada, sin verificar en un Mac real.|
+|macOS Intel|`adb-on.app`|Aún no publicado. Compilación y arranque verificados en un Mac Intel (macOS 15).|
 
 - No hay instalador. Descomprime el archivo, coloca el único `adb-on.exe` en cualquier carpeta y ejecútalo. Los archivos de licencia del zip no son necesarios para ejecutar la aplicación.
 - La aplicación de Windows no requiere WebView2, Node.js ni Java.
 - El idioma de la aplicación sigue al del PC al principio. En Ajustes de herramientas puedes cambiar entre English, 简体中文, 日本語, Español, 한국어, Deutsch y Français.
 - Si ADB ya está presente, se reutiliza. Si no, la aplicación prepara la herramienta oficial de Google tras aceptar las condiciones. La preparación inicial requiere conexión a Internet.
 - La compilación de desarrollo actual no es una distribución con firma de código ni notarización oficiales. No omite automáticamente las advertencias del sistema operativo ni modifica la configuración de seguridad.
-- La versión mínima objetivo de macOS es la 12. El rango de compatibilidad real se confirmará tras la verificación nativa.
+- La versión mínima objetivo de macOS es la 12. El arranque se ha confirmado en un Mac Intel con macOS 15; otras versiones aún no se han confirmado.
 - Actualmente no se ofrece soporte nativo para Linux ni Windows ARM.
 
 Cada versión incluye la **suma de comprobación SHA-256** del ejecutable junto con el alcance de la verificación. Consulta las notas de la versión para no confundir una compilación de prueba de desarrollo con una versión con soporte oficial.
@@ -239,7 +239,7 @@ No se transfiere automáticamente. Windows y WSL pueden ser entornos de desarrol
 
 ### ¿En macOS se admiten tanto Intel como Apple Silicon?
 
-Las rutas de compilación para ambas arquitecturas están preparadas, pero todavía no se publica ninguna compilación para macOS ni se ha verificado en un Mac real. Cuando se publique, no llevará firma de Apple Developer ID, así que la primera apertura necesitará clic derecho → Abrir, una sola vez.
+Las rutas de compilación para ambas arquitecturas están preparadas, y la compilación y el arranque se han verificado en un Mac Intel (macOS 15). Apple Silicon aún no se ha verificado en un Mac real, y todavía no se publica ninguna compilación para macOS. Si una compilación publicada no lleva firma de Apple Developer ID, la primera apertura necesitará clic derecho → Abrir, una sola vez.
 
 ### ¿Se instala alguna aplicación adicional en el teléfono?
 

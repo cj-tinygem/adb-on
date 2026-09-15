@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>휴대폰 연결, 이 창 하나로.</strong></p>
   <p>터미널을 열지 않고 Android 폰을 연결하는 작고 간단한 데스크톱 도구.</p>
-  <p>Windows에서 동작합니다. macOS 빌드는 준비 중입니다.</p>
+  <p>Windows에서 동작합니다. macOS 빌드는 Intel Mac에서 검증했고 공개 준비 중입니다.</p>
 </div>
 
-> **Windows 버전을 사용할 수 있습니다.** 릴리스에서 `adb-on-windows-x64.zip`을 받아 압축을 풀고 `adb-on.exe`를 열면 됩니다. 실제 휴대폰과 USB·Wi-Fi 연결을 검증했습니다. macOS 빌드는 아직 공개하지 않았습니다.
+> **Windows 버전을 사용할 수 있습니다.** 릴리스에서 `adb-on-windows-x64.zip`을 받아 압축을 풀고 `adb-on.exe`를 열면 됩니다. 실제 휴대폰과 USB·Wi-Fi 연결을 검증했습니다. macOS 빌드는 Intel Mac에서 실행을 검증했으며, 아직 공개하지 않았습니다.
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="Windows에서 실행한 adb-on의 실제 연결 대기 화면"></p>
 
@@ -58,14 +58,14 @@ Android 앱을 만들었는데, 내 폰에 연결하는 순간 막혔나요?
 |---|---|---|
 |Windows x64|`adb-on.exe`|사용 가능. 실제 휴대폰과 USB·Wi-Fi 연결 검증 완료. 코드 페어링은 실폰 검증 대기.|
 |macOS Apple Silicon|`adb-on.app`|미공개. 빌드 경로는 준비됐고 실제 Mac 검증은 안 됨.|
-|macOS Intel|`adb-on.app`|미공개. 빌드 경로는 준비됐고 실제 Mac 검증은 안 됨.|
+|macOS Intel|`adb-on.app`|미공개. Intel Mac(macOS 15)에서 빌드와 실행을 검증함.|
 
 - 설치 프로그램이 없습니다. 압축을 풀고 `adb-on.exe` 하나를 원하는 폴더에 두고 실행하면 됩니다. 함께 들어 있는 라이선스 파일은 실행에 필요하지 않습니다.
 - Windows 앱은 WebView2·Node.js·Java를 요구하지 않습니다.
 - 앱 언어는 처음에 PC 언어를 따르며, 도구 설정에서 English·简体中文·日本語·Español·한국어·Deutsch·Français 중 고를 수 있습니다.
 - ADB가 이미 있으면 재사용합니다. 없으면 앱에서 약관 동의 후 Google 공식 도구를 준비합니다. 최초 준비에는 인터넷이 필요합니다.
 - 현재 개발 빌드는 공인 코드서명·공증을 마친 배포본이 아닙니다. OS 경고를 자동 해제하거나 보안 설정을 변경하지 않습니다.
-- macOS의 목표 최소 버전은 12입니다. 실제 호환 범위는 네이티브 검증 후 확정합니다.
+- macOS의 목표 최소 버전은 12입니다. Intel Mac·macOS 15에서 실행을 확인했고, 다른 버전은 아직 확인하지 않았습니다.
 - Linux·Windows ARM 네이티브 지원은 현재 제공하지 않습니다.
 
 릴리스마다 실행 파일의 **SHA-256 체크섬**과 검증 범위를 함께 제공합니다. 개발 시험본과 정식 지원 버전을 혼동하지 않도록 릴리스 설명을 확인하세요.
@@ -239,7 +239,7 @@ adb-on은 연결 도구입니다. 앱을 빌드하는 데 필요한 SDK·빌드 
 
 ### macOS에서는 Intel과 Apple Silicon 모두 지원하나요?
 
-두 아키텍처용 빌드 경로는 준비했지만 macOS 빌드는 아직 공개하지 않았고 실제 Mac에서 검증하지도 않았습니다. 공개되더라도 Apple Developer ID 서명이 없어 처음 실행 때 한 번 마우스 오른쪽 클릭 → 열기가 필요합니다.
+두 아키텍처용 빌드 경로를 준비했고 Intel Mac(macOS 15)에서 빌드와 실행을 검증했습니다. Apple Silicon은 아직 실제 기기에서 검증하지 않았고, macOS 빌드는 아직 공개하지 않았습니다. 공개된 빌드에 Apple Developer ID 서명이 없으면 처음 실행 때 한 번 마우스 오른쪽 클릭 → 열기가 필요합니다.
 
 ### 폰에 별도 앱을 설치하나요?
 

@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>Telefonverbindung in einem einzigen Fenster.</strong></p>
   <p>Ein kleines, einfaches Desktop-Werkzeug, um ein Android-Telefon zu verbinden, ohne ein Terminal zu öffnen.</p>
-  <p>Läuft unter Windows. Ein macOS-Build wird vorbereitet.</p>
+  <p>Läuft unter Windows. Der macOS-Build wurde auf einem Intel-Mac geprüft und wird für die Veröffentlichung vorbereitet.</p>
 </div>
 
-> **Windows-Version verfügbar.** Laden Sie `adb-on-windows-x64.zip` aus den Releases herunter, entpacken Sie es und öffnen Sie `adb-on.exe`. Die Verbindung mit einem echten Telefon wurde über USB und WLAN geprüft. macOS-Builds werden noch nicht veröffentlicht.
+> **Windows-Version verfügbar.** Laden Sie `adb-on-windows-x64.zip` aus den Releases herunter, entpacken Sie es und öffnen Sie `adb-on.exe`. Die Verbindung mit einem echten Telefon wurde über USB und WLAN geprüft. Der macOS-Build wurde auf einem Intel-Mac gestartet und geprüft, ist aber noch nicht veröffentlicht.
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="Tatsächlicher Wartebildschirm von adb-on unter Windows vor der Verbindung"></p>
 
@@ -58,14 +58,14 @@ Offizieller Verteilungsort: [adb-on Downloads und Releases](https://github.com/c
 |---|---|---|
 |Windows x64|`adb-on.exe`|Verfügbar. Mit einem echten Telefon über USB und WLAN geprüft. Das Koppeln per Code wartet noch auf die Prüfung mit echtem Telefon.|
 |macOS Apple Silicon|`adb-on.app`|Noch nicht veröffentlicht. Build-Pfad vorbereitet, nicht auf einem echten Mac geprüft.|
-|macOS Intel|`adb-on.app`|Noch nicht veröffentlicht. Build-Pfad vorbereitet, nicht auf einem echten Mac geprüft.|
+|macOS Intel|`adb-on.app`|Noch nicht veröffentlicht. Build und Start auf einem Intel-Mac (macOS 15) geprüft.|
 
 - Es gibt kein Installationsprogramm. Entpacken Sie das Archiv, legen Sie die einzelne Datei `adb-on.exe` in einen beliebigen Ordner und starten Sie sie. Die Lizenzdateien im Zip-Archiv werden für die Ausführung der App nicht benötigt.
 - Die Windows-App benötigt weder WebView2 noch Node.js noch Java.
 - Die App-Sprache folgt zunächst der Sprache des PCs. In den Werkzeugeinstellungen können Sie zwischen English, 简体中文, 日本語, Español, 한국어, Deutsch und Français wechseln.
 - Wenn ADB bereits vorhanden ist, wird es wiederverwendet. Andernfalls bereitet die App nach Zustimmung zu den Nutzungsbedingungen das offizielle Google-Werkzeug vor. Für die erste Vorbereitung ist eine Internetverbindung erforderlich.
 - Der aktuelle Entwicklungs-Build ist keine Verteilung mit abgeschlossener offizieller Codesignatur und Beglaubigung. OS-Warnungen werden nicht automatisch aufgehoben, und Sicherheitseinstellungen werden nicht geändert.
-- Die angestrebte Mindestversion für macOS ist 12. Der tatsächliche Kompatibilitätsbereich wird nach nativer Prüfung festgelegt.
+- Die angestrebte Mindestversion für macOS ist 12. Der Start wurde auf einem Intel-Mac mit macOS 15 bestätigt; andere Versionen sind noch nicht bestätigt.
 - Native Unterstützung für Linux und Windows ARM wird derzeit nicht angeboten.
 
 Zu jedem Release werden die **SHA-256-Prüfsumme** der ausführbaren Datei und der Prüfungsumfang bereitgestellt. Lesen Sie die Release-Beschreibung, um Entwicklungs-Testversionen nicht mit offiziell unterstützten Versionen zu verwechseln.
@@ -239,7 +239,7 @@ Sie wird nicht automatisch weitergegeben. Windows und WSL können separate Entwi
 
 ### Werden unter macOS sowohl Intel als auch Apple Silicon unterstützt?
 
-Build-Pfade für beide Architekturen sind vorbereitet, aber es ist noch kein macOS-Build veröffentlicht und keiner auf einem echten Mac geprüft. Ein veröffentlichter Build wird keine Apple-Developer-ID-Signatur tragen, daher ist beim ersten Start einmalig Rechtsklick → Öffnen nötig.
+Build-Pfade für beide Architekturen sind vorbereitet; Build und Start wurden auf einem Intel-Mac (macOS 15) geprüft. Apple Silicon ist noch nicht auf einem echten Mac geprüft, und es ist noch kein macOS-Build veröffentlicht. Trägt ein veröffentlichter Build keine Apple-Developer-ID-Signatur, ist beim ersten Start einmalig Rechtsklick → Öffnen nötig.
 
 ### Wird eine separate App auf dem Telefon installiert?
 
