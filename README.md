@@ -64,7 +64,7 @@ Official distribution location: [adb-on downloads and releases](https://github.c
 - The Windows app does not require WebView2, Node.js, or Java.
 - The app language follows the PC language at first. You can switch among English, 简体中文, 日本語, Español, 한국어, Deutsch, and Français in Tool settings.
 - If ADB is already present, it is reused. If not, the app prepares Google's official tools after you accept the terms. An internet connection is required for the initial preparation.
-- The current development build is not a distribution that has completed public code signing or notarization. It does not automatically dismiss OS warnings or change security settings.
+- The Windows executable is not code-signed, so SmartScreen may show a warning the first time you run it. The app does not automatically dismiss OS warnings or change security settings.
 - The target minimum macOS version is 12. Launch has been confirmed on an Intel Mac running macOS 15; other versions are not yet confirmed.
 - Native support for Linux and Windows ARM is not currently provided.
 

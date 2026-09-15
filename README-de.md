@@ -64,7 +64,7 @@ Offizieller Verteilungsort: [adb-on Downloads und Releases](https://github.com/c
 - Die Windows-App benötigt weder WebView2 noch Node.js noch Java.
 - Die App-Sprache folgt zunächst der Sprache des PCs. In den Werkzeugeinstellungen können Sie zwischen English, 简体中文, 日本語, Español, 한국어, Deutsch und Français wechseln.
 - Wenn ADB bereits vorhanden ist, wird es wiederverwendet. Andernfalls bereitet die App nach Zustimmung zu den Nutzungsbedingungen das offizielle Google-Werkzeug vor. Für die erste Vorbereitung ist eine Internetverbindung erforderlich.
-- Der aktuelle Entwicklungs-Build ist keine Verteilung mit abgeschlossener offizieller Codesignatur und Beglaubigung. OS-Warnungen werden nicht automatisch aufgehoben, und Sicherheitseinstellungen werden nicht geändert.
+- Die Windows-Programmdatei ist nicht codesigniert, daher kann SmartScreen beim ersten Start eine Warnung anzeigen. Die App hebt OS-Warnungen nicht automatisch auf und ändert keine Sicherheitseinstellungen.
 - Die angestrebte Mindestversion für macOS ist 12. Der Start wurde auf einem Intel-Mac mit macOS 15 bestätigt; andere Versionen sind noch nicht bestätigt.
 - Native Unterstützung für Linux und Windows ARM wird derzeit nicht angeboten.
 

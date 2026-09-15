@@ -64,7 +64,7 @@ Emplacement de distribution officiel : [Téléchargements et versions d'adb-on](
 - L'application Windows ne nécessite ni WebView2, ni Node.js, ni Java.
 - La langue de l'application suit d'abord celle du PC. Dans les paramètres des outils, vous pouvez choisir entre English, 简体中文, 日本語, Español, 한국어, Deutsch et Français.
 - Si ADB est déjà présent, il est réutilisé. Sinon, l'application prépare l'outil officiel de Google après acceptation des conditions. Une connexion Internet est nécessaire pour la préparation initiale.
-- La version de développement actuelle n'est pas une distribution signée et notarisée par une autorité reconnue. Elle ne contourne pas automatiquement les avertissements du système et ne modifie pas les paramètres de sécurité.
+- L'exécutable Windows n'est pas signé, si bien que SmartScreen peut afficher un avertissement au premier lancement. L'application ne contourne pas automatiquement les avertissements du système et ne modifie pas les paramètres de sécurité.
 - La version minimale visée pour macOS est 12. Le lancement a été confirmé sur un Mac Intel sous macOS 15 ; les autres versions ne sont pas encore confirmées.
 - La prise en charge native de Linux et de Windows ARM n'est pas proposée actuellement.
 
