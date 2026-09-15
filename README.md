@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>Phone connection, in one window.</strong></p>
   <p>A small, simple desktop tool for connecting an Android phone without opening a terminal.</p>
-  <p>Runs on Windows. The macOS build has been verified on an Intel Mac and is being prepared for release.</p>
+  <p>Runs on Windows and macOS.</p>
 </div>
 
-> **Windows version available.** Download `adb-on-windows-x64.zip` from Releases, unzip it, and open `adb-on.exe`. Connection to a real phone has been verified over USB and Wi-Fi. The macOS build has been verified to run on an Intel Mac and is not published yet.
+> **Windows version available.** Download `adb-on-windows-x64.zip` from Releases, unzip it, and open `adb-on.exe`. Connection to a real phone has been verified over USB and Wi-Fi. macOS builds (Apple Silicon and Intel) are also available from Releases, signed with a Developer ID and notarized.
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="Actual connection waiting screen of adb-on running on Windows"></p>
 
@@ -57,8 +57,8 @@ Official distribution location: [adb-on downloads and releases](https://github.c
 |Platform|Provided As|Current Status|
 |---|---|---|
 |Windows x64|`adb-on.exe`|Available. Verified with a real phone over USB and Wi-Fi. Pairing with a code is still awaiting real-phone verification.|
-|macOS Apple Silicon|`adb-on.app`|Not published yet. Build path prepared, not verified on an actual Mac.|
-|macOS Intel|`adb-on.app`|Not published yet. Build and launch verified on an Intel Mac (macOS 15).|
+|macOS Apple Silicon|`adb-on.app`|Published. Developer ID signed and notarized. Not yet verified on an actual Apple Silicon Mac.|
+|macOS Intel|`adb-on.app`|Published. Developer ID signed and notarized. Build and launch verified on an Intel Mac (macOS 15).|
 
 - There is no installer. Unzip, put the single `adb-on.exe` in any folder, and run it. The license files in the zip are not needed to run the app.
 - The Windows app does not require WebView2, Node.js, or Java.
@@ -239,7 +239,7 @@ It is not passed through automatically. Windows and WSL may be separate developm
 
 ### Does macOS support both Intel and Apple Silicon?
 
-Build paths for both architectures are prepared, and build and launch have been verified on an Intel Mac (macOS 15). Apple Silicon has not yet been verified on an actual Mac, and no macOS build is published yet. If a published build does not carry an Apple Developer ID signature, the first launch will need right-click → Open, once.
+Build paths for both architectures are prepared, and build and launch have been verified on an Intel Mac (macOS 15). Apple Silicon has not yet been verified on an actual Mac. Both macOS builds are published, signed with an Apple Developer ID and notarized, so no extra step is needed on first launch.
 
 ### Do I need to install a separate app on the phone?
 

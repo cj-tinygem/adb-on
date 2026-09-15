@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>Telefonverbindung in einem einzigen Fenster.</strong></p>
   <p>Ein kleines, einfaches Desktop-Werkzeug, um ein Android-Telefon zu verbinden, ohne ein Terminal zu öffnen.</p>
-  <p>Läuft unter Windows. Der macOS-Build wurde auf einem Intel-Mac geprüft und wird für die Veröffentlichung vorbereitet.</p>
+  <p>Läuft unter Windows und macOS.</p>
 </div>
 
-> **Windows-Version verfügbar.** Laden Sie `adb-on-windows-x64.zip` aus den Releases herunter, entpacken Sie es und öffnen Sie `adb-on.exe`. Die Verbindung mit einem echten Telefon wurde über USB und WLAN geprüft. Der macOS-Build wurde auf einem Intel-Mac gestartet und geprüft, ist aber noch nicht veröffentlicht.
+> **Windows-Version verfügbar.** Laden Sie `adb-on-windows-x64.zip` aus den Releases herunter, entpacken Sie es und öffnen Sie `adb-on.exe`. Die Verbindung mit einem echten Telefon wurde über USB und WLAN geprüft. macOS-Builds (Apple Silicon und Intel) sind ebenfalls in den Releases verfügbar, mit Developer ID signiert und notarisiert.
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="Tatsächlicher Wartebildschirm von adb-on unter Windows vor der Verbindung"></p>
 
@@ -57,8 +57,8 @@ Offizieller Verteilungsort: [adb-on Downloads und Releases](https://github.com/c
 |Plattform|Bereitgestellte Form|Aktueller Status|
 |---|---|---|
 |Windows x64|`adb-on.exe`|Verfügbar. Mit einem echten Telefon über USB und WLAN geprüft. Das Koppeln per Code wartet noch auf die Prüfung mit echtem Telefon.|
-|macOS Apple Silicon|`adb-on.app`|Noch nicht veröffentlicht. Build-Pfad vorbereitet, nicht auf einem echten Mac geprüft.|
-|macOS Intel|`adb-on.app`|Noch nicht veröffentlicht. Build und Start auf einem Intel-Mac (macOS 15) geprüft.|
+|macOS Apple Silicon|`adb-on.app`|Veröffentlicht. Mit Developer ID signiert und notarisiert. Noch nicht auf einem echten Apple-Silicon-Mac geprüft.|
+|macOS Intel|`adb-on.app`|Veröffentlicht. Mit Developer ID signiert und notarisiert. Build und Start auf einem Intel-Mac (macOS 15) geprüft.|
 
 - Es gibt kein Installationsprogramm. Entpacken Sie das Archiv, legen Sie die einzelne Datei `adb-on.exe` in einen beliebigen Ordner und starten Sie sie. Die Lizenzdateien im Zip-Archiv werden für die Ausführung der App nicht benötigt.
 - Die Windows-App benötigt weder WebView2 noch Node.js noch Java.
@@ -239,7 +239,7 @@ Sie wird nicht automatisch weitergegeben. Windows und WSL können separate Entwi
 
 ### Werden unter macOS sowohl Intel als auch Apple Silicon unterstützt?
 
-Build-Pfade für beide Architekturen sind vorbereitet; Build und Start wurden auf einem Intel-Mac (macOS 15) geprüft. Apple Silicon ist noch nicht auf einem echten Mac geprüft, und es ist noch kein macOS-Build veröffentlicht. Trägt ein veröffentlichter Build keine Apple-Developer-ID-Signatur, ist beim ersten Start einmalig Rechtsklick → Öffnen nötig.
+Build-Pfade für beide Architekturen sind vorbereitet; Build und Start wurden auf einem Intel-Mac (macOS 15) geprüft. Apple Silicon ist noch nicht auf einem echten Mac geprüft. Beide macOS-Builds sind veröffentlicht, mit Apple Developer ID signiert und notarisiert, sodass beim ersten Start kein zusätzlicher Schritt nötig ist.
 
 ### Wird eine separate App auf dem Telefon installiert?
 

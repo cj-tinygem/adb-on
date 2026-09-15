@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>휴대폰 연결, 이 창 하나로.</strong></p>
   <p>터미널을 열지 않고 Android 폰을 연결하는 작고 간단한 데스크톱 도구.</p>
-  <p>Windows에서 동작합니다. macOS 빌드는 Intel Mac에서 검증했고 공개 준비 중입니다.</p>
+  <p>Windows와 macOS에서 동작합니다.</p>
 </div>
 
-> **Windows 버전을 사용할 수 있습니다.** 릴리스에서 `adb-on-windows-x64.zip`을 받아 압축을 풀고 `adb-on.exe`를 열면 됩니다. 실제 휴대폰과 USB·Wi-Fi 연결을 검증했습니다. macOS 빌드는 Intel Mac에서 실행을 검증했으며, 아직 공개하지 않았습니다.
+> **Windows 버전을 사용할 수 있습니다.** 릴리스에서 `adb-on-windows-x64.zip`을 받아 압축을 풀고 `adb-on.exe`를 열면 됩니다. 실제 휴대폰과 USB·Wi-Fi 연결을 검증했습니다. macOS 빌드(Apple Silicon·Intel)도 릴리스에서 받을 수 있으며, Developer ID 서명과 공증을 마쳤습니다.
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="Windows에서 실행한 adb-on의 실제 연결 대기 화면"></p>
 
@@ -57,8 +57,8 @@ Android 앱을 만들었는데, 내 폰에 연결하는 순간 막혔나요?
 |플랫폼|제공 형태|현재 상태|
 |---|---|---|
 |Windows x64|`adb-on.exe`|사용 가능. 실제 휴대폰과 USB·Wi-Fi 연결 검증 완료. 코드 페어링은 실폰 검증 대기.|
-|macOS Apple Silicon|`adb-on.app`|미공개. 빌드 경로는 준비됐고 실제 Mac 검증은 안 됨.|
-|macOS Intel|`adb-on.app`|미공개. Intel Mac(macOS 15)에서 빌드와 실행을 검증함.|
+|macOS Apple Silicon|`adb-on.app`|공개. Developer ID 서명·공증 완료. 실제 Apple Silicon Mac에서는 아직 검증하지 않음.|
+|macOS Intel|`adb-on.app`|공개. Developer ID 서명·공증 완료. Intel Mac(macOS 15)에서 빌드와 실행을 검증함.|
 
 - 설치 프로그램이 없습니다. 압축을 풀고 `adb-on.exe` 하나를 원하는 폴더에 두고 실행하면 됩니다. 함께 들어 있는 라이선스 파일은 실행에 필요하지 않습니다.
 - Windows 앱은 WebView2·Node.js·Java를 요구하지 않습니다.
@@ -239,7 +239,7 @@ adb-on은 연결 도구입니다. 앱을 빌드하는 데 필요한 SDK·빌드 
 
 ### macOS에서는 Intel과 Apple Silicon 모두 지원하나요?
 
-두 아키텍처용 빌드 경로를 준비했고 Intel Mac(macOS 15)에서 빌드와 실행을 검증했습니다. Apple Silicon은 아직 실제 기기에서 검증하지 않았고, macOS 빌드는 아직 공개하지 않았습니다. 공개된 빌드에 Apple Developer ID 서명이 없으면 처음 실행 때 한 번 마우스 오른쪽 클릭 → 열기가 필요합니다.
+두 아키텍처용 빌드 경로를 준비했고 Intel Mac(macOS 15)에서 빌드와 실행을 검증했습니다. Apple Silicon은 아직 실제 기기에서 검증하지 않았습니다. macOS 빌드는 두 아키텍처 모두 공개했고 Apple Developer ID 서명과 공증을 마쳐 처음 실행 때 별도 절차가 필요 없습니다.
 
 ### 폰에 별도 앱을 설치하나요?
 

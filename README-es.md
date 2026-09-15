@@ -7,10 +7,10 @@
   <h1>adb-on</h1>
   <p><strong>Conecta tu teléfono desde una sola ventana.</strong></p>
   <p>Una herramienta de escritorio pequeña y sencilla para conectar un teléfono Android sin abrir la terminal.</p>
-  <p>Funciona en Windows. La compilación para macOS se ha verificado en un Mac Intel y se está preparando para su publicación.</p>
+  <p>Funciona en Windows y macOS.</p>
 </div>
 
-> **Versión para Windows disponible.** Descarga `adb-on-windows-x64.zip` desde Releases, descomprímelo y abre `adb-on.exe`. La conexión con un teléfono real se ha verificado por USB y Wi-Fi. La compilación para macOS se ha verificado en un Mac Intel y aún no se publica.
+> **Versión para Windows disponible.** Descarga `adb-on-windows-x64.zip` desde Releases, descomprímelo y abre `adb-on.exe`. La conexión con un teléfono real se ha verificado por USB y Wi-Fi. Las compilaciones para macOS (Apple Silicon e Intel) también están disponibles en Releases, firmadas con Developer ID y notarizadas.
 
 <p align="center"><img src="docs/assets/windows.png" width="400" alt="Pantalla real de espera de conexión de adb-on ejecutándose en Windows"></p>
 
@@ -57,8 +57,8 @@ Ubicación oficial de distribución: [Descargas y versiones de adb-on](https://g
 |Plataforma|Formato|Estado actual|
 |---|---|---|
 |Windows x64|`adb-on.exe`|Disponible. Verificado con un teléfono real por USB y Wi-Fi. El emparejamiento con código aún espera verificación con teléfono real.|
-|macOS Apple Silicon|`adb-on.app`|Aún no publicado. Ruta de compilación preparada, sin verificar en un Mac real.|
-|macOS Intel|`adb-on.app`|Aún no publicado. Compilación y arranque verificados en un Mac Intel (macOS 15).|
+|macOS Apple Silicon|`adb-on.app`|Publicado. Firmado con Developer ID y notarizado. Aún sin verificar en un Mac Apple Silicon real.|
+|macOS Intel|`adb-on.app`|Publicado. Firmado con Developer ID y notarizado. Compilación y arranque verificados en un Mac Intel (macOS 15).|
 
 - No hay instalador. Descomprime el archivo, coloca el único `adb-on.exe` en cualquier carpeta y ejecútalo. Los archivos de licencia del zip no son necesarios para ejecutar la aplicación.
 - La aplicación de Windows no requiere WebView2, Node.js ni Java.
@@ -239,7 +239,7 @@ No se transfiere automáticamente. Windows y WSL pueden ser entornos de desarrol
 
 ### ¿En macOS se admiten tanto Intel como Apple Silicon?
 
-Las rutas de compilación para ambas arquitecturas están preparadas, y la compilación y el arranque se han verificado en un Mac Intel (macOS 15). Apple Silicon aún no se ha verificado en un Mac real, y todavía no se publica ninguna compilación para macOS. Si una compilación publicada no lleva firma de Apple Developer ID, la primera apertura necesitará clic derecho → Abrir, una sola vez.
+Las rutas de compilación para ambas arquitecturas están preparadas, y la compilación y el arranque se han verificado en un Mac Intel (macOS 15). Apple Silicon aún no se ha verificado en un Mac real. Ambas compilaciones para macOS están publicadas, firmadas con Apple Developer ID y notarizadas, por lo que la primera apertura no requiere ningún paso adicional.
 
 ### ¿Se instala alguna aplicación adicional en el teléfono?
 
