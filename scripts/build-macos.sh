@@ -18,6 +18,11 @@ export MACOSX_DEPLOYMENT_TARGET=12.0
 export CARGO_BUILD_JOBS=1
 export CARGO_INCREMENTAL=0
 export SLINT_STYLE=fluent-light
+# 배포 바이너리에 빌드 머신의 경로(사용자 홈, cargo 레지스트리, 임시 target)가 남지 않도록
+# Windows 스크립트와 같은 세 접두어를 지운다. strip은 디버그 심볼만 제거하고 코드에
+# 포함된 경로 문자열은 남기므로 remap이 필요하다.
+cargo_home="${CARGO_HOME:-$HOME/.cargo}"
+export RUSTFLAGS="${RUSTFLAGS:-} --remap-path-prefix=${cargo_home}=/cargo --remap-path-prefix=${CARGO_TARGET_DIR}=/target --remap-path-prefix=${PWD}=/adb-on"
 cargo build --release --locked
 # 앱 버전은 Cargo.toml 하나만 소유한다. `cargo pkgid`는 `…#0.1.0` 또는 `…@0.1.0` 형식이다.
 version="$(cargo pkgid --locked | sed -E 's/.*[#@]//')"
@@ -72,5 +77,6 @@ else
 fi
 archive="dist/adb-on-macos-$(uname -m).zip"
 ditto -c -k --sequesterRsrc --keepParent "$app" "$archive"
-shasum -a 256 "$archive" > "$archive.sha256"
+# sha256 파일에는 경로 없이 파일명만 적어, 다운로드한 곳에서 `shasum -c`가 바로 통과하게 한다.
+(cd "$(dirname "$archive")" && shasum -a 256 "$(basename "$archive")" > "$(basename "$archive").sha256")
 echo "산출물: $archive"
