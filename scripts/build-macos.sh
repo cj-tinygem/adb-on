@@ -51,6 +51,21 @@ plutil -lint "$app/Contents/Info.plist"
 if [[ -n "${APPLE_SIGNING_IDENTITY:-}" ]]; then
   codesign --force --options runtime --timestamp --sign "$APPLE_SIGNING_IDENTITY" "$app"
   codesign --verify --deep --strict "$app"
+  # Developer ID 서명만으로는 Gatekeeper를 통과하지 못하므로 공증까지 마쳐야 배포본이다.
+  # `xcrun notarytool store-credentials <프로필>`로 저장한 keychain 프로필 이름을
+  # APPLE_NOTARY_PROFILE에 주면 제출·대기·staple을 이어서 수행한다.
+  if [[ -n "${APPLE_NOTARY_PROFILE:-}" ]]; then
+    notary_dir="$(mktemp -d)"
+    ditto -c -k --keepParent "$app" "$notary_dir/adb-on-notary.zip"
+    xcrun notarytool submit "$notary_dir/adb-on-notary.zip" \
+      --keychain-profile "$APPLE_NOTARY_PROFILE" --wait
+    xcrun stapler staple "$app"
+    xcrun stapler validate "$app"
+    spctl --assess --type execute --verbose=2 "$app"
+    rm -rf "$notary_dir"
+  else
+    echo 'Developer ID 서명은 했지만 공증하지 않았습니다. APPLE_NOTARY_PROFILE을 설정하면 공증·staple까지 수행합니다.'
+  fi
 else
   codesign --force --sign - "$app"
   echo '개발용 임시 서명입니다. Developer ID 서명·공증과 실제 기기 검증은 별도입니다.'
