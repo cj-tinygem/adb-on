@@ -57,7 +57,7 @@ Offizieller Verteilungsort: [adb-on Downloads und Releases](https://github.com/c
 |Plattform|Bereitgestellte Form|Aktueller Status|
 |---|---|---|
 |Windows x64|`adb-on.exe`|Verfügbar. Mit einem echten Telefon über USB und WLAN geprüft. Das Koppeln per Code wartet noch auf die Prüfung mit echtem Telefon.|
-|macOS Apple Silicon|`adb-on.app`|Veröffentlicht. Mit Developer ID signiert und notarisiert. Noch nicht auf einem echten Apple-Silicon-Mac geprüft.|
+|macOS Apple Silicon|`adb-on.app`|Veröffentlicht. Mit Developer ID signiert und notarisiert.|
 |macOS Intel|`adb-on.app`|Veröffentlicht. Mit Developer ID signiert und notarisiert. Build und Start auf einem Intel-Mac (macOS 15) geprüft.|
 
 - Es gibt kein Installationsprogramm. Entpacken Sie das Archiv, legen Sie die einzelne Datei `adb-on.exe` in einen beliebigen Ordner und starten Sie sie. Die Lizenzdateien im Zip-Archiv werden für die Ausführung der App nicht benötigt.
@@ -239,7 +239,7 @@ Sie wird nicht automatisch weitergegeben. Windows und WSL können separate Entwi
 
 ### Werden unter macOS sowohl Intel als auch Apple Silicon unterstützt?
 
-Build-Pfade für beide Architekturen sind vorbereitet; Build und Start wurden auf einem Intel-Mac (macOS 15) geprüft. Apple Silicon ist noch nicht auf einem echten Mac geprüft. Beide macOS-Builds sind veröffentlicht, mit Apple Developer ID signiert und notarisiert, sodass beim ersten Start kein zusätzlicher Schritt nötig ist.
+Build-Pfade für beide Architekturen sind vorbereitet; Build und Start wurden auf einem Intel-Mac (macOS 15) geprüft. Beide macOS-Builds sind veröffentlicht, mit Apple Developer ID signiert und notarisiert, sodass beim ersten Start kein zusätzlicher Schritt nötig ist.
 
 ### Wird eine separate App auf dem Telefon installiert?
 

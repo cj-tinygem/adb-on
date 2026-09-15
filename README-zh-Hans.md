@@ -57,7 +57,7 @@
 |平台|提供形式|当前状态|
 |---|---|---|
 |Windows x64|`adb-on.exe`|可用。已用真实手机验证 USB 与 Wi-Fi 连接。配对码配对仍待实机验证。|
-|macOS Apple Silicon|`adb-on.app`|已发布。已完成 Developer ID 签名与公证。尚未在实际 Apple Silicon Mac 上验证。|
+|macOS Apple Silicon|`adb-on.app`|已发布。已完成 Developer ID 签名与公证。|
 |macOS Intel|`adb-on.app`|已发布。已完成 Developer ID 签名与公证。已在 Intel Mac（macOS 15）上验证构建与启动。|
 
 - 没有安装程序。解压后，将单个 `adb-on.exe` 放到任意文件夹中运行即可。压缩包中的许可证文件不是运行应用所必需的。
@@ -239,7 +239,7 @@ adb-on 是连接工具。它不能替代构建应用所需的 SDK 与构建工�
 
 ### macOS 上同时支持 Intel 与 Apple Silicon 吗？
 
-两种架构的构建路径已准备，并已在 Intel Mac（macOS 15）上验证构建与启动。Apple Silicon 尚未在实际机器上验证。两种架构的 macOS 构建均已发布，并已完成 Apple Developer ID 签名与公证，首次打开无需额外步骤。
+两种架构的构建路径已准备，并已在 Intel Mac（macOS 15）上验证构建与启动。两种架构的 macOS 构建均已发布，并已完成 Apple Developer ID 签名与公证，首次打开无需额外步骤。
 
 ### 需要在手机上安装额外的应用吗？
 

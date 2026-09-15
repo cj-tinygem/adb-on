@@ -57,7 +57,7 @@ Ubicación oficial de distribución: [Descargas y versiones de adb-on](https://g
 |Plataforma|Formato|Estado actual|
 |---|---|---|
 |Windows x64|`adb-on.exe`|Disponible. Verificado con un teléfono real por USB y Wi-Fi. El emparejamiento con código aún espera verificación con teléfono real.|
-|macOS Apple Silicon|`adb-on.app`|Publicado. Firmado con Developer ID y notarizado. Aún sin verificar en un Mac Apple Silicon real.|
+|macOS Apple Silicon|`adb-on.app`|Publicado. Firmado con Developer ID y notarizado.|
 |macOS Intel|`adb-on.app`|Publicado. Firmado con Developer ID y notarizado. Compilación y arranque verificados en un Mac Intel (macOS 15).|
 
 - No hay instalador. Descomprime el archivo, coloca el único `adb-on.exe` en cualquier carpeta y ejecútalo. Los archivos de licencia del zip no son necesarios para ejecutar la aplicación.
@@ -239,7 +239,7 @@ No se transfiere automáticamente. Windows y WSL pueden ser entornos de desarrol
 
 ### ¿En macOS se admiten tanto Intel como Apple Silicon?
 
-Las rutas de compilación para ambas arquitecturas están preparadas, y la compilación y el arranque se han verificado en un Mac Intel (macOS 15). Apple Silicon aún no se ha verificado en un Mac real. Ambas compilaciones para macOS están publicadas, firmadas con Apple Developer ID y notarizadas, por lo que la primera apertura no requiere ningún paso adicional.
+Las rutas de compilación para ambas arquitecturas están preparadas, y la compilación y el arranque se han verificado en un Mac Intel (macOS 15). Ambas compilaciones para macOS están publicadas, firmadas con Apple Developer ID y notarizadas, por lo que la primera apertura no requiere ningún paso adicional.
 
 ### ¿Se instala alguna aplicación adicional en el teléfono?
 

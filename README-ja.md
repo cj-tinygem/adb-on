@@ -57,7 +57,7 @@ Android アプリを作ったのに、自分のスマートフォンに接続す
 |プラットフォーム|提供形態|現在の状態|
 |---|---|---|
 |Windows x64|`adb-on.exe`|利用可能。実機との USB・Wi-Fi 接続を検証済み。コードによるペアリングは実機検証待ち。|
-|macOS Apple Silicon|`adb-on.app`|公開済み。Developer ID 署名・公証済み。実際の Apple Silicon Mac では未検証。|
+|macOS Apple Silicon|`adb-on.app`|公開済み。Developer ID 署名・公証済み。|
 |macOS Intel|`adb-on.app`|公開済み。Developer ID 署名・公証済み。Intel Mac (macOS 15) でビルドと起動を検証済み。|
 
 - インストーラーはありません。zip を展開し、`adb-on.exe` 1 つを任意のフォルダーに置いて実行してください。zip 内のライセンスファイルはアプリの実行には必要ありません。
@@ -239,7 +239,7 @@ adb-on は接続ツールです。アプリのビルドに必要な SDK・ビル
 
 ### macOS では Intel と Apple Silicon の両方に対応していますか？
 
-両アーキテクチャ向けのビルド経路を準備し、Intel Mac (macOS 15) でビルドと起動を検証済みです。Apple Silicon は実機で未検証です。macOS ビルドは両アーキテクチャとも公開済みで、Apple Developer ID 署名と公証を済ませているため、初回起動時に追加の手順は不要です。
+両アーキテクチャ向けのビルド経路を準備し、Intel Mac (macOS 15) でビルドと起動を検証済みです。macOS ビルドは両アーキテクチャとも公開済みで、Apple Developer ID 署名と公証を済ませているため、初回起動時に追加の手順は不要です。
 
 ### スマートフォンに別のアプリをインストールしますか？
 
