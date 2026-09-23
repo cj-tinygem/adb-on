@@ -123,6 +123,15 @@ pub fn services(text: &str) -> Vec<Service> {
         })
         .collect()
 }
+pub fn wireless_address(current: &str, manual: bool, services: &[Service], pairing: bool) -> String {
+    if manual { return current.to_string(); }
+    let candidates: Vec<_> = services.iter().filter(|s| s.pairing == pairing).collect();
+    // Keep an explicitly selected discovered phone, following its latest advertised port.
+    let selected = current.parse::<SocketAddr>().ok().and_then(|address|
+        candidates.iter().find(|s| s.address.ip() == address.ip()));
+    selected.or_else(|| (candidates.len() == 1).then(|| &candidates[0]))
+        .map(|s| s.address.to_string()).unwrap_or_default()
+}
 /// Whether `device` (an `adb devices -l` row) is the phone behind this service: either ADB
 /// connected it by `IP:port` or auto-connected it by its mDNS name, or its USB serial matches.
 pub fn same_phone(service: &Service, device: &Device) -> bool {
@@ -143,6 +152,20 @@ pub fn pairing_code(code: &str) -> Result<String, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn wireless_address_separates_automatic_and_manual_modes() {
+        let old = "192.168.1.2:33333";
+        let found = services("phone _adb-tls-pairing._tcp 192.168.1.3:44444\n");
+        assert_eq!(wireless_address(old, false, &found, true), "192.168.1.3:44444");
+        assert_eq!(wireless_address(old, false, &[], true), "");
+        assert_eq!(wireless_address(old, true, &found, true), old);
+        assert_eq!(wireless_address(old, true, &[], true), old);
+        let mut multiple = found.clone();
+        multiple.extend(services("other _adb-tls-pairing._tcp 192.168.1.4:55555\n"));
+        assert_eq!(wireless_address(old, false, &multiple, true), "");
+        assert_eq!(wireless_address("192.168.1.3:33333", false, &multiple, true), "192.168.1.3:44444");
+        assert_eq!(wireless_address(old, false, &found, false), "");
+    }
     #[test]
     fn parses_authorized_and_pending_without_treating_header_as_device() {
         let rows = devices(

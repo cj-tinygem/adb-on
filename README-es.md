@@ -119,7 +119,7 @@ Selecciona **Ajustes → Opciones para desarrolladores → Depuración inalámbr
 
 Pulsa la dirección de vinculación detectada, introduce el **código de 6 dígitos** que aparece en el teléfono y pulsa **Vincular**. Si solo se detecta una dirección, se rellena automáticamente. Si aparecen varios teléfonos, compárala con la dirección que muestra la pantalla de tu teléfono.
 
-La detección automática continúa durante un tiempo. Si no encuentra nada, puedes introducir manualmente la **dirección IP:puerto** que muestra el teléfono.
+En modo automático, los campos de dirección están bloqueados y la búsqueda continúa mientras esta pantalla esté abierta. Activa **Introducir direcciones manualmente** para pausar la búsqueda e introducir las direcciones del teléfono. Al desactivarlo, se borran las direcciones manuales y se reanuda la búsqueda.
 
 ### 4. Comprueba el estado de la conexión
 

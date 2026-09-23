@@ -168,6 +168,8 @@ export component AppWindow inherits Window {
     in property <[ServiceRow]> pairing-phones;  // mDNS 페어링 서비스(휴대폰이 페어링 화면을 열어 둔 상태)
     in-out property <string> pairing-address;
     in-out property <string> connection-address;
+    in-out property <string> pairing-code;
+    in-out property <bool> manual-addresses: false;
     in-out property <int> page: 0;
     in-out property <int> guide-step: 0;
     in-out property <int> wireless-step: 0;
@@ -193,6 +195,7 @@ export component AppWindow inherits Window {
     callback refresh();
     callback discover();
     callback wireless-page(bool);
+    callback manual-addresses-changed(bool);
     callback pair(string, string);
     callback connect(string);
     callback disconnect(string);
@@ -204,6 +207,11 @@ export component AppWindow inherits Window {
     // 준비가 끝나 앱이 준비한 도구가 선택되면 약관 체크를 풀어 두 번 누를 일이 없게 한다.
     changed adb-kind => { if root.adb-kind == 1 { root.consented = false; } }
     changed page => { root.wireless-page(root.page == 1); }
+    changed manual-addresses => {
+        root.pairing-code = "";
+        if !root.manual-addresses { root.pairing-address = ""; root.connection-address = ""; }
+        root.manual-addresses-changed(root.manual-addresses);
+    }
     changed notice => { if root.notice == "" { root.dismissed = ""; } }
     function go(target: int) {
         root.dismissed = root.notice;
@@ -331,13 +339,15 @@ export component AppWindow inherits Window {
                     }
                     Paragraph { width: root.column-width - 40px; text: @tr("Android 11 이상에서 됩니다. PC와 폰을 같은 Wi-Fi에 연결하고, 휴대폰의 설정 → 개발자 옵션 → 무선 디버깅을 켜 주세요."); }
                     Paragraph { width: root.column-width - 40px; text: @tr("페어링은 이 PC를 휴대폰에 처음 한 번 등록하는 절차이고, 연결은 등록된 PC가 실제로 붙는 절차예요. 전에 이 PC와 페어링했다면 연결만 하면 돼요."); }
+                    CheckBox { text: @tr("주소 직접 입력"); checked <=> root.manual-addresses; enabled: !root.busy; }
+                    Paragraph { width: root.column-width - 40px; text: root.manual-addresses ? @tr("자동 검색이 꺼져 있어요. 휴대폰에 표시된 주소를 직접 입력하세요.") : @tr("자동으로 찾은 휴대폰의 주소를 사용해요. 찾지 못하면 ‘주소 직접 입력’을 켜세요."); }
                     if root.server-notice != "": Paragraph { width: root.column-width - 40px; text: root.server-notice; color: Theme.danger; }
-                    if root.discovery-notice != "": Paragraph { width: root.column-width - 40px; text: root.discovery-notice; color: Theme.danger; }
-                    if root.paired-ip != "": Paragraph { width: root.column-width - 40px; text: @tr("{} · 페어링 완료, 연결 대기 중이에요. 자동으로 연결되지 않으면 휴대폰에서 한 화면 뒤로 가서 ‘IP 주소 및 포트’를 아래 ‘2. 연결’에 입력해 주세요.", root.paired-ip); color: Theme.accent; }
-                    if root.searched && root.found-phones.length == 0 && root.pairing-phones.length == 0 && !root.busy: Paragraph { width: root.column-width - 40px; text: @tr("같은 Wi-Fi에서 무선 디버깅이 켜진 휴대폰을 찾지 못했어요. 휴대폰에 표시된 주소를 직접 입력해도 돼요."); font-size: 13px; }
+                    if !root.manual-addresses && root.discovery-notice != "": Paragraph { width: root.column-width - 40px; text: root.discovery-notice; color: Theme.danger; }
+                    if root.paired-ip != "": Paragraph { width: root.column-width - 40px; text: root.manual-addresses ? @tr("{} · 페어링 완료. 휴대폰에서 한 화면 뒤로 가서 ‘IP 주소 및 포트’를 아래 ‘2. 연결’에 입력해 주세요.", root.paired-ip) : @tr("{} · 페어링 완료, 연결 주소를 찾고 있어요. 찾지 못하면 ‘주소 직접 입력’을 켜고 연결 주소를 넣으세요.", root.paired-ip); color: Theme.accent; }
+                    if !root.manual-addresses && root.searched && root.found-phones.length == 0 && root.pairing-phones.length == 0 && !root.busy: Paragraph { width: root.column-width - 40px; text: @tr("같은 Wi-Fi에서 무선 디버깅이 켜진 휴대폰을 찾지 못했어요. 휴대폰에 표시된 주소를 직접 입력해도 돼요."); font-size: 13px; }
                     // 같은 Wi-Fi에서 무선 디버깅이 켜진 휴대폰을 찾았을 때: 이미 페어링된 PC라면 여기서 한 번에 붙는다.
                     // 카드는 하나, 휴대폰마다 버튼 하나. 이미 연결된 휴대폰은 '연결됨'으로 잠근다.
-                    if root.found-phones.length > 0: Card {
+                    if !root.manual-addresses && root.found-phones.length > 0: Card {
                         VerticalBox {
                             padding: 16px;
                             spacing: 10px;
@@ -348,7 +358,7 @@ export component AppWindow inherits Window {
                                 primary: !service.connected;
                                 tinted: service.connected;
                                 enabled: root.ready && !root.busy && !service.connected;
-                                clicked => { root.connect(service.address); }
+                                clicked => { root.connection-address = service.address; root.connect(service.address); }
                             }
                         }
                     }
@@ -357,16 +367,16 @@ export component AppWindow inherits Window {
                             padding: 16px;
                             spacing: 10px;
                             Heading { width: root.column-width - 72px; text: @tr("1. 페어링 · 처음 한 번"); font-size: 18px; }
-                            Paragraph { width: root.column-width - 72px; text: @tr("휴대폰에서 ‘페어링 코드로 기기 페어링’을 누르고, 화면에 보이는 주소와 숫자 6자리를 넣으세요. 처음 한 번만 필요해요."); font-size: 13px; }
-                            for service in root.pairing-phones: AppButton {
+                            Paragraph { width: root.column-width - 72px; text: root.manual-addresses ? @tr("휴대폰에서 ‘페어링 코드로 기기 페어링’을 누르고, 화면에 보이는 주소와 숫자 6자리를 넣으세요. 처음 한 번만 필요해요.") : @tr("휴대폰에서 페어링 코드 화면을 열고, 감지된 주소를 선택한 뒤 숫자 6자리를 입력하세요."); font-size: 13px; }
+                            for service in root.manual-addresses ? [] : root.pairing-phones: AppButton {
                                 text: @tr("페어링 주소 · {}", service.address);
                                 tinted: true;
                                 enabled: !root.busy;
-                                clicked => { pair-address.text = service.address; }
+                                clicked => { if pair-address.text != service.address { root.pairing-code = ""; } pair-address.text = service.address; }
                             }
-                            pair-address := LineEdit { text <=> root.pairing-address; placeholder-text: @tr("페어링 주소 · 예: 192.168.1.5:37123"); enabled: !root.busy; }
-                            code := LineEdit { placeholder-text: @tr("휴대폰의 숫자 6자리"); input-type: password; enabled: !root.busy; accepted => { if !root.busy { root.pair(pair-address.text, code.text); code.text = ""; } } }
-                            AppButton { text: @tr("페어링하기"); enabled: root.ready && !root.busy; primary: true; clicked => { root.pair(pair-address.text, code.text); code.text = ""; } }
+                            pair-address := LineEdit { text <=> root.pairing-address; placeholder-text: @tr("페어링 주소 · 예: 192.168.1.5:37123"); enabled: root.manual-addresses && !root.busy; }
+                            code := LineEdit { text <=> root.pairing-code; placeholder-text: @tr("휴대폰의 숫자 6자리"); input-type: password; enabled: !root.busy && root.pairing-address != ""; accepted => { if !root.busy && root.pairing-address != "" { root.pair(pair-address.text, code.text); code.text = ""; } } }
+                            AppButton { text: @tr("페어링하기"); enabled: root.ready && !root.busy && root.pairing-address != "" && root.pairing-code != ""; primary: true; clicked => { root.pair(pair-address.text, code.text); code.text = ""; } }
                         }
                     }
                     Card {
@@ -374,12 +384,12 @@ export component AppWindow inherits Window {
                             padding: 16px;
                             spacing: 10px;
                             Heading { width: root.column-width - 72px; text: @tr("2. 연결 · 페어링된 PC에서"); font-size: 18px; }
-                            Paragraph { width: root.column-width - 72px; text: @tr("휴대폰의 무선 디버깅 화면 위쪽에 있는 ‘IP 주소 및 포트’를 넣으세요. 페어링 주소와 포트 번호가 달라요. 위에 찾은 휴대폰이 보이면 그 버튼을 누르는 것과 같아요."); font-size: 13px; }
-                            connect-address := LineEdit { text <=> root.connection-address; placeholder-text: @tr("연결 주소 · 예: 192.168.1.5:39511"); enabled: !root.busy; accepted => { if !root.busy { root.connect(self.text); } } }
-                            AppButton { text: @tr("연결하기"); tinted: true; enabled: root.ready && !root.busy; clicked => { root.connect(connect-address.text); } }
+                            Paragraph { width: root.column-width - 72px; text: root.manual-addresses ? @tr("휴대폰의 무선 디버깅 화면 위쪽에 있는 ‘IP 주소 및 포트’를 넣으세요. 페어링 주소와 포트 번호가 달라요. 위에 찾은 휴대폰이 보이면 그 버튼을 누르는 것과 같아요.") : @tr("연결할 휴대폰을 위 목록에서 선택하세요."); font-size: 13px; }
+                            connect-address := LineEdit { text <=> root.connection-address; placeholder-text: @tr("연결 주소 · 예: 192.168.1.5:39511"); enabled: root.manual-addresses && !root.busy; accepted => { if !root.busy { root.connect(self.text); } } }
+                            AppButton { text: @tr("연결하기"); tinted: true; enabled: root.ready && !root.busy && root.connection-address != ""; clicked => { root.connect(connect-address.text); } }
                         }
                     }
-                    AppButton { text: @tr("주변 기기 다시 찾기"); enabled: root.ready && !root.busy; clicked => { root.discover(); } }
+                    AppButton { text: @tr("주변 기기 다시 찾기"); enabled: root.ready && !root.busy && !root.manual-addresses; clicked => { root.discover(); } }
                     Paragraph { width: root.column-width - 40px; text: @tr("찾지 못해도 주소를 직접 입력하면 돼요. 회사·학교·게스트 Wi-Fi는 기기끼리 통신을 막을 수 있어요. 그때는 USB로 연결해 주세요."); font-size: 13px; }
                 }
                 if root.page == 2: VerticalBox {

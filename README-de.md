@@ -119,7 +119,7 @@ Wählen Sie **Einstellungen → Entwickleroptionen → Debugging über WLAN → 
 
 Klicken Sie auf die gefundene Kopplungsadresse, geben Sie die am Telefon angezeigte **6-stellige Zahl** ein und klicken Sie auf **Koppeln**. Wird nur eine Adresse gefunden, wird sie automatisch eingetragen. Wenn mehrere Telefone angezeigt werden, vergleichen Sie mit der Adresse auf dem Bildschirm Ihres Telefons.
 
-Die automatische Erkennung läuft eine Weile weiter. Auch wenn nichts gefunden wird, können Sie die am Telefon angezeigte **IP-Adresse:Port** direkt eingeben.
+Im automatischen Modus sind die Adressfelder gesperrt; die Suche läuft weiter, solange dieser Bildschirm geöffnet ist. Aktivieren Sie **Adressen manuell eingeben**, um die Suche anzuhalten und die Adressen vom Telefon einzugeben. Beim Ausschalten werden manuelle Adressen gelöscht und die Suche fortgesetzt.
 
 ### 4. Verbindungsstatus prüfen
 

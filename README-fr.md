@@ -119,7 +119,7 @@ Sélectionnez **Paramètres → Options pour les développeurs → Débogage san
 
 Cliquez sur l'adresse d'association découverte, saisissez les **6 chiffres** affichés sur le téléphone, puis cliquez sur **Associer**. Si une seule adresse est découverte, elle est remplie automatiquement. Si plusieurs téléphones apparaissent, comparez avec l'adresse affichée sur l'écran de votre téléphone.
 
-La découverte automatique se poursuit pendant un moment. Si elle n'aboutit pas, vous pouvez saisir directement l'**adresse IP:port** affichée sur le téléphone.
+En mode automatique, les champs d’adresse sont verrouillés et la recherche continue tant que cet écran est ouvert. Activez **Saisir les adresses manuellement** pour suspendre la recherche et saisir les adresses du téléphone. La désactivation efface les adresses manuelles et relance la recherche.
 
 ### 4. Vérifiez l'état de la connexion
 

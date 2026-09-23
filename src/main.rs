@@ -127,7 +127,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 ui.set_searched(view.searched);
                 ui.set_discovery_notice(view.discovery_notice.into());
                 ui.set_server_notice(view.server_notice.into());
-                if !view.paired_ip.is_empty() && ui.get_paired_ip().as_str() != view.paired_ip {
+                if ui.get_manual_addresses() && !view.paired_ip.is_empty() && ui.get_paired_ip().as_str() != view.paired_ip {
                     let host = if view.paired_ip.contains(':') { format!("[{}]", view.paired_ip) } else { view.paired_ip.clone() };
                     ui.set_connection_address(format!("{host}:").into());
                 }
@@ -157,9 +157,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     }
                 };
                 let (pairing, found): (Vec<_>, Vec<_>) = view.services.iter().partition(|s| s.pairing);
-                if pairing.len() == 1 && ui.get_pairing_address().is_empty() {
-                    ui.set_pairing_address(pairing[0].address.to_string().into());
+                let pair_address = model::wireless_address(
+                    ui.get_pairing_address().as_str(), ui.get_manual_addresses(), &view.services, true,
+                );
+                let connect_address = model::wireless_address(
+                    ui.get_connection_address().as_str(), ui.get_manual_addresses(), &view.services, false,
+                );
+                if ui.get_pairing_address().as_str() != pair_address {
+                    ui.set_pairing_code("".into());
+                    ui.set_pairing_address(pair_address.into());
                 }
+                if ui.get_connection_address().as_str() != connect_address { ui.set_connection_address(connect_address.into()); }
                 ui.set_found_phones(ModelRc::from(Rc::new(VecModel::from(found.iter().map(|s| row(s)).collect::<Vec<_>>()))));
                 ui.set_pairing_phones(ModelRc::from(Rc::new(VecModel::from(pairing.iter().map(|s| row(s)).collect::<Vec<_>>()))));
                 ui.set_devices(ModelRc::from(Rc::new(VecModel::from(
@@ -188,6 +196,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     {
         let sender = sender.clone();
         ui.on_wireless_page(move |active| { let _ = sender.try_send(Action::WirelessPage(active)); });
+    }
+    {
+        let sender = sender.clone();
+        ui.on_manual_addresses_changed(move |manual| { let _ = sender.try_send(Action::ManualAddresses(manual)); });
     }
     let send = Rc::new({
         let ui = ui.as_weak();

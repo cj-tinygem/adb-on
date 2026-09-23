@@ -119,7 +119,7 @@ Select **Settings → Developer options → Wireless debugging → Pair device w
 
 Tap the discovered pairing address, enter the **6-digit number** shown on the phone, and press **Pair**. If only one address is discovered, it is filled in automatically. If several phones are visible, compare with the address shown on your phone's screen.
 
-Automatic discovery continues for a while. If nothing is found, you can enter the **IP address:port** shown on the phone manually.
+In automatic mode, address fields are locked and discovery continues while this screen is open. Turn on **Enter addresses manually** to pause automatic discovery and enter the addresses shown on your phone. Turning it off clears manual addresses and resumes discovery.
 
 ### 4. Check the connection status
 

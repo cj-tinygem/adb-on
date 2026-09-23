@@ -20,6 +20,7 @@ pub enum Action {
     Refresh,
     Discover,
     WirelessPage(bool),
+    ManualAddresses(bool),
     Pair(String, String),
     Connect(String),
     Disconnect(String),
@@ -118,8 +119,7 @@ struct PendingPair {
 
 fn finish_pair(tool: &Adb, view: &mut View, pending: &mut Option<PendingPair>,
     names: &mut HashMap<String, String>, stop: &Arc<AtomicBool>) {
-    let Some(pair) = pending.as_mut() else { return };
-    let ip = pair.ip;
+    let Ok(ip) = view.paired_ip.parse::<IpAddr>() else { return };
     let connected = |view: &View| view.devices.iter().any(|d| d.state == "device"
         && (crate::model::endpoint(&d.serial).is_ok_and(|a| a.ip() == ip)
             || view.services.iter().any(|s| !s.pairing && s.address.ip() == ip
@@ -129,6 +129,7 @@ fn finish_pair(tool: &Adb, view: &mut View, pending: &mut Option<PendingPair>,
         *pending = None;
         return;
     }
+    let Some(pair) = pending.as_mut() else { return };
     let candidates: Vec<_> = view.services.iter()
         .filter(|s| !s.pairing && s.address.ip() == pair.ip)
         .map(|s| s.address).collect();
@@ -228,6 +229,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
     publish(view.clone());
     let mut retry = Instant::now();
     let mut wireless_page = false;
+    let mut manual_addresses = false;
     let mut discovery_at = Instant::now();
     while !stop.load(Ordering::Relaxed) {
         let action = if tracker.is_some() {
@@ -245,6 +247,18 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                 if active { discovery_at = Instant::now() - Duration::from_secs(3); }
                 continue;
             }
+            if let Action::ManualAddresses(manual) = action {
+                manual_addresses = manual;
+                pending_pair = None;
+                if !manual {
+                    discovery_at = Instant::now() - Duration::from_secs(3);
+                    if let Ok(ip) = view.paired_ip.parse() {
+                        pending_pair = Some(PendingPair { ip, started: Instant::now(), attempted: HashSet::new() });
+                    }
+                }
+                continue;
+            }
+            if manual_addresses && matches!(action, Action::Discover) { continue; }
             if matches!(
                 &action,
                 Action::Refresh | Action::Install(_) | Action::Select(_) | Action::RemoveData | Action::Language(_)
@@ -311,12 +325,14 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                             paired.map(|_| {
                                 if let Ok(endpoint) = crate::model::endpoint(&address) {
                                     view.paired_ip = endpoint.ip().to_string();
-                                    pending_pair = Some(PendingPair { ip: endpoint.ip(), started: Instant::now(), attempted: HashSet::new() });
+                                    if !manual_addresses {
+                                        pending_pair = Some(PendingPair { ip: endpoint.ip(), started: Instant::now(), attempted: HashSet::new() });
+                                    }
                                 }
                                 if let Ok(devices) = tool.list(&stop) {
                                     set_devices(tool, &mut view, devices, &mut names, &stop);
                                 }
-                                if let Ok(services) = tool.discover(&stop) {
+                                if !manual_addresses && let Ok(services) = tool.discover(&stop) {
                                     discovery.update(services, Instant::now());
                                 }
                                 discovery.show(&mut view);
@@ -340,7 +356,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                         | Action::Language(_) => {
                             unreachable!("위 분기에서 처리한 액션")
                         }
-                        Action::WirelessPage(_) => unreachable!("page state handled before commands"),
+                        Action::WirelessPage(_) | Action::ManualAddresses(_) => unreachable!("wireless mode handled before commands"),
                     },
                 },
             };
@@ -381,7 +397,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
             publish(view.clone());
             view.finished = false;
         }
-        if (wireless_page || pending_pair.is_some()) && discovery_at.elapsed() >= Duration::from_secs(3) {
+        if !manual_addresses && (wireless_page || pending_pair.is_some()) && discovery_at.elapsed() >= Duration::from_secs(3) {
             if let Some(ref tool) = adb {
                 match tool.discover(&stop) {
                     Ok(services) => {

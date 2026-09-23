@@ -1456,14 +1456,6 @@
    "de": "{} Der Verbindungsstatus wird erneut geprüft.",
    "fr": "{} Nouvelle vérification de la connexion en cours."
   },
-  "{} · 페어링 완료, 연결 대기 중이에요. 자동으로 연결되지 않으면 휴대폰에서 한 화면 뒤로 가서 ‘IP 주소 및 포트’를 아래 ‘2. 연결’에 입력해 주세요.": {
-   "en": "{} · Paired, waiting to connect. If it does not connect automatically, go back one screen on the phone and enter “IP address & port” below in “2. Connect”.",
-   "zh-Hans": "{} · 已配对，等待连接。如果没有自动连接，请在手机上返回上一页，将“IP 地址和端口”输入下方的“2. 连接”。",
-   "ja": "{} · ペア設定済み、接続待ちです。自動で接続しない場合はスマートフォンで 1 画面戻り、「IP アドレスとポート」を下の「2. 接続」に入力してください。",
-   "es": "{} · Emparejado, esperando conexión. Si no conecta automáticamente, retrocede una pantalla en el teléfono e introduce «Dirección IP y puerto» abajo, en «2. Conectar».",
-   "de": "{} · Gekoppelt, wartet auf Verbindung. Falls keine automatische Verbindung erfolgt, gehe auf dem Telefon eine Seite zurück und gib „IP-Adresse und Port“ unten bei „2. Verbinden“ ein.",
-   "fr": "{} · Associé, en attente de connexion. Sans connexion automatique, revenez à l’écran précédent du téléphone et saisissez « Adresse IP et port » dans « 2. Connecter » ci-dessous."
-  },
   "최근 찾은 휴대폰": {
    "en": "Recently found phones",
    "zh-Hans": "最近发现的手机",
@@ -1479,6 +1471,62 @@
    "es": "{} · Emparejado, pero aún no conectado. Introduce la dirección en «Conexión inalámbrica».",
    "de": "{} · Gekoppelt, aber noch nicht verbunden. Gib die Verbindungsadresse unter „Drahtlose Verbindung“ ein.",
    "fr": "{} · Associé, mais pas encore connecté. Saisissez l’adresse dans « Connexion sans fil »."
+  },
+  "주소 직접 입력": {
+   "en": "Enter addresses manually",
+   "zh-Hans": "手动输入地址",
+   "ja": "アドレスを手動入力",
+   "es": "Introducir direcciones manualmente",
+   "de": "Adressen manuell eingeben",
+   "fr": "Saisir les adresses manuellement"
+  },
+  "자동 검색이 꺼져 있어요. 휴대폰에 표시된 주소를 직접 입력하세요.": {
+   "en": "Automatic discovery is off. Enter the addresses shown on your phone.",
+   "zh-Hans": "自动搜索已关闭。请输入手机上显示的地址。",
+   "ja": "自動検索はオフです。スマートフォンに表示されたアドレスを入力してください。",
+   "es": "La búsqueda automática está desactivada. Introduce las direcciones que aparecen en el teléfono.",
+   "de": "Die automatische Suche ist ausgeschaltet. Geben Sie die auf dem Telefon angezeigten Adressen ein.",
+   "fr": "La recherche automatique est désactivée. Saisissez les adresses affichées sur le téléphone."
+  },
+  "자동으로 찾은 휴대폰의 주소를 사용해요. 찾지 못하면 ‘주소 직접 입력’을 켜세요.": {
+   "en": "Addresses come from automatic discovery. If your phone is not found, turn on “Enter addresses manually”.",
+   "zh-Hans": "地址来自自动搜索。如果找不到手机，请开启“手动输入地址”。",
+   "ja": "自動検索で見つかったアドレスを使います。見つからない場合は「アドレスを手動入力」をオンにしてください。",
+   "es": "Se usan las direcciones detectadas automáticamente. Si no se encuentra el teléfono, activa «Introducir direcciones manualmente».",
+   "de": "Die Adressen stammen aus der automatischen Suche. Wird Ihr Telefon nicht gefunden, aktivieren Sie „Adressen manuell eingeben“.",
+   "fr": "Les adresses proviennent de la recherche automatique. Si le téléphone est introuvable, activez « Saisir les adresses manuellement »."
+  },
+  "휴대폰에서 페어링 코드 화면을 열고, 감지된 주소를 선택한 뒤 숫자 6자리를 입력하세요.": {
+   "en": "Open the pairing code screen on your phone, select its discovered address, and enter the six digits.",
+   "zh-Hans": "打开手机的配对码页面，选择检测到的对应地址，然后输入六位数字。",
+   "ja": "スマートフォンでペアリングコード画面を開き、検出されたアドレスを選んで6桁の数字を入力してください。",
+   "es": "Abre la pantalla del código de emparejamiento, selecciona la dirección detectada e introduce los seis dígitos.",
+   "de": "Öffnen Sie den Kopplungscode auf dem Telefon, wählen Sie dessen erkannte Adresse und geben Sie die sechs Ziffern ein.",
+   "fr": "Ouvrez l’écran du code d’association sur le téléphone, sélectionnez son adresse détectée et saisissez les six chiffres."
+  },
+  "연결할 휴대폰을 위 목록에서 선택하세요.": {
+   "en": "Select the phone to connect from the list above.",
+   "zh-Hans": "请在上方列表中选择要连接的手机。",
+   "ja": "上の一覧から接続するスマートフォンを選んでください。",
+   "es": "Selecciona el teléfono que quieres conectar en la lista de arriba.",
+   "de": "Wählen Sie oben in der Liste das Telefon aus, das Sie verbinden möchten.",
+   "fr": "Sélectionnez le téléphone à connecter dans la liste ci-dessus."
+  },
+  "{} · 페어링 완료. 휴대폰에서 한 화면 뒤로 가서 ‘IP 주소 및 포트’를 아래 ‘2. 연결’에 입력해 주세요.": {
+   "en": "{} · Paired. Go back one screen on your phone and enter its “IP address & port” under “2. Connect”.",
+   "zh-Hans": "{} · 已配对。请返回手机的上一页，将“IP 地址和端口”输入下方的“2. 连接”。",
+   "ja": "{} · ペアリング済みです。スマートフォンで1つ前の画面に戻り、「IP アドレスとポート」を下の「2. 接続」に入力してください。",
+   "es": "{} · Emparejado. Vuelve a la pantalla anterior del teléfono e introduce «Dirección IP y puerto» en «2. Conectar».",
+   "de": "{} · Gekoppelt. Gehen Sie auf dem Telefon eine Seite zurück und geben Sie „IP-Adresse und Port“ unter „2. Verbinden“ ein.",
+   "fr": "{} · Association terminée. Revenez à l’écran précédent du téléphone et saisissez « Adresse IP et port » sous « 2. Connecter »."
+  },
+  "{} · 페어링 완료, 연결 주소를 찾고 있어요. 찾지 못하면 ‘주소 직접 입력’을 켜고 연결 주소를 넣으세요.": {
+   "en": "{} · Paired, looking for the connection address. If it is not found, turn on “Enter addresses manually” and enter the connection address.",
+   "zh-Hans": "{} · 已配对，正在查找连接地址。如果找不到，请开启“手动输入地址”并输入连接地址。",
+   "ja": "{} · ペアリング済みです。接続アドレスを検索中です。見つからない場合は「アドレスを手動入力」をオンにして接続アドレスを入力してください。",
+   "es": "{} · Emparejado. Buscando la dirección de conexión. Si no aparece, activa «Introducir direcciones manualmente» e introduce la dirección de conexión.",
+   "de": "{} · Gekoppelt. Die Verbindungsadresse wird gesucht. Wird sie nicht gefunden, aktivieren Sie „Adressen manuell eingeben“ und geben Sie die Verbindungsadresse ein.",
+   "fr": "{} · Association terminée, recherche de l’adresse de connexion. Si elle reste introuvable, activez « Saisir les adresses manuellement » et saisissez l’adresse de connexion."
   }
  }
 }
