@@ -125,6 +125,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 ui.set_link_step(view.link_step);
                 ui.set_adb_help(view.adb_help);
                 ui.set_searched(view.searched);
+                ui.set_discovery_notice(view.discovery_notice.into());
+                ui.set_server_notice(view.server_notice.into());
+                if !view.paired_ip.is_empty() && ui.get_paired_ip().as_str() != view.paired_ip {
+                    let host = if view.paired_ip.contains(':') { format!("[{}]", view.paired_ip) } else { view.paired_ip.clone() };
+                    ui.set_connection_address(format!("{host}:").into());
+                }
+                ui.set_paired_ip(view.paired_ip.into());
                 ui.set_detail_pre(view.detail_pre.into());
                 ui.set_detail_link(view.detail_link.into());
                 ui.set_detail_post(view.detail_post.into());
@@ -137,11 +144,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 ui.set_adb_kind(view.source_kind);
                 // 찾은 휴대폰 버튼: 기기 목록에 이미 있는 폰이면 모델명을 앞에 붙이고, 무선으로 연결돼 있으면 잠근다.
                 let row = |s: &model::Service| {
-                    let known = view.devices.iter().find(|d| model::same_phone(s, d));
+                    let known = view.devices.iter().filter(|d| model::same_phone(s, d))
+                        .max_by_key(|d| (d.state == "device", model::wireless(&d.serial)));
                     ServiceRow {
                         address: s.address.to_string().into(),
                         label: match known {
-                            Some(d) => format!("{} · {}", d.name, s.address).into(),
+                            Some(d) => format!("{} · {}", d.label(), s.address).into(),
+                            None if !s.label.is_empty() => format!("{} · {}", s.label, s.address).into(),
                             None => s.address.to_string().into(),
                         },
                         connected: known.is_some_and(|d| d.state == "device" && model::wireless(&d.serial)),
@@ -159,8 +168,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         .map(|d| DeviceRow {
                             wireless: model::wireless(&d.serial),
                             connected: d.state == "device",
+                            name: d.label().into(),
                             serial: d.serial.into(),
-                            name: d.name.into(),
                             state: t(match d.state.as_str() {
                                 "device" => "연결됨",
                                 "unauthorized" => "휴대폰에서 승인 대기",
@@ -176,6 +185,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let _ = done_tx.send(());
     });
     // 모든 콜백은 같은 유한 큐에 요청만 넣는다. 중복 조작은 UI에서 즉시 잠근다.
+    {
+        let sender = sender.clone();
+        ui.on_wireless_page(move |active| { let _ = sender.try_send(Action::WirelessPage(active)); });
+    }
     let send = Rc::new({
         let ui = ui.as_weak();
         move |action| {

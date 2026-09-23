@@ -5,6 +5,8 @@ use crate::{
     setup,
 };
 use std::{
+    collections::{HashMap, HashSet},
+    net::{IpAddr, SocketAddr},
     path::PathBuf,
     sync::{
         Arc,
@@ -17,6 +19,7 @@ use std::{
 pub enum Action {
     Refresh,
     Discover,
+    WirelessPage(bool),
     Pair(String, String),
     Connect(String),
     Disconnect(String),
@@ -54,6 +57,96 @@ pub struct View {
     pub services: Vec<Service>,
     /// 무선 탐색을 한 번이라도 끝냈는지. 결과가 비었을 때 "찾지 못했어요"를 화면에 보이기 위한 값.
     pub searched: bool,
+    pub discovery_notice: String,
+    pub server_notice: String,
+    pub paired_ip: String,
+}
+
+// Keep brief mDNS gaps from erasing a candidate while the user opens the pairing dialog.
+// This cache is session-only; fresh advertisements replace a phone's previous port.
+#[derive(Default)]
+struct Discovery(Vec<(Service, Instant)>);
+impl Discovery {
+    fn update(&mut self, services: Vec<Service>, now: Instant) {
+        for mut service in services {
+            if let Some((old, _)) = self.0.iter().find(|(old, _)| old.address == service.address) {
+                service.label = old.label.clone();
+            }
+            self.0.retain(|(old, _)| !(old.pairing == service.pairing
+                && (old.address.ip() == service.address.ip()
+                    || (!old.name.is_empty() && old.name == service.name))));
+            self.0.push((service, now));
+        }
+        self.0.retain(|(service, seen)| now.duration_since(*seen)
+            < Duration::from_secs(if service.pairing { 12 } else { 120 }));
+    }
+    fn show(&mut self, view: &mut View) {
+        // An established connection remains a candidate even when multicast discovery fails.
+        for device in view.devices.iter().filter(|d| d.state == "device") {
+            if let Ok(address) = crate::model::endpoint(&device.serial)
+                && !self.0.iter().any(|(s, _)| !s.pairing && s.address == address) {
+                self.0.push((Service { name: String::new(), address, pairing: false, label: device.label() }, Instant::now()));
+            }
+        }
+        for (service, seen) in &mut self.0 {
+            if let Some(device) = view.devices.iter().find(|d| d.state == "device" && crate::model::same_phone(service, d)) {
+                service.label = device.label();
+                *seen = Instant::now();
+            }
+        }
+        view.services = self.0.iter().map(|(s, _)| s.clone()).collect();
+    }
+}
+
+fn set_devices(tool: &Adb, view: &mut View, mut devices: Vec<Device>,
+    names: &mut HashMap<String, String>, stop: &Arc<AtomicBool>) {
+    names.retain(|serial, _| devices.iter().any(|d| &d.serial == serial && d.state == "device"));
+    for device in &mut devices {
+        if device.state == "device" {
+            device.device_name = names.entry(device.serial.clone())
+                .or_insert_with(|| tool.device_name(&device.serial, stop).unwrap_or_default()).clone();
+        }
+    }
+    view.devices = devices;
+}
+
+struct PendingPair {
+    ip: IpAddr,
+    started: Instant,
+    attempted: HashSet<SocketAddr>,
+}
+
+fn finish_pair(tool: &Adb, view: &mut View, pending: &mut Option<PendingPair>,
+    names: &mut HashMap<String, String>, stop: &Arc<AtomicBool>) {
+    let Some(pair) = pending.as_mut() else { return };
+    let ip = pair.ip;
+    let connected = |view: &View| view.devices.iter().any(|d| d.state == "device"
+        && (crate::model::endpoint(&d.serial).is_ok_and(|a| a.ip() == ip)
+            || view.services.iter().any(|s| !s.pairing && s.address.ip() == ip
+                && crate::model::same_phone(s, d))));
+    if connected(view) {
+        view.paired_ip.clear();
+        *pending = None;
+        return;
+    }
+    let candidates: Vec<_> = view.services.iter()
+        .filter(|s| !s.pairing && s.address.ip() == pair.ip)
+        .map(|s| s.address).collect();
+    if candidates.len() == 1 && pair.attempted.insert(candidates[0]) {
+        // Pairing has succeeded independently of the connection attempt.
+        if tool.connect(&candidates[0].to_string(), stop).is_ok()
+            && let Ok(devices) = tool.list(stop) {
+            set_devices(tool, view, devices, names, stop);
+            if connected(view) {
+                view.paired_ip.clear();
+                *pending = None;
+                return;
+            }
+        }
+    }
+    if pair.started.elapsed() >= Duration::from_secs(30) {
+        *pending = None;
+    }
 }
 fn describe(view: &mut View) {
     view.lead.clear();
@@ -65,6 +158,8 @@ fn describe(view: &mut View) {
     view.detail_post.clear();
     view.connection = if !view.ready {
         0
+    } else if !view.server_notice.is_empty() {
+        2
     } else if view.devices.iter().any(|d| d.state == "device") {
         3
     } else if view.devices.is_empty() {
@@ -102,16 +197,19 @@ fn describe(view: &mut View) {
         view.detail = t("케이블 없이 연결하려면 아래 ‘무선 연결’을 눌러 주세요.");
     }
 }
-fn ready(adb: &Adb, view: &mut View, stop: &Arc<AtomicBool>) -> Result<Tracker, String> {
+fn ready(adb: &Adb, view: &mut View, names: &mut HashMap<String, String>, stop: &Arc<AtomicBool>) -> Result<Tracker, String> {
     view.ready = true;
     view.path = setup::display_path(&adb.path);
     (view.source_kind, view.source) = setup::describe_source(&adb.path);
-    view.devices = adb.list(stop)?;
+    set_devices(adb, view, adb.list(stop)?, names, stop);
     describe(view);
     adb.track()
 }
 pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) {
     let mut view = View::default();
+    let mut names = HashMap::new();
+    let mut discovery = Discovery::default();
+    let mut pending_pair = None;
     let mut adb = match setup::locate(&stop) {
         Ok(adb) => adb,
         Err(error) => {
@@ -121,7 +219,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
     };
     let mut tracker = None;
     if let Some(ref tool) = adb {
-        match ready(tool, &mut view, &stop) {
+        match ready(tool, &mut view, &mut names, &stop) {
             Ok(t) => tracker = Some(t),
             Err(e) => view.notice = e,
         }
@@ -129,7 +227,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
     describe(&mut view);
     publish(view.clone());
     let mut retry = Instant::now();
-    let mut discovery_until = Instant::now();
+    let mut wireless_page = false;
     let mut discovery_at = Instant::now();
     while !stop.load(Ordering::Relaxed) {
         let action = if tracker.is_some() {
@@ -142,11 +240,16 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
             }
         };
         if let Some(action) = action {
+            if let Action::WirelessPage(active) = action {
+                wireless_page = active;
+                if active { discovery_at = Instant::now() - Duration::from_secs(3); }
+                continue;
+            }
             if matches!(
                 &action,
                 Action::Refresh | Action::Install(_) | Action::Select(_) | Action::RemoveData | Action::Language(_)
             ) {
-                discovery_until = Instant::now();
+                names.clear();
             }
             if matches!(
                 &action,
@@ -155,9 +258,9 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                     | Action::Select(_)
                     | Action::RemoveData
                     | Action::Language(_)
-                    | Action::Discover
             ) {
                 view.services.clear();
+                discovery = Discovery::default();
             }
             view.busy = true;
             view.notice.clear();
@@ -192,11 +295,12 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                     None => Err(t("먼저 ADB를 준비해 주세요.")),
                     Some(tool) => match action {
                         Action::Discover => {
-                            discovery_until = Instant::now() + Duration::from_secs(24);
                             discovery_at = Instant::now();
                             // 결과는 무선 연결 화면이 직접 보여 준다(찾은 휴대폰 카드 또는 "찾지 못했어요" 한 줄). 알림은 띄우지 않는다.
                             tool.discover(&stop).map(|services| {
-                                view.services = services;
+                                discovery.update(services, Instant::now());
+                                discovery.show(&mut view);
+                                view.discovery_notice.clear();
                                 view.searched = true;
                                 String::new()
                             })
@@ -205,33 +309,29 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                             let paired = tool.pair(&address, &code, &stop);
                             code.clear();
                             paired.map(|_| {
-                                // 페어링은 이미 성공했다. 뒤따르는 확인이 실패해도 성공을 오류로 바꾸지 않는다.
-                                // mDNS 자동 연결을 먼저 존중하며 주소를 저장해 낡은 포트로 재시도하지 않는다.
-                                let followup = (|| -> Result<(), String> {
-                                    let ip = crate::model::endpoint(&address)?.ip();
-                                    view.devices = tool.list(&stop)?;
-                                    view.services = tool.discover(&stop).unwrap_or_default();
-                                    let candidates: Vec<_> = view
-                                        .services
-                                        .iter()
-                                        .filter(|s| !s.pairing && s.address.ip() == ip)
-                                        .collect();
-                                    if candidates.len() == 1 {
-                                        let _ = tool.connect(&candidates[0].address.to_string(), &stop);
-                                        view.devices = tool.list(&stop)?;
-                                    }
-                                    Ok(())
-                                })();
-                                let mut notice = t("페어링됐어요. 연결 상태를 확인 중이에요. 연결이 안 되면 휴대폰에서 한 화면 뒤로 가서 ‘IP 주소 및 포트’를 아래 연결 칸에 입력해 주세요.");
-                                if let Err(e) = followup {
-                                    notice = tf("페어링됐어요. 연결 상태 확인은 실패했어요: {} 다시 확인을 눌러 주세요.", &[&e]);
+                                if let Ok(endpoint) = crate::model::endpoint(&address) {
+                                    view.paired_ip = endpoint.ip().to_string();
+                                    pending_pair = Some(PendingPair { ip: endpoint.ip(), started: Instant::now(), attempted: HashSet::new() });
                                 }
-                                notice
+                                if let Ok(devices) = tool.list(&stop) {
+                                    set_devices(tool, &mut view, devices, &mut names, &stop);
+                                }
+                                if let Ok(services) = tool.discover(&stop) {
+                                    discovery.update(services, Instant::now());
+                                }
+                                discovery.show(&mut view);
+                                finish_pair(tool, &mut view, &mut pending_pair, &mut names, &stop);
+                                discovery_at = Instant::now() - Duration::from_secs(3);
+                                String::new()
                             })
                         }
-                        Action::Connect(address) => tool
-                            .connect(&address, &stop)
-                            .map(|_| String::new()),
+                        Action::Connect(address) => tool.connect(&address, &stop).map(|_| {
+                            if crate::model::endpoint(&address).is_ok_and(|a| a.ip().to_string() == view.paired_ip) {
+                                view.paired_ip.clear();
+                                pending_pair = None;
+                            }
+                            String::new()
+                        }),
                         Action::Disconnect(serial) => tool.disconnect(&serial, &stop).map(|_| String::new()),
                         Action::Refresh
                         | Action::Install(_)
@@ -240,11 +340,16 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                         | Action::Language(_) => {
                             unreachable!("위 분기에서 처리한 액션")
                         }
+                        Action::WirelessPage(_) => unreachable!("page state handled before commands"),
                     },
                 },
             };
             view.notice = result.unwrap_or_else(|e| e);
             view.busy = false;
+            if let Some(ref tool) = adb
+                && let Ok(devices) = tool.list(&stop) {
+                set_devices(tool, &mut view, devices, &mut names, &stop);
+            }
             if tracker.is_none() {
                 view.ready = adb.is_some();
                 if adb.is_none() {
@@ -253,8 +358,8 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                     view.source_kind = 0;
                 }
                 if let Some(ref tool) = adb {
-                    match ready(tool, &mut view, &stop) {
-                        Ok(t) => tracker = Some(t),
+                    match ready(tool, &mut view, &mut names, &stop) {
+                        Ok(t) => { tracker = Some(t); view.server_notice.clear(); }
                         Err(e) => {
                             // 방금 끝난 작업의 결과는 지우지 않고 상태 확인 실패를 뒤에 붙인다.
                             view.devices.clear();
@@ -271,24 +376,37 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                 retry = Instant::now();
             }
             describe(&mut view);
+            discovery.show(&mut view);
             view.finished = true;
             publish(view.clone());
             view.finished = false;
         }
-        if Instant::now() < discovery_until && discovery_at.elapsed() >= Duration::from_secs(3) {
+        if (wireless_page || pending_pair.is_some()) && discovery_at.elapsed() >= Duration::from_secs(3) {
             if let Some(ref tool) = adb {
-                let services = tool.discover(&stop).unwrap_or_default();
-                if services != view.services {
-                    view.services = services;
-                    publish(view.clone());
+                match tool.discover(&stop) {
+                    Ok(services) => {
+                        discovery.update(services, Instant::now());
+                        view.discovery_notice.clear();
+                        view.searched = true;
+                    }
+                    Err(error) => { view.discovery_notice = error; }
                 }
+                discovery.show(&mut view);
+                finish_pair(tool, &mut view, &mut pending_pair, &mut names, &stop);
+                describe(&mut view);
+                publish(view.clone());
             }
             discovery_at = Instant::now();
         }
         if let Some(ref mut active) = tracker {
             match active.poll() {
                 Ok(Some(devices)) => {
-                    view.devices = devices;
+                    if let Some(ref tool) = adb {
+                        set_devices(tool, &mut view, devices, &mut names, &stop);
+                        discovery.show(&mut view);
+                        finish_pair(tool, &mut view, &mut pending_pair, &mut names, &stop);
+                    }
+                    view.server_notice.clear();
                     describe(&mut view);
                     publish(view.clone());
                 }
@@ -296,10 +414,10 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                 Err(error) => {
                     tracker = None;
                     retry = Instant::now();
-                    view.devices.clear();
+                    // A lost subscription does not prove that the phones disconnected.
+                    // Recover this read-only channel without interrupting the user's server.
+                    view.server_notice = tf("{} 연결 상태를 다시 확인하고 있어요.", &[&error]);
                     describe(&mut view);
-                    view.notice =
-                        tf("{} 다시 확인을 누르면 서버 상태를 확인하고 연결을 준비해요.", &[&error]);
                     publish(view.clone());
                 }
             }
@@ -308,7 +426,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                 // 조회로만 재접속한다. 사용자 서버를 자동으로 재시작하지 않는다.
                 if let Ok(tracked) = tool.track() {
                     tracker = Some(tracked);
-                    view.notice.clear();
+                    view.server_notice.clear();
                     publish(view.clone());
                 }
             }

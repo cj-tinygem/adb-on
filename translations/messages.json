@@ -88,22 +88,6 @@
    "de": "Ein ADB-Server einer anderen Version wird gerade verwendet. Bitte wählen Sie dieselbe ADB-Datei wie Ihr Entwicklungswerkzeug. Die bestehende Verbindung wurde beibehalten.",
    "fr": "Une autre version du serveur ADB est en cours d'utilisation. Sélectionnez le même fichier ADB que celui de votre outil de développement. La connexion existante a été conservée."
   },
-  "페어링되지 않았습니다. 새 6자리 코드와 페어링 주소로 다시 시도해 주세요.": {
-   "en": "Not paired. Please try again with a new 6-digit code and pairing address.",
-   "zh-Hans": "配对失败。请使用新的 6 位配对码和配对地址重试。",
-   "ja": "ペア設定できませんでした。新しい 6 桁のコードとペア設定アドレスでもう一度お試しください。",
-   "es": "No se pudo vincular. Inténtalo de nuevo con un código nuevo de 6 dígitos y la dirección de vinculación.",
-   "de": "Kopplung fehlgeschlagen. Bitte versuchen Sie es mit einem neuen 6-stelligen Code und der Kopplungsadresse erneut.",
-   "fr": "L'association a échoué. Réessayez avec un nouveau code à 6 chiffres et l'adresse d'association."
-  },
-  "연결되지 않았습니다. 무선 디버깅 첫 화면의 IP 주소와 포트를 확인해 주세요. 페어링 포트와 다릅니다.": {
-   "en": "Not connected. Please check the IP address and port on the first Wireless debugging screen. It is different from the pairing port.",
-   "zh-Hans": "连接失败。请检查无线调试首页显示的 IP 地址和端口。它与配对端口不同。",
-   "ja": "接続できませんでした。ワイヤレスデバッグの最初の画面にある IP アドレスとポートを確認してください。ペア設定用のポートとは異なります。",
-   "es": "No se pudo conectar. Comprueba la dirección IP y el puerto de la pantalla principal de Depuración inalámbrica. Son distintos del puerto de vinculación.",
-   "de": "Verbindung fehlgeschlagen. Bitte prüfen Sie IP-Adresse und Port auf der ersten Seite von „Debugging über WLAN“. Der Port unterscheidet sich vom Kopplungsport.",
-   "fr": "La connexion a échoué. Vérifiez l'adresse IP et le port affichés sur le premier écran du débogage sans fil. Ce port est différent du port d'association."
-  },
   "선택한 무선 기기가 현재 연결되어 있지 않습니다.": {
    "en": "The selected wireless device is not currently connected.",
    "zh-Hans": "所选的无线设备当前未连接。",
@@ -591,30 +575,6 @@
    "es": "Primero prepara ADB.",
    "de": "Bitte richten Sie zuerst ADB ein.",
    "fr": "Préparez d'abord ADB."
-  },
-  "페어링됐어요. 연결 상태를 확인 중이에요. 연결이 안 되면 휴대폰에서 한 화면 뒤로 가서 ‘IP 주소 및 포트’를 아래 연결 칸에 입력해 주세요.": {
-   "en": "Paired. Checking the connection status. If it does not connect, go back one screen on the phone and enter the ‘IP address & Port’ in the connection field below.",
-   "zh-Hans": "配对成功，正在检查连接状态。如果无法连接，请在手机上返回上一页，将“IP 地址和端口”填入下方的连接栏。",
-   "ja": "ペア設定しました。接続状態を確認しています。接続できない場合は、スマートフォンで一つ前の画面に戻り、「IP アドレスとポート」を下の接続欄に入力してください。",
-   "es": "Vinculado. Comprobando el estado de la conexión. Si no se conecta, vuelve una pantalla atrás en el teléfono e introduce «Dirección IP y puerto» en el campo de conexión de abajo.",
-   "de": "Gekoppelt. Der Verbindungsstatus wird geprüft. Falls keine Verbindung zustande kommt, gehen Sie auf dem Telefon eine Seite zurück und tragen Sie „IP-Adresse und Port“ unten in das Verbindungsfeld ein.",
-   "fr": "Association réussie. Vérification de la connexion en cours. Si la connexion échoue, revenez à l'écran précédent sur le téléphone et saisissez « Adresse IP et port » dans le champ de connexion ci-dessous."
-  },
-  "페어링됐어요. 연결 상태 확인은 실패했어요: {} 다시 확인을 눌러 주세요.": {
-   "en": "Paired. Checking the connection status failed: {} Please press Check again.",
-   "zh-Hans": "配对成功，但检查连接状态失败：{} 请点击“重新检查”。",
-   "ja": "ペア設定しました。接続状態の確認には失敗しました: {} 「再確認」を押してください。",
-   "es": "Vinculado. No se pudo comprobar el estado de la conexión: {} Pulsa Volver a comprobar.",
-   "de": "Gekoppelt. Die Prüfung des Verbindungsstatus ist fehlgeschlagen: {} Bitte klicken Sie auf „Erneut prüfen“.",
-   "fr": "Association réussie. La vérification de la connexion a échoué : {} Appuyez sur Revérifier."
-  },
-  "{} 다시 확인을 누르면 서버 상태를 확인하고 연결을 준비해요.": {
-   "en": "{} Press Check again to check the server status and prepare the connection.",
-   "zh-Hans": "{} 点击“重新检查”将检查服务器状态并准备连接。",
-   "ja": "{} 「再確認」を押すと、サーバーの状態を確認して接続を準備します。",
-   "es": "{} Pulsa Volver a comprobar para revisar el estado del servidor y preparar la conexión.",
-   "de": "{} Mit „Erneut prüfen“ wird der Serverstatus geprüft und die Verbindung vorbereitet.",
-   "fr": "{} Appuyez sur Revérifier pour contrôler l'état du serveur et préparer la connexion."
   },
   "연결을 준비하고 있어요": {
    "en": "Preparing the connection",
@@ -1408,14 +1368,6 @@
    "de": "Koppeln registriert diesen PC einmalig beim Telefon; Verbinden ist, was ein registrierter PC jedes Mal tut. Wurde dieser PC schon gekoppelt, genügt das Verbinden.",
    "fr": "L'association enregistre ce PC auprès du téléphone une seule fois ; la connexion est ce qu'un PC enregistré fait à chaque fois. Si ce PC a déjà été associé, il suffit de se connecter."
   },
-  "찾은 휴대폰에 바로 연결": {
-   "en": "Connect to the phone found",
-   "zh-Hans": "直接连接找到的手机",
-   "ja": "見つかったスマートフォンに接続",
-   "es": "Conectar con el teléfono encontrado",
-   "de": "Mit dem gefundenen Telefon verbinden",
-   "fr": "Se connecter au téléphone trouvé"
-  },
   "연결 · {}": {
    "en": "Connect · {}",
    "zh-Hans": "连接 · {}",
@@ -1471,6 +1423,62 @@
    "es": "Conectado · {}",
    "de": "Verbunden · {}",
    "fr": "Connecté · {}"
+  },
+  "PC의 ADB 서버와 통신하지 못했어요. 잠시 후 다시 확인해 주세요. 기존 서버와 연결은 변경하지 않았어요.": {
+   "en": "Could not communicate with the PC’s ADB server. Try again shortly. The existing server and connections were not changed.",
+   "zh-Hans": "无法与电脑的 ADB 服务器通信。请稍后重试。现有服务器和连接未被更改。",
+   "ja": "PC の ADB サーバーと通信できませんでした。少し待って再確認してください。既存のサーバーや接続は変更していません。",
+   "es": "No se pudo comunicar con el servidor ADB del PC. Vuelve a intentarlo en un momento. No se han modificado el servidor ni las conexiones existentes.",
+   "de": "Der ADB-Server des PCs ist nicht erreichbar. Bitte versuche es gleich erneut. Der bestehende Server und die Verbindungen wurden nicht geändert.",
+   "fr": "Impossible de communiquer avec le serveur ADB du PC. Réessayez dans un instant. Le serveur et les connexions existantes n’ont pas été modifiés."
+  },
+  "페어링되지 않았어요. 휴대폰의 ‘페어링 코드로 기기 페어링’ 창을 열어 둔 채 새 주소와 6자리 코드를 입력해 주세요.": {
+   "en": "Pairing failed. Keep “Pair device with pairing code” open on the phone and enter its new address and six-digit code.",
+   "zh-Hans": "配对失败。请保持手机上的“使用配对码配对设备”窗口打开，并输入新的地址和六位配对码。",
+   "ja": "ペア設定に失敗しました。スマートフォンの「ペア設定コードによるデバイスのペア設定」を開いたまま、新しいアドレスと 6 桁のコードを入力してください。",
+   "es": "No se pudo emparejar. Mantén abierta la ventana de emparejamiento por código del teléfono e introduce la nueva dirección y el código de seis dígitos.",
+   "de": "Die Kopplung ist fehlgeschlagen. Lass „Gerät mit Kopplungscode koppeln“ auf dem Telefon geöffnet und gib die neue Adresse und den sechsstelligen Code ein.",
+   "fr": "L’association a échoué. Gardez la fenêtre d’association par code ouverte sur le téléphone et saisissez sa nouvelle adresse et son code à six chiffres."
+  },
+  "연결되지 않았어요. 이 PC가 휴대폰의 ‘페어링된 기기’에 없다면 먼저 ‘1. 페어링’을 진행하세요. 이미 등록했다면 무선 디버깅 첫 화면의 연결 주소와 Wi-Fi를 확인해 주세요.": {
+   "en": "Connection failed. If this PC is not in the phone’s paired devices, complete “1. Pair” first. If it is already paired, check Wi-Fi and the connection address on the main Wireless debugging screen.",
+   "zh-Hans": "连接失败。如果此电脑不在手机的“已配对设备”中，请先完成“1. 配对”。如果已配对，请检查 Wi-Fi 和无线调试主页面上的连接地址。",
+   "ja": "接続できませんでした。この PC がスマートフォンの「ペア設定済みのデバイス」にない場合は、先に「1. ペア設定」を行ってください。登録済みの場合は、Wi-Fi とワイヤレス デバッグの最初の画面の接続アドレスを確認してください。",
+   "es": "No se pudo conectar. Si este PC no figura en los dispositivos emparejados del teléfono, completa primero «1. Emparejar». Si ya está emparejado, comprueba el Wi-Fi y la dirección en la pantalla principal de depuración inalámbrica.",
+   "de": "Verbindung fehlgeschlagen. Wenn dieser PC nicht unter den gekoppelten Geräten des Telefons steht, führe zuerst „1. Koppeln“ aus. Andernfalls prüfe WLAN und Verbindungsadresse auf der Hauptseite des drahtlosen Debuggings.",
+   "fr": "La connexion a échoué. Si ce PC ne figure pas dans les appareils associés du téléphone, effectuez d’abord « 1. Associer ». Sinon, vérifiez le Wi-Fi et l’adresse de connexion sur l’écran principal du débogage sans fil."
+  },
+  "{} 연결 상태를 다시 확인하고 있어요.": {
+   "en": "{} Rechecking the connection status.",
+   "zh-Hans": "{} 正在重新检查连接状态。",
+   "ja": "{} 接続状態を再確認しています。",
+   "es": "{} Comprobando de nuevo el estado de conexión.",
+   "de": "{} Der Verbindungsstatus wird erneut geprüft.",
+   "fr": "{} Nouvelle vérification de la connexion en cours."
+  },
+  "{} · 페어링 완료, 연결 대기 중이에요. 자동으로 연결되지 않으면 휴대폰에서 한 화면 뒤로 가서 ‘IP 주소 및 포트’를 아래 ‘2. 연결’에 입력해 주세요.": {
+   "en": "{} · Paired, waiting to connect. If it does not connect automatically, go back one screen on the phone and enter “IP address & port” below in “2. Connect”.",
+   "zh-Hans": "{} · 已配对，等待连接。如果没有自动连接，请在手机上返回上一页，将“IP 地址和端口”输入下方的“2. 连接”。",
+   "ja": "{} · ペア設定済み、接続待ちです。自動で接続しない場合はスマートフォンで 1 画面戻り、「IP アドレスとポート」を下の「2. 接続」に入力してください。",
+   "es": "{} · Emparejado, esperando conexión. Si no conecta automáticamente, retrocede una pantalla en el teléfono e introduce «Dirección IP y puerto» abajo, en «2. Conectar».",
+   "de": "{} · Gekoppelt, wartet auf Verbindung. Falls keine automatische Verbindung erfolgt, gehe auf dem Telefon eine Seite zurück und gib „IP-Adresse und Port“ unten bei „2. Verbinden“ ein.",
+   "fr": "{} · Associé, en attente de connexion. Sans connexion automatique, revenez à l’écran précédent du téléphone et saisissez « Adresse IP et port » dans « 2. Connecter » ci-dessous."
+  },
+  "최근 찾은 휴대폰": {
+   "en": "Recently found phones",
+   "zh-Hans": "最近发现的手机",
+   "ja": "最近見つかったスマートフォン",
+   "es": "Teléfonos encontrados recientemente",
+   "de": "Zuletzt gefundene Telefone",
+   "fr": "Téléphones récemment détectés"
+  },
+  "{} · 페어링은 완료됐지만 아직 연결되지 않았어요. ‘무선 연결’에서 연결 주소를 입력해 주세요.": {
+   "en": "{} · Paired but not connected yet. Enter the connection address in “Wireless connection”.",
+   "zh-Hans": "{} · 已配对，但尚未连接。请在“无线连接”中输入连接地址。",
+   "ja": "{} · ペア設定済みですが、まだ接続されていません。「ワイヤレス接続」で接続アドレスを入力してください。",
+   "es": "{} · Emparejado, pero aún no conectado. Introduce la dirección en «Conexión inalámbrica».",
+   "de": "{} · Gekoppelt, aber noch nicht verbunden. Gib die Verbindungsadresse unter „Drahtlose Verbindung“ ein.",
+   "fr": "{} · Associé, mais pas encore connecté. Saisissez l’adresse dans « Connexion sans fil »."
   }
  }
 }

@@ -26,8 +26,10 @@ fn connect(address: std::net::SocketAddr) -> std::io::Result<TcpStream> {
     // Windows는 닫힌 로컬 포트의 거부를 약2초 뒤 통지할 수 있다. 너무 짧으면
     // 서버 없음을 시간 초과로 오인해 최초 ADB 시작을 막는다.
     let stream = TcpStream::connect_timeout(&address, Duration::from_secs(3))?;
-    stream.set_read_timeout(Some(Duration::from_millis(350)))?;
-    stream.set_write_timeout(Some(Duration::from_millis(350)))?;
+    // A command response may be delayed while the shared server negotiates another device.
+    // The short idle wait belongs only to the established device event stream.
+    stream.set_read_timeout(Some(Duration::from_secs(3)))?;
+    stream.set_write_timeout(Some(Duration::from_secs(3)))?;
     Ok(stream)
 }
 fn request(stream: &mut TcpStream, service: &str) -> Result<(), String> {
@@ -129,7 +131,29 @@ impl Adb {
         // ADB는 localhost만 로컬 서버로 분류한다. IP 리터럴은 최초 서버 시작을 막는다.
         let mut full = vec!["-H", "localhost", "-P", "5037"];
         full.extend_from_slice(args);
-        process::run(&self.path, &full, input, stop, 12)
+        let result = process::capture(&self.path, &full, input, stop, 12)?;
+        if result.success {
+            Ok(result.stdout)
+        } else {
+            Err(command_error(args.first().copied().unwrap_or(""), &result.stdout, &result.stderr))
+        }
+    }
+    pub fn device_name(&self, serial: &str, stop: &Arc<AtomicBool>) -> Option<String> {
+        self.compatible().ok()?;
+        for (table, key) in [("global", "device_name"), ("secure", "bluetooth_name")] {
+            let result = process::run(
+                &self.path,
+                &["-H", "localhost", "-P", "5037", "-s", serial, "shell", "settings", "get", table, key],
+                None,
+                stop,
+                3,
+            ).ok()?;
+            let name = result.trim();
+            if !name.is_empty() && name != "null" && !name.chars().any(char::is_control) {
+                return Some(name.chars().take(128).collect());
+            }
+        }
+        None
     }
     pub fn list(&self, stop: &Arc<AtomicBool>) -> Result<Vec<Device>, String> {
         Ok(model::devices(&self.call(
@@ -152,7 +176,7 @@ impl Adb {
         if result.contains("Successfully paired") {
             Ok(())
         } else {
-            Err(t("페어링되지 않았습니다. 새 6자리 코드와 페어링 주소로 다시 시도해 주세요."))
+            Err(command_error("pair", &result, ""))
         }
     }
     pub fn connect(&self, address: &str, stop: &Arc<AtomicBool>) -> Result<(), String> {
@@ -161,7 +185,7 @@ impl Adb {
         if result.starts_with("connected to ") || result.starts_with("already connected to ") {
             Ok(())
         } else {
-            Err(t("연결되지 않았습니다. 무선 디버깅 첫 화면의 IP 주소와 포트를 확인해 주세요. 페어링 포트와 다릅니다."))
+            Err(command_error("connect", &result, ""))
         }
     }
     pub fn disconnect(&self, serial: &str, stop: &Arc<AtomicBool>) -> Result<(), String> {
@@ -176,10 +200,25 @@ impl Adb {
         self.compatible()?;
         let mut stream = socket().map_err(|_| t("ADB 상태 알림 연결 실패"))?;
         request(&mut stream, "host:track-devices-l")?;
+        stream.set_read_timeout(Some(Duration::from_millis(350)))
+            .map_err(|_| t("ADB 상태 알림 연결 실패"))?;
         Ok(Tracker {
             stream,
             pending: Vec::new(),
         })
+    }
+}
+
+fn command_error(command: &str, stdout: &str, stderr: &str) -> String {
+    let response = format!("{stdout}\n{stderr}").to_ascii_lowercase();
+    if ["cannot connect to daemon", "cannot connect to server", "failed to start daemon", "server version"]
+        .iter().any(|needle| response.contains(needle)) {
+        return t("PC의 ADB 서버와 통신하지 못했어요. 잠시 후 다시 확인해 주세요. 기존 서버와 연결은 변경하지 않았어요.");
+    }
+    match command {
+        "pair" => t("페어링되지 않았어요. 휴대폰의 ‘페어링 코드로 기기 페어링’ 창을 열어 둔 채 새 주소와 6자리 코드를 입력해 주세요."),
+        "connect" => t("연결되지 않았어요. 이 PC가 휴대폰의 ‘페어링된 기기’에 없다면 먼저 ‘1. 페어링’을 진행하세요. 이미 등록했다면 무선 디버깅 첫 화면의 연결 주소와 Wi-Fi를 확인해 주세요."),
+        _ => t("ADB 요청이 완료되지 않았습니다. 휴대폰의 화면·코드·주소를 다시 확인해 주세요."),
     }
 }
 /// ADB 스마트 소켓의 상태 알림만 읽는다. 기기 전송·인증 프로토콜은 ADB가 소유한다.
@@ -224,6 +263,22 @@ impl Tracker {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn server_request_accepts_a_short_response_delay() {
+        let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+        let mut client = connect(listener.local_addr().unwrap()).unwrap();
+        let server = std::thread::spawn(move || {
+            let (mut stream, _) = listener.accept().unwrap();
+            let mut query = [0; 16];
+            stream.read_exact(&mut query).unwrap();
+            assert_eq!(&query, b"000chost:version");
+            std::thread::sleep(Duration::from_millis(600));
+            let _ = stream.write_all(b"OKAY");
+        });
+        let result = request(&mut client, "host:version");
+        server.join().unwrap();
+        assert!(result.is_ok(), "{result:?}");
+    }
     #[test]
     fn missing_local_server_is_refused_not_timed_out() {
         let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();

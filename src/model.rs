@@ -5,7 +5,17 @@ use std::net::SocketAddr;
 pub struct Device {
     pub serial: String,
     pub name: String,
+    pub device_name: String,
     pub state: String,
+}
+impl Device {
+    pub fn label(&self) -> String {
+        if self.device_name.is_empty() || self.device_name == self.name {
+            self.name.clone()
+        } else {
+            format!("{} · {}", self.name, self.device_name)
+        }
+    }
 }
 pub fn devices(text: &str) -> Vec<Device> {
     text.lines()
@@ -32,6 +42,7 @@ pub fn devices(text: &str) -> Vec<Device> {
             Some(Device {
                 serial: serial.into(),
                 name,
+                device_name: String::new(),
                 state: state.into(),
             })
         })
@@ -80,6 +91,7 @@ pub struct Service {
     pub name: String,
     pub address: SocketAddr,
     pub pairing: bool,
+    pub label: String,
 }
 impl Service {
     /// The phone's serial embedded in the instance name (`adb-<serial>-<6 random>`), if the name
@@ -94,7 +106,7 @@ pub fn services(text: &str) -> Vec<Service> {
     text.lines()
         .filter_map(|line| {
             let fields: Vec<_> = line.split_whitespace().collect();
-            if fields.len() != 3 {
+            if fields.len() < 3 {
                 return None;
             }
             let pairing = match fields[1].trim_end_matches('.') {
@@ -106,6 +118,7 @@ pub fn services(text: &str) -> Vec<Service> {
                 name: fields[0].into(),
                 address: endpoint(fields[2]).ok()?,
                 pairing,
+                label: String::new(),
             })
         })
         .collect()
@@ -179,7 +192,7 @@ mod tests {
             .remove(0);
         assert_eq!(found.serial(), Some("R3CX0A1B2C3"));
         assert_eq!(rows[0].serial(), None);
-        let device = |serial: &str| Device { serial: serial.into(), name: "SM S908N".into(), state: "device".into() };
+        let device = |serial: &str| Device { serial: serial.into(), name: "SM S908N".into(), device_name: String::new(), state: "device".into() };
         assert!(same_phone(&found, &device("192.168.1.20:39769")));
         assert!(same_phone(&found, &device("adb-R3CX0A1B2C3-k2Qw9z._adb-tls-connect._tcp")));
         assert!(same_phone(&found, &device("R3CX0A1B2C3")));

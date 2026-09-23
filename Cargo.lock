@@ -128,7 +128,7 @@ dependencies = [
 
 [[package]]
 name = "adb-on"
-version = "0.1.2-dev"
+version = "0.1.2"
 dependencies = [
  "directories",
  "libc",

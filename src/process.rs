@@ -98,6 +98,27 @@ pub fn run(
     stop: &Arc<AtomicBool>,
     seconds: u64,
 ) -> Result<String, String> {
+    let output = capture(path, args, input, stop, seconds)?;
+    if output.success {
+        Ok(output.stdout)
+    } else {
+        Err(t("ADB 요청이 완료되지 않았습니다. 휴대폰의 화면·코드·주소를 다시 확인해 주세요."))
+    }
+}
+
+pub struct Output {
+    pub success: bool,
+    pub stdout: String,
+    pub stderr: String,
+}
+
+pub fn capture(
+    path: &Path,
+    args: &[&str],
+    input: Option<&str>,
+    stop: &Arc<AtomicBool>,
+    seconds: u64,
+) -> Result<Output, String> {
     if stop.load(Ordering::Relaxed) {
         return Err(t("작업을 취소했습니다."));
     }
@@ -160,13 +181,7 @@ pub fn run(
             Ok(Some(status)) => {
                 let _ = drain(&mut stdout, &mut output);
                 let _ = drain(&mut stderr, &mut errors);
-                break if status.success() {
-                    Ok(())
-                } else {
-                    Err(t(
-                        "ADB 요청이 완료되지 않았습니다. 휴대폰의 화면·코드·주소를 다시 확인해 주세요.",
-                    ))
-                };
+                break Ok(status.success());
             }
             Err(_) => break Err(t("ADB 상태를 확인하지 못했습니다.")),
             Ok(None) => {}
@@ -183,11 +198,15 @@ pub fn run(
         let _ = child.kill();
         let _ = child.wait();
     }
-    result?;
+    let success = result?;
     if output.len() > LIMIT || errors.len() > LIMIT {
         return Err(t("ADB 응답 크기 초과"));
     }
-    Ok(String::from_utf8_lossy(&output).into_owned())
+    Ok(Output {
+        success,
+        stdout: String::from_utf8_lossy(&output).into_owned(),
+        stderr: String::from_utf8_lossy(&errors).into_owned(),
+    })
 }
 
 #[cfg(all(test, unix))]
