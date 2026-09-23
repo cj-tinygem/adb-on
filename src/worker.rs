@@ -66,36 +66,52 @@ pub struct View {
 // Keep brief mDNS gaps from erasing a candidate while the user opens the pairing dialog.
 // This cache is session-only; fresh advertisements replace a phone's previous port.
 #[derive(Default)]
-struct Discovery(Vec<(Service, Instant)>);
+struct Discovery {
+    services: Vec<(Service, Instant)>,
+    last_connected: HashMap<IpAddr, SocketAddr>,
+}
 impl Discovery {
+    fn connection_address(&self, ip: IpAddr) -> Option<SocketAddr> {
+        let candidates: Vec<_> = self.services.iter()
+            .filter(|(s, _)| !s.pairing && s.address.ip() == ip)
+            .map(|(s, _)| s.address).collect();
+        match candidates.as_slice() {
+            [address] => Some(*address),
+            [] => self.last_connected.get(&ip).copied(),
+            _ => None,
+        }
+    }
     fn update(&mut self, services: Vec<Service>, now: Instant) {
         for mut service in services {
-            if let Some((old, _)) = self.0.iter().find(|(old, _)| old.address == service.address) {
+            if let Some((old, _)) = self.services.iter().find(|(old, _)| old.address == service.address) {
                 service.label = old.label.clone();
             }
-            self.0.retain(|(old, _)| !(old.pairing == service.pairing
+            self.services.retain(|(old, _)| !(old.pairing == service.pairing
                 && (old.address.ip() == service.address.ip()
                     || (!old.name.is_empty() && old.name == service.name))));
-            self.0.push((service, now));
+            self.services.push((service, now));
         }
-        self.0.retain(|(service, seen)| now.duration_since(*seen)
+        self.services.retain(|(service, seen)| now.duration_since(*seen)
             < Duration::from_secs(if service.pairing { 12 } else { 120 }));
     }
     fn show(&mut self, view: &mut View) {
         // An established connection remains a candidate even when multicast discovery fails.
         for device in view.devices.iter().filter(|d| d.state == "device") {
-            if let Ok(address) = crate::model::endpoint(&device.serial)
-                && !self.0.iter().any(|(s, _)| !s.pairing && s.address == address) {
-                self.0.push((Service { name: String::new(), address, pairing: false, label: device.label() }, Instant::now()));
+            if let Ok(address) = crate::model::endpoint(&device.serial) {
+                self.last_connected.insert(address.ip(), address);
+                if !self.services.iter().any(|(s, _)| !s.pairing && s.address == address) {
+                    self.services.push((Service { name: String::new(), address, pairing: false, label: device.label() }, Instant::now()));
+                }
             }
         }
-        for (service, seen) in &mut self.0 {
+        for (service, seen) in &mut self.services {
             if let Some(device) = view.devices.iter().find(|d| d.state == "device" && crate::model::same_phone(service, d)) {
                 service.label = device.label();
                 *seen = Instant::now();
+                if !service.pairing { self.last_connected.insert(service.address.ip(), service.address); }
             }
         }
-        view.services = self.0.iter().map(|(s, _)| s.clone()).collect();
+        view.services = self.services.iter().map(|(s, _)| s.clone()).collect();
     }
 }
 
@@ -118,7 +134,7 @@ struct PendingPair {
 }
 
 fn finish_pair(tool: &Adb, view: &mut View, pending: &mut Option<PendingPair>,
-    names: &mut HashMap<String, String>, stop: &Arc<AtomicBool>) {
+    names: &mut HashMap<String, String>, discovery: &Discovery, stop: &Arc<AtomicBool>) {
     let Ok(ip) = view.paired_ip.parse::<IpAddr>() else { return };
     let connected = |view: &View| view.devices.iter().any(|d| d.state == "device"
         && (crate::model::endpoint(&d.serial).is_ok_and(|a| a.ip() == ip)
@@ -130,12 +146,10 @@ fn finish_pair(tool: &Adb, view: &mut View, pending: &mut Option<PendingPair>,
         return;
     }
     let Some(pair) = pending.as_mut() else { return };
-    let candidates: Vec<_> = view.services.iter()
-        .filter(|s| !s.pairing && s.address.ip() == pair.ip)
-        .map(|s| s.address).collect();
-    if candidates.len() == 1 && pair.attempted.insert(candidates[0]) {
+    let address = discovery.connection_address(pair.ip);
+    if let Some(address) = address && pair.attempted.insert(address) {
         // Pairing has succeeded independently of the connection attempt.
-        if tool.connect(&candidates[0].to_string(), stop).is_ok()
+        if tool.connect(&address.to_string(), stop).is_ok()
             && let Ok(devices) = tool.list(stop) {
             set_devices(tool, view, devices, names, stop);
             if connected(view) {
@@ -325,9 +339,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                             paired.map(|_| {
                                 if let Ok(endpoint) = crate::model::endpoint(&address) {
                                     view.paired_ip = endpoint.ip().to_string();
-                                    if !manual_addresses {
-                                        pending_pair = Some(PendingPair { ip: endpoint.ip(), started: Instant::now(), attempted: HashSet::new() });
-                                    }
+                                    pending_pair = Some(PendingPair { ip: endpoint.ip(), started: Instant::now(), attempted: HashSet::new() });
                                 }
                                 if let Ok(devices) = tool.list(&stop) {
                                     set_devices(tool, &mut view, devices, &mut names, &stop);
@@ -336,7 +348,10 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                                     discovery.update(services, Instant::now());
                                 }
                                 discovery.show(&mut view);
-                                finish_pair(tool, &mut view, &mut pending_pair, &mut names, &stop);
+                                finish_pair(tool, &mut view, &mut pending_pair, &mut names, &discovery, &stop);
+                                // Manual mode still completes this requested pairing using a known
+                                // connection address, but never starts discovery or background retries.
+                                if manual_addresses { pending_pair = None; }
                                 discovery_at = Instant::now() - Duration::from_secs(3);
                                 String::new()
                             })
@@ -408,7 +423,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                     Err(error) => { view.discovery_notice = error; }
                 }
                 discovery.show(&mut view);
-                finish_pair(tool, &mut view, &mut pending_pair, &mut names, &stop);
+                finish_pair(tool, &mut view, &mut pending_pair, &mut names, &discovery, &stop);
                 describe(&mut view);
                 publish(view.clone());
             }
@@ -420,7 +435,7 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
                     if let Some(ref tool) = adb {
                         set_devices(tool, &mut view, devices, &mut names, &stop);
                         discovery.show(&mut view);
-                        finish_pair(tool, &mut view, &mut pending_pair, &mut names, &stop);
+                        finish_pair(tool, &mut view, &mut pending_pair, &mut names, &discovery, &stop);
                     }
                     view.server_notice.clear();
                     describe(&mut view);
@@ -448,5 +463,26 @@ pub fn run(rx: Receiver<Action>, stop: Arc<AtomicBool>, publish: impl Fn(View)) 
             }
             retry = Instant::now();
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn pairing_can_reuse_a_verified_address_after_discovery_expires() {
+        let address: SocketAddr = "192.168.1.3:44444".parse().unwrap();
+        let mut view = View { devices: crate::model::devices("192.168.1.3:44444 device model:Phone\n"), ..View::default() };
+        let mut discovery = Discovery::default();
+        discovery.show(&mut view);
+        view.devices.clear();
+        let later = Instant::now() + Duration::from_secs(121);
+        discovery.update(vec![], later);
+        discovery.show(&mut view);
+        assert!(view.services.is_empty());
+        assert_eq!(discovery.connection_address(address.ip()), Some(address));
+        discovery.update(crate::model::services("phone _adb-tls-connect._tcp 192.168.1.3:55555\n"), later);
+        assert_eq!(discovery.connection_address(address.ip()).unwrap().port(), 55555);
+        assert_eq!(discovery.connection_address("192.168.1.4".parse().unwrap()), None);
     }
 }
