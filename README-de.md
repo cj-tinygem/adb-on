@@ -56,7 +56,7 @@ Offizieller Verteilungsort: [adb-on Downloads und Releases](https://github.com/c
 
 |Plattform|Bereitgestellte Form|Aktueller Status|
 |---|---|---|
-|Windows x64|`adb-on.exe`|Verfügbar. Mit einem echten Telefon über USB und WLAN geprüft. Das Koppeln per Code wartet noch auf die Prüfung mit echtem Telefon.|
+|Windows x64|`adb-on.exe`|Verfügbar. Mit echten Telefonen geprüft: USB- und WLAN-Verbindungen, Koppeln per Code und gleichzeitige drahtlose Verbindungen zu zwei Telefonen.|
 |macOS Apple Silicon|`adb-on.app`|Veröffentlicht. Mit Developer ID signiert und notarisiert.|
 |macOS Intel|`adb-on.app`|Veröffentlicht. Mit Developer ID signiert und notarisiert. Build und Start auf einem Intel-Mac (macOS 15) geprüft.|
 

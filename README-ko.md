@@ -56,7 +56,7 @@ Android 앱을 만들었는데, 내 폰에 연결하는 순간 막혔나요?
 
 |플랫폼|제공 형태|현재 상태|
 |---|---|---|
-|Windows x64|`adb-on.exe`|사용 가능. 실제 휴대폰과 USB·Wi-Fi 연결 검증 완료. 코드 페어링은 실폰 검증 대기.|
+|Windows x64|`adb-on.exe`|사용 가능. 실제 휴대폰 USB·Wi-Fi 연결과 코드 페어링, 두 기기의 동시 무선 연결 검증 완료.|
 |macOS Apple Silicon|`adb-on.app`|공개. Developer ID 서명·공증 완료.|
 |macOS Intel|`adb-on.app`|공개. Developer ID 서명·공증 완료. Intel Mac(macOS 15)에서 빌드와 실행을 검증함.|
 

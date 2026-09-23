@@ -56,7 +56,7 @@ Official distribution location: [adb-on downloads and releases](https://github.c
 
 |Platform|Provided As|Current Status|
 |---|---|---|
-|Windows x64|`adb-on.exe`|Available. Verified with a real phone over USB and Wi-Fi. Pairing with a code is still awaiting real-phone verification.|
+|Windows x64|`adb-on.exe`|Available. Verified with real phones over USB and Wi-Fi, including code pairing and simultaneous wireless connections to two phones.|
 |macOS Apple Silicon|`adb-on.app`|Published. Developer ID signed and notarized.|
 |macOS Intel|`adb-on.app`|Published. Developer ID signed and notarized. Build and launch verified on an Intel Mac (macOS 15).|
 

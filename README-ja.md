@@ -56,7 +56,7 @@ Android アプリを作ったのに、自分のスマートフォンに接続す
 
 |プラットフォーム|提供形態|現在の状態|
 |---|---|---|
-|Windows x64|`adb-on.exe`|利用可能。実機との USB・Wi-Fi 接続を検証済み。コードによるペアリングは実機検証待ち。|
+|Windows x64|`adb-on.exe`|利用可能。実機で USB・Wi-Fi 接続、コードによるペアリング、2 台の同時無線接続を検証済み。|
 |macOS Apple Silicon|`adb-on.app`|公開済み。Developer ID 署名・公証済み。|
 |macOS Intel|`adb-on.app`|公開済み。Developer ID 署名・公証済み。Intel Mac (macOS 15) でビルドと起動を検証済み。|
 

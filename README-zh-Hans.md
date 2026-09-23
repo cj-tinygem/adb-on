@@ -56,7 +56,7 @@
 
 |平台|提供形式|当前状态|
 |---|---|---|
-|Windows x64|`adb-on.exe`|可用。已用真实手机验证 USB 与 Wi-Fi 连接。配对码配对仍待实机验证。|
+|Windows x64|`adb-on.exe`|可用。已用真实手机验证 USB 与 Wi-Fi 连接、配对码配对以及两台手机同时无线连接。|
 |macOS Apple Silicon|`adb-on.app`|已发布。已完成 Developer ID 签名与公证。|
 |macOS Intel|`adb-on.app`|已发布。已完成 Developer ID 签名与公证。已在 Intel Mac（macOS 15）上验证构建与启动。|
 

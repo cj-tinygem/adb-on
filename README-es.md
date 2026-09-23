@@ -56,7 +56,7 @@ Ubicación oficial de distribución: [Descargas y versiones de adb-on](https://g
 
 |Plataforma|Formato|Estado actual|
 |---|---|---|
-|Windows x64|`adb-on.exe`|Disponible. Verificado con un teléfono real por USB y Wi-Fi. El emparejamiento con código aún espera verificación con teléfono real.|
+|Windows x64|`adb-on.exe`|Disponible. Verificados con teléfonos reales: conexión por USB y Wi-Fi, emparejamiento con código y conexión inalámbrica simultánea de dos teléfonos.|
 |macOS Apple Silicon|`adb-on.app`|Publicado. Firmado con Developer ID y notarizado.|
 |macOS Intel|`adb-on.app`|Publicado. Firmado con Developer ID y notarizado. Compilación y arranque verificados en un Mac Intel (macOS 15).|
 
